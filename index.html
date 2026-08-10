@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Organic Performance — Week 31 Dashboard</title>
+<title>Organic Performance — Week 32 Dashboard</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -83,7 +83,7 @@ tbody tr:hover { background: #1c2128; }
 <button class="tab" id="view-overview" onclick="switchView('overview')">Performance Overview</button>
 <button class="tab" id="view-okr" onclick="switchView('okr')">H1 OKR Progress</button>
 </div>
-<span class="period" id="viewPeriodBadge">Week 31 Report (Aug 3 – Aug 9, 2026)</span>
+<span class="period" id="viewPeriodBadge">Week 32 Report (Aug 3 – Aug 9, 2026)</span>
 <div class="tabs" style="margin:0;" id="weeklyFilters">
 <button class="tab active" id="plat-ios" onclick="switchPlatform('ios')">iOS</button>
 <button class="tab" id="plat-android" onclick="switchPlatform('android')">Android</button>
@@ -301,7 +301,7 @@ tbody tr:hover { background: #1c2128; }
 
 <!-- Downloads Breakdown (Android) -->
 <div class="section" id="androidDownloadsSection" style="display:none;">
-<div class="section-title"><span data-tip="Google Play Console store listing acquisitions — users who viewed the listing and then installed. W32 not yet available; showing W29 vs W30.">Store Listing Acquisitions</span> <span class="badge">Google Play Console · W29 vs W30</span></div>
+<div class="section-title"><span data-tip="Google Play Console store listing acquisitions — users who viewed the listing and then installed. W32 not yet available; showing W29 vs W30.">Store Listing Acquisitions</span> <span class="badge">Google Play Console · W31 vs W32</span></div>
 <div class="kpi-row" style="grid-template-columns: repeat(4, 1fr);">
 <div class="kpi-card">
 <div class="kpi-label" data-tip="Total store listing acquisitions across all Google Play traffic sources.">All Traffic Sources</div>
@@ -349,7 +349,7 @@ tbody tr:hover { background: #1c2128; }
 
 <!-- Top Movers -->
 <div class="section">
-<div class="section-title"><span data-tip="Countries with the largest absolute WoW change for the selected metric.">Top Movers</span> <span class="badge">W30 vs W31</span></div>
+<div class="section-title"><span data-tip="Countries with the largest absolute WoW change for the selected metric.">Top Movers</span> <span class="badge">W31 vs W32</span></div>
 <div class="tabs" id="moverTabs">
 <button class="tab active" onclick="switchMoverMetric('signups')">Sign-Ups</button>
 <button class="tab" onclick="switchMoverMetric('eftds')">eFTDs</button>
@@ -397,12 +397,12 @@ tbody tr:hover { background: #1c2128; }
 <input type="text" id="searchCountry" placeholder="Country code..." oninput="renderTable()">
 </div>
 <div class="chart-container" id="tableContainer"></div>
-<p class="footnote">* Downloads use ASC dates (W30: Jul 27–Aug 2, W31: Aug 3–9). ASA installs subtracted for pure organic. OA = Other Africa, OZ = Other Asia-Pacific.</p>
+<p class="footnote">* Downloads use ASC dates (W31: Jul 27–Aug 2, W32: Aug 3–9). ASA installs subtracted for pure organic. OA = Other Africa, OZ = Other Asia-Pacific.</p>
 </div>
 
 <!-- Country Bar Chart -->
 <div class="section">
-<div class="section-title"><span data-tip="Bar chart comparing W30 vs W31 for the top 15 countries by current week volume.">Top 15 Countries by W31 Volume</span></div>
+<div class="section-title"><span data-tip="Bar chart comparing W30 vs W31 for the top 15 countries by current week volume.">Top 15 Countries by W32 Volume</span></div>
 <div class="chart-container">
 <canvas id="countryBarChart"></canvas>
 </div>
@@ -413,38 +413,52 @@ tbody tr:hover { background: #1c2128; }
 <script>
 const IOS_DATA = {
 signups: [
-{country:"RU",w31:1539,w31:2667},{country:"NG",w31:700,w31:1870},{country:"OA",w31:594,w31:933},
-{country:"DZ",w31:317,w31:474},{country:"VN",w31:60,w31:404},{country:"UA",w31:203,w31:401},
-{country:"AO",w31:96,w31:317},{country:"GB",w31:149,w31:293},{country:"BR",w31:170,w31:289},
-{country:"EG",w31:184,w31:235},{country:"IN",w31:105,w31:192},{country:"TW",w31:78,w31:165},
-{country:"GH",w31:46,w31:160},{country:"VE",w31:134,w31:155},{country:"AU",w31:127,w31:149},
-{country:"KR",w31:52,w31:140},{country:"SA",w31:146,w31:135},{country:"TR",w31:97,w31:122},
-{country:"PK",w31:76,w31:108},{country:"TN",w31:107,w31:102},{country:"MA",w31:103,w31:100},
-{country:"OZ",w31:43,w31:90},{country:"IL",w31:33,w31:82},{country:"IQ",w31:32,w31:76},
-{country:"BD",w31:36,w31:68},{country:"CO",w31:53,w31:66},{country:"AE",w31:44,w31:64},
-{country:"BY",w31:49,w31:53},{country:"MD",w31:55,w31:52}
+{country:"RU",w30:1539,w31:2667},{country:"NG",w30:700,w31:1870},{country:"OA",w30:594,w31:933},
+{country:"DZ",w30:317,w31:474},{country:"VN",w30:60,w31:404},{country:"UA",w30:203,w31:401},
+{country:"AO",w30:96,w31:317},{country:"GB",w30:149,w31:293},{country:"BR",w30:170,w31:289},
+{country:"EG",w30:184,w31:235},{country:"IN",w30:105,w31:192},{country:"TW",w30:78,w31:165},
+{country:"GH",w30:46,w31:160},{country:"VE",w30:134,w31:155},{country:"AU",w30:127,w31:149},
+{country:"KR",w30:52,w31:140},{country:"SA",w30:146,w31:135},{country:"TR",w30:97,w31:122},
+{country:"PK",w30:76,w31:108},{country:"TN",w30:107,w31:102},{country:"MA",w30:103,w31:100},
+{country:"OZ",w30:43,w31:90},{country:"IL",w30:33,w31:82},{country:"IQ",w30:32,w31:76},
+{country:"BD",w30:36,w31:68},{country:"CO",w30:53,w31:66},{country:"MM",w30:34,w31:65},
+{country:"AE",w30:44,w31:64},{country:"LK",w30:35,w31:61},{country:"ET",w30:9,w31:59},
+{country:"MX",w30:42,w31:57},{country:"ID",w30:32,w31:55},{country:"CH",w30:25,w31:54},
+{country:"KH",w30:17,w31:54},{country:"BY",w30:49,w31:53},{country:"MD",w30:55,w31:52},
+{country:"AM",w30:23,w31:42},{country:"LB",w30:17,w31:42},{country:"CM",w30:11,w31:37},
+{country:"CD",w30:13,w31:37}
 ],
 eftds: [
-{country:"OA",w31:233,w31:382},{country:"RU",w31:403,w31:371},{country:"NG",w31:221,w31:222},
-{country:"UA",w31:105,w31:135},{country:"VN",w31:50,w31:74},{country:"BR",w31:24,w31:33},
-{country:"AO",w31:17,w31:27},{country:"BY",w31:18,w31:27},{country:"VE",w31:34,w31:24},
-{country:"AU",w31:28,w31:23},{country:"TR",w31:22,w31:23},{country:"MD",w31:13,w31:22},
-{country:"EG",w31:33,w31:20},{country:"CO",w31:14,w31:18},{country:"IN",w31:13,w31:18},
-{country:"KR",w31:12,w31:17},{country:"PK",w31:13,w31:16},{country:"OZ",w31:22,w31:16},
-{country:"MA",w31:9,w31:16},{country:"IL",w31:7,w31:16},{country:"DZ",w31:13,w31:13},
-{country:"SA",w31:11,w31:12},{country:"AE",w31:10,w31:11},{country:"TN",w31:6,w31:12},
-{country:"GH",w31:5,w31:13},{country:"BD",w31:5,w31:8},{country:"TW",w31:3,w31:6}
+{country:"OA",w30:233,w31:382},{country:"RU",w30:403,w31:371},{country:"NG",w30:221,w31:222},
+{country:"UA",w30:105,w31:135},{country:"VN",w30:50,w31:74},{country:"BR",w30:24,w31:33},
+{country:"AO",w30:17,w31:27},{country:"BY",w30:18,w31:27},{country:"VE",w30:34,w31:24},
+{country:"AU",w30:28,w31:23},{country:"TR",w30:22,w31:23},{country:"MM",w30:22,w31:23},
+{country:"MD",w30:13,w31:22},{country:"EG",w30:33,w31:20},{country:"IN",w30:13,w31:18},
+{country:"CO",w30:14,w31:18},{country:"KR",w30:12,w31:17},{country:"PK",w30:13,w31:16},
+{country:"MA",w30:9,w31:16},{country:"OZ",w30:22,w31:16},{country:"IL",w30:7,w31:16},
+{country:"ID",w30:13,w31:16},{country:"RS",w30:6,w31:16},{country:"AM",w30:13,w31:14},
+{country:"DZ",w30:13,w31:13},{country:"GH",w30:5,w31:13},{country:"GB",w30:6,w31:12},
+{country:"SA",w30:11,w31:12},{country:"TN",w30:6,w31:12},{country:"AE",w30:10,w31:11},
+{country:"CH",w30:9,w31:10},{country:"KE",w30:7,w31:9},{country:"JO",w30:5,w31:9},
+{country:"TJ",w30:12,w31:9},{country:"KG",w30:11,w31:9},{country:"BD",w30:5,w31:8},
+{country:"GE",w30:7,w31:8},{country:"MX",w30:8,w31:7},{country:"XK",w30:5,w31:7},
+{country:"TW",w30:3,w31:6}
 ],
 eftts: [
-{country:"OA",w31:226,w31:374},{country:"RU",w31:222,w31:207},{country:"NG",w31:197,w31:196},
-{country:"UA",w31:92,w31:109},{country:"VN",w31:43,w31:66},{country:"BR",w31:23,w31:33},
-{country:"EG",w31:20,w31:17},{country:"AU",w31:21,w31:19},{country:"AO",w31:7,w31:15},
-{country:"TR",w31:20,w31:14},{country:"BY",w31:7,w31:13},{country:"IL",w31:7,w31:13},
-{country:"KR",w31:11,w31:12},{country:"PK",w31:12,w31:12},{country:"VE",w31:16,w31:11},
-{country:"AE",w31:9,w31:11},{country:"CO",w31:3,w31:10},{country:"OZ",w31:13,w31:10},
-{country:"SA",w31:5,w31:10},{country:"GH",w31:5,w31:9},{country:"IN",w31:10,w31:8},
-{country:"TN",w31:8,w31:8},{country:"MD",w31:12,w31:20},{country:"MA",w31:8,w31:7},
-{country:"DZ",w31:9,w31:11},{country:"BD",w31:3,w31:5}
+{country:"OA",w30:226,w31:374},{country:"RU",w30:222,w31:207},{country:"NG",w30:197,w31:196},
+{country:"UA",w30:92,w31:109},{country:"VN",w30:43,w31:66},{country:"BR",w30:23,w31:33},
+{country:"MD",w30:12,w31:20},{country:"AU",w30:21,w31:19},{country:"EG",w30:20,w31:17},
+{country:"MM",w30:17,w31:17},{country:"AO",w30:7,w31:15},{country:"TR",w30:20,w31:14},
+{country:"IL",w30:7,w31:13},{country:"ID",w30:10,w31:13},{country:"BY",w30:7,w31:13},
+{country:"RS",w30:3,w31:13},{country:"KR",w30:11,w31:12},{country:"PK",w30:12,w31:12},
+{country:"DZ",w30:9,w31:11},{country:"VE",w30:16,w31:11},{country:"AE",w30:9,w31:11},
+{country:"AM",w30:7,w31:11},{country:"SA",w30:5,w31:10},{country:"OZ",w30:13,w31:10},
+{country:"CO",w30:3,w31:10},{country:"GH",w30:5,w31:9},{country:"IN",w30:10,w31:8},
+{country:"TN",w30:8,w31:8},{country:"KG",w30:10,w31:8},{country:"MA",w30:8,w31:7},
+{country:"MX",w30:4,w31:7},{country:"CH",w30:6,w31:7},{country:"TJ",w30:1,w31:6},
+{country:"TM",w30:3,w31:6},{country:"IT",w30:0,w31:6},{country:"GB",w30:3,w31:5},
+{country:"BD",w30:3,w31:5},{country:"KE",w30:1,w31:5},{country:"JO",w30:3,w31:5},
+{country:"NZ",w30:3,w31:5}
 ],
 downloads: [
   {
@@ -3186,46 +3200,52 @@ redownloads: [
 
 const ANDROID_DATA = {
 signups: [
-{country:"NG",w31:918,w31:3067},{country:"RU",w31:787,w31:1951},{country:"PK",w31:368,w31:1900},
-{country:"IN",w31:1408,w31:1866},{country:"DZ",w31:1109,w31:1779},{country:"OA",w31:425,w31:770},
-{country:"AO",w31:180,w31:759},{country:"BD",w31:305,w31:758},{country:"EG",w31:418,w31:677},
-{country:"BR",w31:455,w31:661},{country:"KE",w31:310,w31:636},{country:"VE",w31:309,w31:493},
-{country:"ET",w31:61,w31:423},{country:"TW",w31:35,w31:300},{country:"TN",w31:264,w31:289},
-{country:"MA",w31:320,w31:280},{country:"AR",w31:195,w31:260},{country:"UA",w31:102,w31:243},
-{country:"ZA",w31:206,w31:243},{country:"TR",w31:124,w31:197},{country:"CO",w31:130,w31:195},
-{country:"MX",w31:138,w31:173},{country:"ID",w31:138,w31:163},{country:"IQ",w31:93,w31:156},
-{country:"BO",w31:90,w31:153},{country:"GB",w31:88,w31:149},{country:"GH",w31:62,w31:137},
-{country:"LK",w31:50,w31:133},{country:"SA",w31:63,w31:120},{country:"UG",w31:49,w31:119},
-{country:"YE",w31:40,w31:111},{country:"PE",w31:72,w31:108},{country:"MM",w31:31,w31:97},
-{country:"AZ",w31:70,w31:97},{country:"CL",w31:109,w31:87},{country:"AU",w31:48,w31:86},
-{country:"VN",w31:52,w31:85},{country:"KR",w31:39,w31:77},{country:"NP",w31:30,w31:75},
-{country:"AE",w31:37,w31:71},{country:"EC",w31:70,w31:69}
+{country:"NG",w30:918,w31:3067},{country:"RU",w30:787,w31:1951},{country:"PK",w30:368,w31:1900},
+{country:"IN",w30:1408,w31:1866},{country:"DZ",w30:1109,w31:1779},{country:"OA",w30:425,w31:770},
+{country:"AO",w30:180,w31:759},{country:"BD",w30:305,w31:758},{country:"EG",w30:418,w31:677},
+{country:"BR",w30:455,w31:661},{country:"KE",w30:310,w31:636},{country:"VE",w30:309,w31:493},
+{country:"ET",w30:61,w31:423},{country:"TW",w30:35,w31:300},{country:"TN",w30:264,w31:289},
+{country:"MA",w30:320,w31:280},{country:"AR",w30:195,w31:260},{country:"ZA",w30:206,w31:243},
+{country:"UA",w30:102,w31:243},{country:"TR",w30:124,w31:197},{country:"CO",w30:130,w31:195},
+{country:"MX",w30:138,w31:173},{country:"ID",w30:138,w31:163},{country:"IQ",w30:93,w31:156},
+{country:"BO",w30:90,w31:153},{country:"GB",w30:88,w31:149},{country:"GH",w30:62,w31:137},
+{country:"LK",w30:50,w31:133},{country:"SA",w30:63,w31:120},{country:"UG",w30:49,w31:119},
+{country:"YE",w30:40,w31:111},{country:"PE",w30:72,w31:108},{country:"MM",w30:31,w31:97},
+{country:"AZ",w30:70,w31:97},{country:"CL",w30:109,w31:87},{country:"AU",w30:48,w31:86},
+{country:"VN",w30:52,w31:85},{country:"KR",w30:39,w31:77},{country:"NP",w30:30,w31:75},
+{country:"TH",w30:18,w31:74}
 ],
 eftds: [
-{country:"OA",w31:209,w31:561},{country:"RU",w31:266,w31:249},{country:"NG",w31:235,w31:198},
-{country:"IN",w31:134,w31:150},{country:"PK",w31:53,w31:83},{country:"BR",w31:82,w31:81},
-{country:"KE",w31:45,w31:75},{country:"EG",w31:44,w31:58},{country:"VE",w31:39,w31:58},
-{country:"UA",w31:53,w31:53},{country:"AR",w31:42,w31:40},{country:"DZ",w31:49,w31:36},
-{country:"TR",w31:23,w31:29},{country:"AZ",w31:22,w31:28},{country:"CO",w31:30,w31:26},
-{country:"ID",w31:57,w31:25},{country:"MM",w31:12,w31:25},{country:"BD",w31:30,w31:40},
-{country:"BO",w31:35,w31:23},{country:"ZA",w31:14,w31:22},{country:"MX",w31:17,w31:21},
-{country:"AO",w31:10,w31:18},{country:"KR",w31:10,w31:19},{country:"TN",w31:13,w31:18},
-{country:"MA",w31:18,w31:17},{country:"AU",w31:12,w31:13},{country:"VN",w31:16,w31:13},
-{country:"AE",w31:12,w31:13},{country:"UG",w31:7,w31:11},{country:"PE",w31:9,w31:11},
-{country:"GH",w31:18,w31:12},{country:"NP",w31:4,w31:8},{country:"ET",w31:6,w31:8},
-{country:"LK",w31:10,w31:7},{country:"GB",w31:8,w31:2}
+{country:"OA",w30:209,w31:561},{country:"RU",w30:266,w31:249},{country:"NG",w30:235,w31:198},
+{country:"IN",w30:134,w31:150},{country:"PK",w30:53,w31:83},{country:"BR",w30:82,w31:81},
+{country:"KE",w30:45,w31:75},{country:"EG",w30:44,w31:58},{country:"VE",w30:39,w31:58},
+{country:"UA",w30:53,w31:53},{country:"BD",w30:30,w31:40},{country:"AR",w30:42,w31:40},
+{country:"DZ",w30:49,w31:36},{country:"TR",w30:23,w31:29},{country:"AZ",w30:22,w31:28},
+{country:"CO",w30:30,w31:26},{country:"ID",w30:57,w31:25},{country:"MM",w30:12,w31:25},
+{country:"BO",w30:35,w31:23},{country:"ZA",w30:14,w31:22},{country:"MX",w30:17,w31:21},
+{country:"KR",w30:10,w31:19},{country:"AO",w30:10,w31:18},{country:"TN",w30:13,w31:18},
+{country:"MA",w30:18,w31:17},{country:"OZ",w30:14,w31:17},{country:"AF",w30:6,w31:17},
+{country:"TJ",w30:8,w31:17},{country:"MD",w30:8,w31:16},{country:"CL",w30:10,w31:15},
+{country:"BY",w30:13,w31:14},{country:"AU",w30:12,w31:13},{country:"VN",w30:16,w31:13},
+{country:"AE",w30:12,w31:13},{country:"GH",w30:18,w31:12},{country:"KG",w30:23,w31:12},
+{country:"UG",w30:7,w31:11},{country:"PE",w30:9,w31:11},{country:"RS",w30:13,w31:11},
+{country:"AM",w30:6,w31:11}
 ],
 eftts: [
-{country:"OA",w31:210,w31:559},{country:"NG",w31:161,w31:136},{country:"RU",w31:132,w31:127},
-{country:"PK",w31:32,w31:67},{country:"IN",w31:46,w31:62},{country:"BR",w31:71,w31:68},
-{country:"EG",w31:37,w31:49},{country:"UA",w31:41,w31:38},{country:"DZ",w31:36,w31:36},
-{country:"BD",w31:19,w31:34},{country:"VE",w31:23,w31:33},{country:"AZ",w31:19,w31:29},
-{country:"ID",w31:46,w31:24},{country:"TR",w31:14,w31:21},{country:"KE",w31:10,w31:17},
-{country:"MM",w31:8,w31:17},{country:"AR",w31:20,w31:16},{country:"CO",w31:12,w31:16},
-{country:"AO",w31:11,w31:15},{country:"KR",w31:9,w31:15},{country:"TN",w31:12,w31:13},
-{country:"MA",w31:13,w31:11},{country:"BO",w31:17,w31:10},{country:"AU",w31:6,w31:9},
-{country:"ZA",w31:6,w31:8},{country:"VN",w31:10,w31:8},{country:"MX",w31:8,w31:5},
-{country:"NP",w31:4,w31:6},{country:"AE",w31:9,w31:6}
+{country:"OA",w30:210,w31:559},{country:"NG",w30:161,w31:136},{country:"RU",w30:132,w31:127},
+{country:"BR",w30:71,w31:68},{country:"PK",w30:32,w31:67},{country:"IN",w30:46,w31:62},
+{country:"EG",w30:37,w31:49},{country:"UA",w30:41,w31:38},{country:"DZ",w30:36,w31:36},
+{country:"BD",w30:19,w31:34},{country:"VE",w30:23,w31:33},{country:"AZ",w30:19,w31:29},
+{country:"ID",w30:46,w31:24},{country:"TR",w30:14,w31:21},{country:"KE",w30:10,w31:17},
+{country:"MM",w30:8,w31:17},{country:"AR",w30:20,w31:16},{country:"CO",w30:12,w31:16},
+{country:"AO",w30:11,w31:15},{country:"KR",w30:9,w31:15},{country:"AF",w30:7,w31:15},
+{country:"BY",w30:12,w31:14},{country:"TN",w30:12,w31:13},{country:"MD",w30:6,w31:13},
+{country:"MA",w30:13,w31:11},{country:"RS",w30:7,w31:11},{country:"BO",w30:17,w31:10},
+{country:"TJ",w30:6,w31:10},{country:"AU",w30:6,w31:9},{country:"OZ",w30:7,w31:9},
+{country:"ZA",w30:6,w31:8},{country:"VN",w30:10,w31:8},{country:"AM",w30:5,w31:7},
+{country:"KG",w30:3,w31:7},{country:"ET",w30:6,w31:6},{country:"PE",w30:6,w31:6},
+{country:"CL",w30:3,w31:6},{country:"NP",w30:4,w31:6},{country:"AE",w30:9,w31:6},
+{country:"TM",w30:14,w31:6}
 ]
 };
 
@@ -3233,14 +3253,27 @@ eftts: [
 const SITE_DATA = {
 EU: {
   ios: {
-    signups: [{country:"DE",w31:180,w31:173},{country:"PL",w31:112,w31:169},{country:"IT",w31:88,w31:122},{country:"FR",w31:64,w31:117},{country:"ES",w31:81,w31:99},{country:"NO",w31:31,w31:77},{country:"LT",w31:81,w31:77},{country:"NL",w31:58,w31:75},{country:"CZ",w31:54,w31:73},{country:"GR",w31:35,w31:56},{country:"PT",w31:35,w31:52},{country:"BG",w31:76,w31:51},{country:"CY",w31:34,w31:43},{country:"LV",w31:28,w31:42},{country:"BE",w31:31,w31:42},{country:"SE",w31:36,w31:41},{country:"HU",w31:25,w31:37},{country:"RO",w31:26,w31:29},{country:"EE",w31:10,w31:28},{country:"DK",w31:8,w31:27},{country:"IE",w31:12,w31:23},{country:"AT",w31:14,w31:21},{country:"SK",w31:11,w31:18},{country:"RU",w31:12,w31:15},{country:"FI",w31:13,w31:15}],
-    eftds: [{country:"PL",w31:21,w31:22},{country:"DE",w31:28,w31:20},{country:"IT",w31:16,w31:18},{country:"BG",w31:13,w31:17},{country:"ES",w31:17,w31:15},{country:"FR",w31:12,w31:15},{country:"NL",w31:14,w31:14},{country:"LT",w31:23,w31:12},{country:"PT",w31:10,w31:8},{country:"CZ",w31:3,w31:8},{country:"BE",w31:9,w31:7},{country:"GR",w31:7,w31:6},{country:"NO",w31:0,w31:6},{country:"SE",w31:2,w31:5},{country:"LV",w31:3,w31:5},{country:"CY",w31:1,w31:5},{country:"HU",w31:3,w31:4},{country:"AT",w31:2,w31:4},{country:"FI",w31:0,w31:4},{country:"EE",w31:6,w31:3},{country:"RO",w31:8,w31:3}],
-    eftts: [{country:"PL",w31:17,w31:20},{country:"DE",w31:27,w31:16},{country:"IT",w31:15,w31:15},{country:"BG",w31:9,w31:15},{country:"ES",w31:11,w31:14},{country:"NL",w31:12,w31:14},{country:"FR",w31:6,w31:9},{country:"PT",w31:4,w31:9},{country:"LT",w31:20,w31:8},{country:"BE",w31:9,w31:4},{country:"CZ",w31:3,w31:4},{country:"GR",w31:4,w31:4},{country:"FI",w31:1,w31:4},{country:"HU",w31:4,w31:3},{country:"AT",w31:2,w31:3},{country:"EE",w31:5,w31:3},{country:"CY",w31:0,w31:2},{country:"LV",w31:2,w31:2},{country:"RO",w31:7,w31:2}]
+    signups: [
+{country:"TR",w30:52,w31:77},{country:"EG",w30:1,w31:0}
+],
+    eftds: [
+{country:"GE",w30:19,w31:6}
+],
+    eftts: [
+{country:"GE",w30:4,w31:4}
+]
   },
   android: {
-    signups: [{country:"DE",w31:171,w31:260},{country:"IT",w31:168,w31:235},{country:"FR",w31:124,w31:198},{country:"PL",w31:203,w31:196},{country:"ES",w31:115,w31:170},{country:"TZ",w31:0,w31:105},{country:"PT",w31:85,w31:101},{country:"NL",w31:56,w31:89},{country:"GR",w31:49,w31:81},{country:"RO",w31:63,w31:81},{country:"HU",w31:37,w31:66},{country:"CZ",w31:48,w31:66},{country:"BG",w31:47,w31:63},{country:"LT",w31:38,w31:61},{country:"LV",w31:41,w31:42},{country:"BE",w31:25,w31:37},{country:"NO",w31:23,w31:37},{country:"FI",w31:29,w31:30},{country:"CY",w31:13,w31:26},{country:"SK",w31:12,w31:26},{country:"SE",w31:23,w31:24},{country:"AT",w31:13,w31:21}],
-    eftds: [{country:"PL",w31:45,w31:32},{country:"DE",w31:27,w31:23},{country:"IT",w31:14,w31:17},{country:"FR",w31:17,w31:13},{country:"CZ",w31:5,w31:11},{country:"ES",w31:24,w31:10},{country:"HU",w31:5,w31:10},{country:"PT",w31:15,w31:9},{country:"BG",w31:4,w31:9},{country:"GR",w31:13,w31:8},{country:"NL",w31:8,w31:8},{country:"LV",w31:5,w31:5},{country:"SE",w31:4,w31:5},{country:"LT",w31:14,w31:5},{country:"FI",w31:5,w31:4},{country:"SK",w31:1,w31:4},{country:"AT",w31:3,w31:3},{country:"NO",w31:6,w31:3},{country:"BE",w31:2,w31:2}],
-    eftts: [{country:"PL",w31:45,w31:32},{country:"DE",w31:27,w31:23},{country:"IT",w31:14,w31:17},{country:"FR",w31:17,w31:13},{country:"CZ",w31:5,w31:11},{country:"ES",w31:24,w31:10},{country:"HU",w31:5,w31:10},{country:"PT",w31:15,w31:9},{country:"BG",w31:4,w31:9},{country:"GR",w31:13,w31:8},{country:"NL",w31:8,w31:8},{country:"LV",w31:5,w31:5},{country:"SE",w31:4,w31:5},{country:"LT",w31:14,w31:5},{country:"FI",w31:5,w31:4},{country:"SK",w31:1,w31:4},{country:"AT",w31:3,w31:3},{country:"NO",w31:6,w31:3},{country:"BE",w31:2,w31:2}]
+    signups: [
+{country:"TR",w30:129,w31:141},{country:"NG",w30:0,w31:1},{country:"NL",w30:1,w31:0},
+{country:"RU",w30:1,w31:0}
+],
+    eftds: [
+{country:"GE",w30:5,w31:8}
+],
+    eftts: [
+{country:"GE",w30:1,w31:0}
+]
   }
 },
 IDN: {
@@ -3438,8 +3471,8 @@ function renderKPIs() {
     const sign = curr >= prev ? '+' : '';
     const val = suffix ? curr.toFixed(2)+suffix : curr.toLocaleString();
     const tip = METRIC_TIPS[label] || '';
-    const wPrev = wLabels ? wLabels[0] : 'W30';
-    const wCurr = wLabels ? wLabels[1] : 'W31';
+    const wPrev = wLabels ? wLabels[0] : 'W31';
+    const wCurr = wLabels ? wLabels[1] : 'W32';
     return `<div class="kpi-card"><div class="kpi-label" ${tip?'data-tip="'+tip+'"':''}>${label}</div><div class="kpi-value">${val}</div><div class="kpi-change ${cls}">${sign}${change}% WoW</div><div class="kpi-weeks">${wPrev}: ${suffix ? prev.toFixed(2)+suffix : prev.toLocaleString()} → ${wCurr}: ${val}</div></div>`;
   }
 
@@ -4417,7 +4450,7 @@ function switchView(view) {
   document.getElementById('okrFilters').style.display = view === 'okr' ? '' : 'none';
   document.getElementById('okrSiteFilters').style.display = view === 'okr' ? '' : 'none';
   if (view === 'weekly') {
-    document.getElementById('viewPeriodBadge').textContent = 'Week 31 Report (Aug 3 – Aug 9, 2026)';
+    document.getElementById('viewPeriodBadge').textContent = 'Week 32 Report (Aug 3 – Aug 9, 2026)';
   } else if (view === 'okr') {
     document.getElementById('viewPeriodBadge').textContent = 'H1 2026 (Apr – Sep) vs H2 (Oct – Mar)';
   } else if (view === 'overview') {
