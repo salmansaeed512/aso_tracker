@@ -134,6 +134,7 @@ def parse_csv_text(text):
 def get_week_boundaries(ref_date=None):
     """Calculate prev and curr week boundaries relative to a reference date.
     If today is Mon-Sun of week N, curr = week N-1 (most recent completed week).
+    Week numbering: W1 starts first Monday of the year (Jan 5, 2026).
     """
     if ref_date is None:
         ref_date = datetime.now()
@@ -143,13 +144,18 @@ def get_week_boundaries(ref_date=None):
     curr_sun = this_mon - timedelta(days=1)
     prev_mon = curr_mon - timedelta(days=7)
     prev_sun = curr_mon - timedelta(days=1)
+    # Week number: first Monday of 2026 = Jan 5. Count weeks from there.
+    jan1 = datetime(ref_date.year, 1, 1)
+    first_mon = jan1 + timedelta(days=(7 - jan1.weekday()) % 7)
+    curr_wk = (curr_mon - first_mon).days // 7 + 1
+    prev_wk = (prev_mon - first_mon).days // 7 + 1
     return {
         'curr_start': curr_mon.strftime('%Y-%m-%d'),
         'curr_end': curr_sun.strftime('%Y-%m-%d'),
         'prev_start': prev_mon.strftime('%Y-%m-%d'),
         'prev_end': prev_sun.strftime('%Y-%m-%d'),
-        'curr_week': int(curr_mon.strftime('%V')),
-        'prev_week': int(prev_mon.strftime('%V')),
+        'curr_week': curr_wk,
+        'prev_week': prev_wk,
     }
 
 
