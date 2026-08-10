@@ -3414,20 +3414,14 @@ function getOrganicDL() {
     const w30 = gpW30.reduce((s,d)=>s+d.search+d.explore,0);
     return { w30: w28, w31: w30 };
   }
-  const asaW30 = ASA_DAILY.slice(0,7).reduce((s,d)=>s+d.newDL+d.reDL,0);
-  const asaW31 = ASA_DAILY.slice(7,14).reduce((s,d)=>s+d.newDL+d.reDL,0);
-  const data = getActiveData();
-  const dlArr = data.downloads||[];
-  const searchW30 = dlArr.reduce((s,d)=>s+(d.search_w30||0),0);
-  const searchW31 = dlArr.reduce((s,d)=>s+(d.search_w31||0),0);
-  const browseW30 = dlArr.reduce((s,d)=>s+(d.browse_w30||0),0);
-  const browseW31 = dlArr.reduce((s,d)=>s+(d.browse_w31||0),0);
+  const iosW30 = sumOrganicFTD(w30Days) + sumOrganicRD(w30Days);
+  const iosW31 = sumOrganicFTD(w31Days) + sumOrganicRD(w31Days);
   if (currentPlatform === 'all') {
     const gpW28t = gpW28.reduce((s,d)=>s+d.search+d.explore,0);
     const gpW30t = gpW30.reduce((s,d)=>s+d.search+d.explore,0);
-    return { w30: (searchW30 - asaW30 + browseW30) + gpW28t, w31: (searchW31 - asaW31 + browseW31) + gpW30t };
+    return { w30: iosW30 + gpW28t, w31: iosW31 + gpW30t };
   }
-  return { w30: searchW30 - asaW30 + browseW30, w31: searchW31 - asaW31 + browseW31 };
+  return { w30: iosW30, w31: iosW31 };
 }
 
 function renderKPIs() {
@@ -3452,7 +3446,8 @@ function renderKPIs() {
     return `<div class="kpi-card"><div class="kpi-label" ${tip?'data-tip="'+tip+'"':''}>${label}</div><div class="kpi-value">${val}</div><div class="kpi-change ${cls}">${sign}${change}% WoW</div><div class="kpi-weeks">${wPrev}: ${suffix ? prev.toFixed(2)+suffix : prev.toLocaleString()} → ${wCurr}: ${val}</div></div>`;
   }
 
-  const dlWeeks = currentPlatform === 'android' ? ['W29','W30'] : null;
+  const dlWeeks = currentPlatform === 'android' ? ['W29','W30'] :
+    (w31Days.length < 7 ? [`W30 (${w30Days.length}d)`, `W31 (${w31Days.length}d)`] : null);
   document.getElementById('mainKpiRow').innerHTML =
     kpiCard('Organic Downloads', dl31, dl30, '', dlWeeks) +
     kpiCard('Sign-Ups', su31, su30) +
@@ -3706,290 +3701,35 @@ function renderFunnelCharts() {
 }
 
 // === iOS Downloads (ASC data with ASA subtraction) ===
+// W30 = Jul 27–Aug 2 (7 days), W31 = Aug 3–7 (5 days available, ASC lag on Aug 8–9)
 const ASC_RAW = [
-  {
-    "date": "7/20",
-    "ftd": {
-      "browse": 3544,
-      "search": 4736,
-      "appRef": 248,
-      "webRef": 156,
-      "unavail": 24,
-      "inst": 0
-    },
-    "rd": {
-      "browse": 9093,
-      "search": 4741,
-      "appRef": 243,
-      "webRef": 19,
-      "unavail": 5,
-      "inst": 0
-    }
-  },
-  {
-    "date": "7/21",
-    "ftd": {
-      "browse": 1423,
-      "search": 5078,
-      "appRef": 118,
-      "webRef": 236,
-      "unavail": 35,
-      "inst": 0
-    },
-    "rd": {
-      "browse": 8199,
-      "search": 5496,
-      "appRef": 58,
-      "webRef": 27,
-      "unavail": 5,
-      "inst": 0
-    }
-  },
-  {
-    "date": "7/22",
-    "ftd": {
-      "browse": 6,
-      "search": 5110,
-      "appRef": 42,
-      "webRef": 154,
-      "unavail": 73,
-      "inst": 0
-    },
-    "rd": {
-      "browse": 10423,
-      "search": 5339,
-      "appRef": 20,
-      "webRef": 27,
-      "unavail": 12,
-      "inst": 0
-    }
-  },
-  {
-    "date": "7/23",
-    "ftd": {
-      "browse": 136,
-      "search": 4800,
-      "appRef": 62,
-      "webRef": 143,
-      "unavail": 38,
-      "inst": 0
-    },
-    "rd": {
-      "browse": 8605,
-      "search": 5258,
-      "appRef": 46,
-      "webRef": 25,
-      "unavail": 12,
-      "inst": 0
-    }
-  },
-  {
-    "date": "7/24",
-    "ftd": {
-      "browse": 1446,
-      "search": 4980,
-      "appRef": 32,
-      "webRef": 128,
-      "unavail": 25,
-      "inst": 0
-    },
-    "rd": {
-      "browse": 7950,
-      "search": 5369,
-      "appRef": 27,
-      "webRef": 54,
-      "unavail": 15,
-      "inst": 0
-    }
-  },
-  {
-    "date": "7/25",
-    "ftd": {
-      "browse": 1041,
-      "search": 4684,
-      "appRef": 75,
-      "webRef": 165,
-      "unavail": 15,
-      "inst": 0
-    },
-    "rd": {
-      "browse": 8356,
-      "search": 4859,
-      "appRef": 0,
-      "webRef": 19,
-      "unavail": 6,
-      "inst": 0
-    }
-  },
-  {
-    "date": "7/26",
-    "ftd": {
-      "browse": 1476,
-      "search": 4671,
-      "appRef": 46,
-      "webRef": 93,
-      "unavail": 26,
-      "inst": 0
-    },
-    "rd": {
-      "browse": 9867,
-      "search": 5134,
-      "appRef": 56,
-      "webRef": 10,
-      "unavail": 0,
-      "inst": 0
-    }
-  },
-  {
-    "date": "7/27",
-    "ftd": {
-      "browse": 1896,
-      "search": 5229,
-      "appRef": 65,
-      "webRef": 147,
-      "unavail": 10,
-      "inst": 0
-    },
-    "rd": {
-      "browse": 9003,
-      "search": 4929,
-      "appRef": 20,
-      "webRef": 16,
-      "unavail": 10,
-      "inst": 0
-    }
-  },
-  {
-    "date": "7/28",
-    "ftd": {
-      "browse": 986,
-      "search": 5377,
-      "appRef": 90,
-      "webRef": 167,
-      "unavail": 47,
-      "inst": 0
-    },
-    "rd": {
-      "browse": 6098,
-      "search": 5010,
-      "appRef": 25,
-      "webRef": 22,
-      "unavail": 6,
-      "inst": 0
-    }
-  },
-  {
-    "date": "7/29",
-    "ftd": {
-      "browse": 2136,
-      "search": 5043,
-      "appRef": 43,
-      "webRef": 119,
-      "unavail": 28,
-      "inst": 0
-    },
-    "rd": {
-      "browse": 7756,
-      "search": 4673,
-      "appRef": 22,
-      "webRef": 20,
-      "unavail": 0,
-      "inst": 0
-    }
-  },
-  {
-    "date": "7/30",
-    "ftd": {
-      "browse": 2333,
-      "search": 4720,
-      "appRef": 475,
-      "webRef": 504,
-      "unavail": 34,
-      "inst": 0
-    },
-    "rd": {
-      "browse": 14610,
-      "search": 4543,
-      "appRef": 31,
-      "webRef": 21,
-      "unavail": 0,
-      "inst": 0
-    }
-  },
-  {
-    "date": "7/31",
-    "ftd": {
-      "browse": 3325,
-      "search": 5026,
-      "appRef": 576,
-      "webRef": 497,
-      "unavail": 19,
-      "inst": 0
-    },
-    "rd": {
-      "browse": 11189,
-      "search": 4869,
-      "appRef": 47,
-      "webRef": 19,
-      "unavail": 10,
-      "inst": 0
-    }
-  },
-  {
-    "date": "8/1",
-    "ftd": {
-      "browse": 2380,
-      "search": 4659,
-      "appRef": 344,
-      "webRef": 375,
-      "unavail": 9,
-      "inst": 0
-    },
-    "rd": {
-      "browse": 11115,
-      "search": 4345,
-      "appRef": 17,
-      "webRef": 0,
-      "unavail": 0,
-      "inst": 0
-    }
-  },
-  {
-    "date": "8/2",
-    "ftd": {
-      "browse": 1509,
-      "search": 4551,
-      "appRef": 422,
-      "webRef": 360,
-      "unavail": 29,
-      "inst": 0
-    },
-    "rd": {
-      "browse": 11715,
-      "search": 4531,
-      "appRef": 15,
-      "webRef": 27,
-      "unavail": 0,
-      "inst": 0
-    }
-  }
+  {"date":"7/27","ftd":{"browse":1896,"search":5229,"appRef":65,"webRef":147,"unavail":10,"inst":0},"rd":{"browse":9003,"search":4929,"appRef":20,"webRef":16,"unavail":10,"inst":0}},
+  {"date":"7/28","ftd":{"browse":986,"search":5377,"appRef":90,"webRef":167,"unavail":47,"inst":0},"rd":{"browse":6098,"search":5010,"appRef":25,"webRef":22,"unavail":6,"inst":0}},
+  {"date":"7/29","ftd":{"browse":2136,"search":5043,"appRef":43,"webRef":119,"unavail":28,"inst":0},"rd":{"browse":7756,"search":4673,"appRef":22,"webRef":20,"unavail":0,"inst":0}},
+  {"date":"7/30","ftd":{"browse":2333,"search":4720,"appRef":475,"webRef":504,"unavail":34,"inst":0},"rd":{"browse":14610,"search":4543,"appRef":31,"webRef":21,"unavail":0,"inst":0}},
+  {"date":"7/31","ftd":{"browse":3325,"search":5026,"appRef":576,"webRef":497,"unavail":19,"inst":0},"rd":{"browse":11189,"search":4869,"appRef":47,"webRef":19,"unavail":10,"inst":0}},
+  {"date":"8/1","ftd":{"browse":2380,"search":4659,"appRef":344,"webRef":375,"unavail":9,"inst":0},"rd":{"browse":11115,"search":4345,"appRef":17,"webRef":0,"unavail":0,"inst":0}},
+  {"date":"8/2","ftd":{"browse":1509,"search":4551,"appRef":422,"webRef":360,"unavail":29,"inst":0},"rd":{"browse":11715,"search":4531,"appRef":15,"webRef":27,"unavail":0,"inst":0}},
+  {"date":"8/3","ftd":{"browse":1056,"search":10338,"appRef":888,"webRef":1052,"unavail":58,"inst":0},"rd":{"browse":19264,"search":9845,"appRef":144,"webRef":44,"unavail":0,"inst":0}},
+  {"date":"8/4","ftd":{"browse":3300,"search":11866,"appRef":838,"webRef":1458,"unavail":56,"inst":0},"rd":{"browse":13598,"search":10160,"appRef":110,"webRef":72,"unavail":0,"inst":0}},
+  {"date":"8/5","ftd":{"browse":3072,"search":10592,"appRef":870,"webRef":838,"unavail":82,"inst":0},"rd":{"browse":12020,"search":9839,"appRef":128,"webRef":70,"unavail":32,"inst":0}},
+  {"date":"8/6","ftd":{"browse":5410,"search":10742,"appRef":870,"webRef":1106,"unavail":46,"inst":0},"rd":{"browse":19794,"search":9608,"appRef":20,"webRef":20,"unavail":24,"inst":0}},
+  {"date":"8/7","ftd":{"browse":3221,"search":5175,"appRef":1516,"webRef":1122,"unavail":35,"inst":0},"rd":{"browse":14311,"search":4831,"appRef":74,"webRef":31,"unavail":0,"inst":0}}
 ];
 
 const ASA_DAILY = [
-  {"date": "7/20", "newDL": 1008, "reDL": 878},
-  {"date": "7/21", "newDL": 1179, "reDL": 998},
-  {"date": "7/22", "newDL": 1130, "reDL": 964},
-  {"date": "7/23", "newDL": 1118, "reDL": 940},
-  {"date": "7/24", "newDL": 1086, "reDL": 1012},
-  {"date": "7/25", "newDL": 1143, "reDL": 893},
-  {"date": "7/26", "newDL": 1102, "reDL": 907},
   {"date": "7/27", "newDL": 1100, "reDL": 1045},
   {"date": "7/28", "newDL": 1165, "reDL": 994},
   {"date": "7/29", "newDL": 1154, "reDL": 863},
   {"date": "7/30", "newDL": 1115, "reDL": 874},
   {"date": "7/31", "newDL": 1104, "reDL": 971},
   {"date": "8/1", "newDL": 982, "reDL": 790},
-  {"date": "8/2", "newDL": 1013, "reDL": 885}
+  {"date": "8/2", "newDL": 1013, "reDL": 885},
+  {"date": "8/3", "newDL": 1053, "reDL": 945},
+  {"date": "8/4", "newDL": 1130, "reDL": 936},
+  {"date": "8/5", "newDL": 1256, "reDL": 983},
+  {"date": "8/6", "newDL": 1342, "reDL": 1031},
+  {"date": "8/7", "newDL": 1419, "reDL": 1103}
 ];
 
 const ASC_DAILY = ASC_RAW.map((day, i) => ({
@@ -3999,7 +3739,7 @@ const ASC_DAILY = ASC_RAW.map((day, i) => ({
 }));
 
 const w30Days = ASC_DAILY.slice(0, 7);
-const w31Days = ASC_DAILY.slice(7, 14);
+const w31Days = ASC_DAILY.slice(7);
 
 function sumSource(days, type, source) { return days.reduce((s, d) => s + d[type][source], 0); }
 function sumOrganicFTD(days) { return days.reduce((s, d) => s + d.ftd.browse + d.ftd.search, 0); }
@@ -4009,20 +3749,29 @@ function renderIOSDownloads() {
   const ftdW30 = sumOrganicFTD(w30Days), ftdW31 = sumOrganicFTD(w31Days);
   const rdW30 = sumOrganicRD(w30Days), rdW31 = sumOrganicRD(w31Days);
   const rrW30 = (rdW30/(ftdW30+rdW30)*100), rrW31 = (rdW31/(ftdW31+rdW31)*100);
+  const w31Len = w31Days.length, w30Len = w30Days.length;
+  const w31Partial = w31Len < 7;
+  const avgFtd30 = ftdW30/w30Len, avgFtd31 = ftdW31/w31Len;
+  const avgRd30 = rdW30/w30Len, avgRd31 = rdW31/w31Len;
+  const ftdPct = ((avgFtd31-avgFtd30)/avgFtd30*100).toFixed(1);
+  const rdPct = ((avgRd31-avgRd30)/avgRd30*100).toFixed(1);
+  const partialNote = w31Partial ? ` (${w31Len}d)` : '';
 
   document.getElementById('ftd-total').textContent = ftdW31.toLocaleString();
-  document.getElementById('ftd-change').textContent = `+${((ftdW31-ftdW30)/ftdW30*100).toFixed(1)}% WoW`;
-  document.getElementById('ftd-change').className = 'kpi-change positive';
-  document.getElementById('ftd-weeks').textContent = `W30: ${ftdW30.toLocaleString()} → W31: ${ftdW31.toLocaleString()}`;
+  const ftdCls = avgFtd31>=avgFtd30 ? 'positive' : 'negative';
+  document.getElementById('ftd-change').textContent = `${ftdPct>=0?'+':''}${ftdPct}% daily avg`;
+  document.getElementById('ftd-change').className = 'kpi-change ' + ftdCls;
+  document.getElementById('ftd-weeks').textContent = `W30: ${ftdW30.toLocaleString()} (7d) → W31: ${ftdW31.toLocaleString()}${partialNote}`;
 
   document.getElementById('rd-total').textContent = rdW31.toLocaleString();
-  document.getElementById('rd-change').textContent = `+${((rdW31-rdW30)/rdW30*100).toFixed(1)}% WoW`;
-  document.getElementById('rd-change').className = 'kpi-change positive';
-  document.getElementById('rd-weeks').textContent = `W30: ${rdW30.toLocaleString()} → W31: ${rdW31.toLocaleString()}`;
+  const rdCls = avgRd31>=avgRd30 ? 'positive' : 'negative';
+  document.getElementById('rd-change').textContent = `${rdPct>=0?'+':''}${rdPct}% daily avg`;
+  document.getElementById('rd-change').className = 'kpi-change ' + rdCls;
+  document.getElementById('rd-weeks').textContent = `W30: ${rdW30.toLocaleString()} (7d) → W31: ${rdW31.toLocaleString()}${partialNote}`;
 
   document.getElementById('rr-total').textContent = rrW31.toFixed(1) + '%';
   const rrDelta = rrW31 - rrW30;
-  document.getElementById('rr-change').textContent = (rrDelta>=0?'+':'') + rrDelta.toFixed(1) + 'pp WoW';
+  document.getElementById('rr-change').textContent = (rrDelta>=0?'+':'') + rrDelta.toFixed(1) + 'pp';
   document.getElementById('rr-change').className = 'kpi-change ' + (rrDelta<=0?'positive':'negative');
   document.getElementById('rr-weeks').textContent = `W30: ${rrW30.toFixed(1)}% → W31: ${rrW31.toFixed(1)}%`;
 
@@ -4060,14 +3809,14 @@ function renderIOSDownloads() {
       {label:'First-Time',data:dailyFTD,borderColor:'#58a6ff',tension:0.3,borderWidth:1.5},
       {label:'Redownloads',data:dailyRD,borderColor:'#f97316',tension:0.3,borderWidth:1.5}
     ]},
-    options:{responsive:true,plugins:{title:{display:true,text:'Daily Downloads (Jul 20 – Aug 2)',color:'#e1e4e8'},legend:{labels:{color:'#8b949e'}}},scales:{x:{ticks:{color:'#8b949e'},grid:{color:'#21262d'}},y:{ticks:{color:'#8b949e'},grid:{color:'#21262d'}}}}
+    options:{responsive:true,plugins:{title:{display:true,text:'Daily Organic Downloads (Jul 27 – Aug 7)',color:'#e1e4e8'},legend:{labels:{color:'#8b949e'}}},scales:{x:{ticks:{color:'#8b949e'},grid:{color:'#21262d'}},y:{ticks:{color:'#8b949e'},grid:{color:'#21262d'}}}}
   });
 
   if (window.ftrdInst) window.ftrdInst.destroy();
   window.ftrdInst = new Chart(document.getElementById('firstVsRedownloadChart').getContext('2d'), {
     type:'doughnut',
     data:{labels:['First-Time (W31)','Redownloads (W31)'],datasets:[{data:[ftdW31,rdW31],backgroundColor:['#58a6ff','#f97316'],borderColor:'#161b22',borderWidth:3}]},
-    options:{responsive:true,plugins:{title:{display:true,text:'W31 First-Time vs Redownloads',color:'#e1e4e8'},legend:{labels:{color:'#8b949e'}}}}
+    options:{responsive:true,plugins:{title:{display:true,text:'W31 First-Time vs Redownloads (Aug 3–7, 5 days)',color:'#e1e4e8'},legend:{labels:{color:'#8b949e'}}}}
   });
 
   if (window.srcWowInst) window.srcWowInst.destroy();
