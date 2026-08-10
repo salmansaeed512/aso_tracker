@@ -3252,48 +3252,24 @@ eftts: [
 // Site-specific data (non-BYBIT)
 const SITE_DATA = {
 EU: {
-  ios: {
-    signups: [
-{country:"TR",w30:52,w31:77},{country:"EG",w30:1,w31:0}
-],
-    eftds: [
-{country:"GE",w30:19,w31:6}
-],
-    eftts: [
-{country:"GE",w30:4,w31:4}
-]
-  },
-  android: {
-    signups: [
-{country:"TR",w30:129,w31:141},{country:"NG",w30:0,w31:1},{country:"NL",w30:1,w31:0},
-{country:"RU",w30:1,w31:0}
-],
-    eftds: [
-{country:"GE",w30:5,w31:8}
-],
-    eftts: [
-{country:"GE",w30:1,w31:0}
-]
-  }
+  ios: { signups: [{country:"DE",w30:180,w31:173},{country:"PL",w30:112,w31:169},{country:"IT",w30:88,w31:122},{country:"FR",w30:64,w31:117},{country:"ES",w30:81,w31:99},{country:"NO",w30:31,w31:77},{country:"LT",w30:81,w31:77},{country:"NL",w30:58,w31:75},{country:"CZ",w30:54,w31:73},{country:"GR",w30:35,w31:56},{country:"PT",w30:35,w31:52},{country:"BG",w30:76,w31:51},{country:"CY",w30:34,w31:43},{country:"LV",w30:28,w31:42},{country:"BE",w30:31,w31:42},{country:"SE",w30:36,w31:41},{country:"HU",w30:25,w31:37},{country:"RO",w30:26,w31:29},{country:"EE",w30:10,w31:28},{country:"DK",w30:8,w31:27},{country:"IE",w30:12,w31:23},{country:"AT",w30:14,w31:21},{country:"SK",w30:11,w31:18},{country:"RU",w30:12,w31:15},{country:"FI",w30:13,w31:15},{country:"SI",w30:9,w31:7},{country:"RE",w30:1,w31:4},{country:"IS",w30:0,w31:4},{country:"LU",w30:2,w31:4},{country:"HR",w30:15,w31:4},{country:"TN",w30:1,w31:3},{country:"UA",w30:0,w31:3},{country:"IL",w30:0,w31:2},{country:"MT",w30:0,w31:2},{country:"GB",w30:1,w31:2},{country:"CO",w30:0,w31:2},{country:"NZ",w30:0,w31:1},{country:"SX",w30:0,w31:1},{country:"MQ",w30:0,w31:1},{country:"OA",w30:0,w31:1}], eftds: [{country:"PL",w30:21,w31:22},{country:"DE",w30:28,w31:20},{country:"IT",w30:16,w31:18},{country:"BG",w30:13,w31:17},{country:"FR",w30:12,w31:15},{country:"ES",w30:17,w31:15},{country:"NL",w30:14,w31:14},{country:"LT",w30:23,w31:12},{country:"CZ",w30:3,w31:8},{country:"PT",w30:10,w31:8},{country:"BE",w30:9,w31:7},{country:"NO",w30:0,w31:6},{country:"GR",w30:7,w31:6},{country:"CY",w30:1,w31:5},{country:"LV",w30:3,w31:5},{country:"SE",w30:2,w31:5},{country:"HU",w30:3,w31:4},{country:"AT",w30:2,w31:4},{country:"FI",w30:0,w31:4},{country:"RO",w30:8,w31:3},{country:"EE",w30:6,w31:3},{country:"DK",w30:2,w31:1},{country:"IE",w30:1,w31:1},{country:"SK",w30:1,w31:1},{country:"IS",w30:0,w31:1},{country:"LU",w30:0,w31:1},{country:"HR",w30:3,w31:1},{country:"TN",w30:1,w31:1},{country:"AO",w30:0,w31:1},{country:"SI",w30:2,w31:0},{country:"IL",w30:1,w31:0},{country:"BO",w30:1,w31:0}], eftts: [{country:"PL",w30:17,w31:20},{country:"DE",w30:27,w31:16},{country:"IT",w30:15,w31:15},{country:"BG",w30:9,w31:15},{country:"ES",w30:11,w31:14},{country:"NL",w30:12,w31:14},{country:"FR",w30:6,w31:9},{country:"PT",w30:4,w31:9},{country:"LT",w30:20,w31:8},{country:"CZ",w30:3,w31:4},{country:"GR",w30:4,w31:4},{country:"BE",w30:9,w31:4},{country:"FI",w30:1,w31:4},{country:"HU",w30:4,w31:3},{country:"EE",w30:5,w31:3},{country:"AT",w30:2,w31:3},{country:"CY",w30:0,w31:2},{country:"LV",w30:2,w31:2},{country:"RO",w30:7,w31:2},{country:"SI",w30:2,w31:2},{country:"HR",w30:5,w31:2},{country:"NO",w30:0,w31:1},{country:"SE",w30:0,w31:1},{country:"DK",w30:1,w31:1},{country:"SK",w30:3,w31:1},{country:"AR",w30:0,w31:1},{country:"IE",w30:1,w31:0},{country:"TN",w30:1,w31:0},{country:"IL",w30:1,w31:0},{country:"KR",w30:1,w31:0},{country:"BO",w30:1,w31:0}] },
+  android: { signups: [{country:"DE",w30:171,w31:260},{country:"IT",w30:168,w31:235},{country:"FR",w30:124,w31:198},{country:"PL",w30:203,w31:196},{country:"ES",w30:115,w31:170},{country:"TZ",w30:0,w31:105},{country:"PT",w30:85,w31:101},{country:"NL",w30:56,w31:89},{country:"ID",w30:0,w31:84},{country:"GR",w30:49,w31:81},{country:"RO",w30:63,w31:81},{country:"HU",w30:37,w31:66},{country:"CZ",w30:48,w31:66},{country:"BG",w30:47,w31:63},{country:"LT",w30:38,w31:61},{country:"ZW",w30:0,w31:55},{country:"LV",w30:41,w31:42},{country:"BE",w30:25,w31:37},{country:"NO",w30:23,w31:37},{country:"FI",w30:29,w31:30},{country:"CY",w30:13,w31:26},{country:"SK",w30:12,w31:26},{country:"SE",w30:23,w31:24},{country:"AT",w30:13,w31:21},{country:"IE",w30:7,w31:18},{country:"EE",w30:12,w31:17},{country:"HR",w30:12,w31:16},{country:"SI",w30:11,w31:14},{country:"DK",w30:11,w31:10},{country:"RU",w30:5,w31:8},{country:"OA",w30:4,w31:7},{country:"GP",w30:4,w31:4},{country:"DZ",w30:0,w31:4},{country:"IS",w30:1,w31:4},{country:"NG",w30:1,w31:3},{country:"PH",w30:0,w31:2},{country:"RE",w30:1,w31:2},{country:"KE",w30:0,w31:2},{country:"MD",w30:2,w31:2},{country:"TN",w30:0,w31:1}], eftds: [{country:"PL",w30:45,w31:32},{country:"DE",w30:27,w31:23},{country:"IT",w30:14,w31:17},{country:"FR",w30:17,w31:13},{country:"CZ",w30:5,w31:11},{country:"ES",w30:24,w31:10},{country:"HU",w30:5,w31:10},{country:"PT",w30:15,w31:9},{country:"BG",w30:4,w31:9},{country:"NL",w30:8,w31:8},{country:"GR",w30:13,w31:8},{country:"RO",w30:11,w31:7},{country:"LT",w30:14,w31:5},{country:"LV",w30:5,w31:5},{country:"SE",w30:4,w31:5},{country:"FI",w30:5,w31:4},{country:"SK",w30:1,w31:4},{country:"NO",w30:6,w31:3},{country:"AT",w30:3,w31:3},{country:"HR",w30:3,w31:3},{country:"BE",w30:2,w31:2},{country:"SI",w30:1,w31:2},{country:"EE",w30:5,w31:1},{country:"DK",w30:1,w31:1},{country:"PH",w30:0,w31:1},{country:"RS",w30:0,w31:1},{country:"IE",w30:2,w31:0},{country:"MD",w30:1,w31:0},{country:"CO",w30:2,w31:0},{country:"GB",w30:1,w31:0}], eftts: [{country:"PL",w30:36,w31:28},{country:"IT",w30:9,w31:16},{country:"DE",w30:21,w31:15},{country:"FR",w30:15,w31:9},{country:"ES",w30:18,w31:8},{country:"PT",w30:17,w31:7},{country:"NL",w30:8,w31:7},{country:"GR",w30:6,w31:7},{country:"HU",w30:7,w31:6},{country:"RO",w30:12,w31:5},{country:"CZ",w30:6,w31:5},{country:"BG",w30:4,w31:5},{country:"LV",w30:5,w31:5},{country:"NO",w30:7,w31:4},{country:"LT",w30:14,w31:3},{country:"BE",w30:1,w31:3},{country:"FI",w30:4,w31:3},{country:"SK",w30:2,w31:3},{country:"SE",w30:2,w31:3},{country:"AT",w30:2,w31:2},{country:"HR",w30:3,w31:2},{country:"MD",w30:0,w31:2},{country:"EE",w30:2,w31:1},{country:"SI",w30:4,w31:1},{country:"DK",w30:1,w31:1},{country:"PH",w30:0,w31:1},{country:"RS",w30:0,w31:1},{country:"IE",w30:2,w31:0},{country:"CO",w30:2,w31:0},{country:"GB",w30:1,w31:0}] }
 },
 IDN: {
-  ios: { signups: [{country:"ID",w31:549,w31:549}], eftds: [{country:"ID",w31:34,w31:38}], eftts: [{country:"ID",w31:27,w31:29}] },
-  android: { signups: [{country:"ID",w31:1325,w31:1080}], eftds: [{country:"ID",w31:126,w31:80}], eftts: [{country:"ID",w31:125,w31:67}] }
+  ios: { signups: [{country:"ID",w30:549,w31:549}], eftds: [{country:"ID",w30:34,w31:38}], eftts: [{country:"ID",w30:27,w31:29}] },
+  android: { signups: [{country:"ID",w30:1325,w31:1080}], eftds: [{country:"ID",w30:126,w31:80}], eftts: [{country:"ID",w30:125,w31:67}] }
 },
-
 GEO: {
-  ios: { signups: [{country:"GE",w31:207,w31:427}], eftds: [{country:"GE",w31:19,w31:6}], eftts: [{country:"GE",w31:4,w31:4}] },
-  android: { signups: [{country:"GE",w31:138,w31:296}], eftds: [{country:"GE",w31:5,w31:8}], eftts: [{country:"GE",w31:1,w31:0}] }
+  ios: { signups: [{country:"GE",w30:207,w31:427}], eftds: [{country:"GE",w30:19,w31:6}], eftts: [{country:"GE",w30:4,w31:4}] },
+  android: { signups: [{country:"GE",w30:138,w31:296}], eftds: [{country:"GE",w30:5,w31:8}], eftts: [{country:"GE",w30:1,w31:0}] }
 },
-
 KAZ: {
-  ios: { signups: [{country:"KZ",w31:132,w31:349}], eftds: [{country:"KZ",w31:13,w31:18}], eftts: [{country:"KZ",w31:3,w31:0}] },
-  android: { signups: [{country:"KZ",w31:115,w31:313}], eftds: [{country:"KZ",w31:4,w31:17}], eftts: [{country:"KZ",w31:3,w31:7}] }
+  ios: { signups: [{country:"OZ",w30:65,w31:182},{country:"KZ",w30:67,w31:167}], eftds: [{country:"KZ",w30:13,w31:18}], eftts: [{country:"KZ",w30:3,w31:0}] },
+  android: { signups: [{country:"OZ",w30:69,w31:178},{country:"KZ",w30:46,w31:135}], eftds: [{country:"KZ",w30:4,w31:17}], eftts: [{country:"KZ",w30:3,w31:7}] }
 },
-
 TUR: {
-  ios: { signups: [{country:"TR",w31:53,w31:77}], eftds: [{country:"TR",w31:4,w31:9}], eftts: [{country:"TR",w31:3,w31:6}] },
-  android: { signups: [{country:"TR",w31:131,w31:142}], eftds: [{country:"TR",w31:14,w31:29}], eftts: [{country:"TR",w31:13,w31:23}] }
+  ios: { signups: [{country:"TR",w30:52,w31:77},{country:"EG",w30:1,w31:0}], eftds: [{country:"TR",w30:4,w31:9}], eftts: [{country:"TR",w30:3,w31:6}] },
+  android: { signups: [{country:"TR",w30:129,w31:141},{country:"NG",w30:0,w31:1},{country:"NL",w30:1,w31:0},{country:"RU",w30:1,w31:0}], eftds: [{country:"TR",w30:14,w31:29}], eftts: [{country:"TR",w30:13,w31:23}] }
 }
 };
 
