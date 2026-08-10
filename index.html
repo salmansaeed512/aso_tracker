@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Organic Performance — Week 32 Dashboard</title>
+<title>Organic Performance — Week 31 Dashboard</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -83,7 +83,7 @@ tbody tr:hover { background: #1c2128; }
 <button class="tab" id="view-overview" onclick="switchView('overview')">Performance Overview</button>
 <button class="tab" id="view-okr" onclick="switchView('okr')">H1 OKR Progress</button>
 </div>
-<span class="period" id="viewPeriodBadge">Week 32 Report (Aug 3 – Aug 9, 2026)</span>
+<span class="period" id="viewPeriodBadge">Week 31 Report (Aug 3 – Aug 9, 2026)</span>
 <div class="tabs" style="margin:0;" id="weeklyFilters">
 <button class="tab active" id="plat-ios" onclick="switchPlatform('ios')">iOS</button>
 <button class="tab" id="plat-android" onclick="switchPlatform('android')">Android</button>
@@ -301,7 +301,7 @@ tbody tr:hover { background: #1c2128; }
 
 <!-- Downloads Breakdown (Android) -->
 <div class="section" id="androidDownloadsSection" style="display:none;">
-<div class="section-title"><span data-tip="Google Play Console store listing acquisitions — users who viewed the listing and then installed. W32 not yet available; showing W29 vs W30.">Store Listing Acquisitions</span> <span class="badge">Google Play Console · W31 vs W32</span></div>
+<div class="section-title"><span data-tip="Google Play Console store listing acquisitions — users who viewed the listing and then installed. W31 not yet available; showing W28 vs W29.">Store Listing Acquisitions</span> <span class="badge">Google Play Console · W30 vs W31</span></div>
 <div class="kpi-row" style="grid-template-columns: repeat(4, 1fr);">
 <div class="kpi-card">
 <div class="kpi-label" data-tip="Total store listing acquisitions across all Google Play traffic sources.">All Traffic Sources</div>
@@ -349,7 +349,7 @@ tbody tr:hover { background: #1c2128; }
 
 <!-- Top Movers -->
 <div class="section">
-<div class="section-title"><span data-tip="Countries with the largest absolute WoW change for the selected metric.">Top Movers</span> <span class="badge">W31 vs W32</span></div>
+<div class="section-title"><span data-tip="Countries with the largest absolute WoW change for the selected metric.">Top Movers</span> <span class="badge">W30 vs W31</span></div>
 <div class="tabs" id="moverTabs">
 <button class="tab active" onclick="switchMoverMetric('signups')">Sign-Ups</button>
 <button class="tab" onclick="switchMoverMetric('eftds')">eFTDs</button>
@@ -397,12 +397,12 @@ tbody tr:hover { background: #1c2128; }
 <input type="text" id="searchCountry" placeholder="Country code..." oninput="renderTable()">
 </div>
 <div class="chart-container" id="tableContainer"></div>
-<p class="footnote">* Downloads use ASC dates (W31: Jul 27–Aug 2, W32: Aug 3–9). ASA installs subtracted for pure organic. OA = Other Africa, OZ = Other Asia-Pacific.</p>
+<p class="footnote">* Downloads use ASC dates (W30: Jul 27–Aug 2, W31: Aug 3–9). ASA installs subtracted for pure organic. OA = Other Africa, OZ = Other Asia-Pacific.</p>
 </div>
 
 <!-- Country Bar Chart -->
 <div class="section">
-<div class="section-title"><span data-tip="Bar chart comparing W31 vs W32 for the top 15 countries by current week volume.">Top 15 Countries by W32 Volume</span></div>
+<div class="section-title"><span data-tip="Bar chart comparing W30 vs W31 for the top 15 countries by current week volume.">Top 15 Countries by W31 Volume</span></div>
 <div class="chart-container">
 <canvas id="countryBarChart"></canvas>
 </div>
@@ -3447,8 +3447,8 @@ function renderKPIs() {
     const sign = curr >= prev ? '+' : '';
     const val = suffix ? curr.toFixed(2)+suffix : curr.toLocaleString();
     const tip = METRIC_TIPS[label] || '';
-    const wPrev = wLabels ? wLabels[0] : 'W31';
-    const wCurr = wLabels ? wLabels[1] : 'W32';
+    const wPrev = wLabels ? wLabels[0] : 'W30';
+    const wCurr = wLabels ? wLabels[1] : 'W31';
     return `<div class="kpi-card"><div class="kpi-label" ${tip?'data-tip="'+tip+'"':''}>${label}</div><div class="kpi-value">${val}</div><div class="kpi-change ${cls}">${sign}${change}% WoW</div><div class="kpi-weeks">${wPrev}: ${suffix ? prev.toFixed(2)+suffix : prev.toLocaleString()} → ${wCurr}: ${val}</div></div>`;
   }
 
@@ -3673,7 +3673,7 @@ function renderFunnelCharts() {
     },
     options: {
       responsive: true,
-      plugins: { title: { display: true, text: 'Funnel Volume (W31 vs W32)', color: '#e1e4e8' }, legend: { labels: { color: '#8b949e' } } },
+      plugins: { title: { display: true, text: 'Funnel Volume (W30 vs W31)', color: '#e1e4e8' }, legend: { labels: { color: '#8b949e' } } },
       scales: {
         x: { ticks: { color: '#8b949e' }, grid: { color: '#21262d' } },
         y: { type: 'logarithmic', ticks: { color: '#8b949e' }, grid: { color: '#21262d' } }
@@ -4426,7 +4426,7 @@ function switchView(view) {
   document.getElementById('okrFilters').style.display = view === 'okr' ? '' : 'none';
   document.getElementById('okrSiteFilters').style.display = view === 'okr' ? '' : 'none';
   if (view === 'weekly') {
-    document.getElementById('viewPeriodBadge').textContent = 'Week 32 Report (Aug 3 – Aug 9, 2026)';
+    document.getElementById('viewPeriodBadge').textContent = 'Week 31 Report (Aug 3 – Aug 9, 2026)';
   } else if (view === 'okr') {
     document.getElementById('viewPeriodBadge').textContent = 'H1 2026 (Apr – Sep) vs H2 (Oct – Mar)';
   } else if (view === 'overview') {
