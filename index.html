@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Organic Performance — Week 30 Dashboard</title>
+<title>Organic Performance — Week 31 Dashboard</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -83,7 +83,7 @@ tbody tr:hover { background: #1c2128; }
 <button class="tab" id="view-overview" onclick="switchView('overview')">Performance Overview</button>
 <button class="tab" id="view-okr" onclick="switchView('okr')">H1 OKR Progress</button>
 </div>
-<span class="period" id="viewPeriodBadge">Week 30 Report (Jul 27 – Aug 2, 2026)</span>
+<span class="period" id="viewPeriodBadge">Week 31 Report (Aug 3 – Aug 9, 2026)</span>
 <div class="tabs" style="margin:0;" id="weeklyFilters">
 <button class="tab active" id="plat-ios" onclick="switchPlatform('ios')">iOS</button>
 <button class="tab" id="plat-android" onclick="switchPlatform('android')">Android</button>
@@ -301,7 +301,7 @@ tbody tr:hover { background: #1c2128; }
 
 <!-- Downloads Breakdown (Android) -->
 <div class="section" id="androidDownloadsSection" style="display:none;">
-<div class="section-title"><span data-tip="Google Play Console store listing acquisitions — users who viewed the listing and then installed. W30 not yet available; showing W28 vs W29.">Store Listing Acquisitions</span> <span class="badge">Google Play Console · W28 vs W29</span></div>
+<div class="section-title"><span data-tip="Google Play Console store listing acquisitions — users who viewed the listing and then installed. W32 not yet available; showing W29 vs W30.">Store Listing Acquisitions</span> <span class="badge">Google Play Console · W29 vs W30</span></div>
 <div class="kpi-row" style="grid-template-columns: repeat(4, 1fr);">
 <div class="kpi-card">
 <div class="kpi-label" data-tip="Total store listing acquisitions across all Google Play traffic sources.">All Traffic Sources</div>
@@ -344,12 +344,12 @@ tbody tr:hover { background: #1c2128; }
 <canvas id="gpSourcePieChart"></canvas>
 </div>
 </div>
-<p class="footnote">* GP Console data available through Jul 25 only. Using W28 (Jul 12–18) vs W29 (Jul 19–25) for WoW comparison.</p>
+<p class="footnote">* GP Console data available through Jul 25 only. Using W30 (Jul 19–25) vs W31 (Jul 26–Aug 1) for WoW comparison.</p>
 </div>
 
 <!-- Top Movers -->
 <div class="section">
-<div class="section-title"><span data-tip="Countries with the largest absolute WoW change for the selected metric.">Top Movers</span> <span class="badge">W30 vs W29</span></div>
+<div class="section-title"><span data-tip="Countries with the largest absolute WoW change for the selected metric.">Top Movers</span> <span class="badge">W30 vs W31</span></div>
 <div class="tabs" id="moverTabs">
 <button class="tab active" onclick="switchMoverMetric('signups')">Sign-Ups</button>
 <button class="tab" onclick="switchMoverMetric('eftds')">eFTDs</button>
@@ -389,7 +389,7 @@ tbody tr:hover { background: #1c2128; }
 <input type="number" id="minVolume" value="5" min="0" onchange="renderTable()">
 <label>Sort by:</label>
 <select id="sortBy" onchange="renderTable()">
-<option value="w30">W30 Volume</option>
+<option value="w31">W31 Volume</option>
 <option value="wow_abs">WoW Abs Change</option>
 <option value="wow_pct">WoW % Change</option>
 </select>
@@ -397,12 +397,12 @@ tbody tr:hover { background: #1c2128; }
 <input type="text" id="searchCountry" placeholder="Country code..." oninput="renderTable()">
 </div>
 <div class="chart-container" id="tableContainer"></div>
-<p class="footnote">* Downloads use ASC dates (W29: Jul 20–26, W30: Jul 27–Aug 2). ASA installs subtracted for pure organic. OA = Other Africa, OZ = Other Asia-Pacific.</p>
+<p class="footnote">* Downloads use ASC dates (W30: Jul 27–Aug 2, W31: Aug 3–9). ASA installs subtracted for pure organic. OA = Other Africa, OZ = Other Asia-Pacific.</p>
 </div>
 
 <!-- Country Bar Chart -->
 <div class="section">
-<div class="section-title"><span data-tip="Bar chart comparing W29 vs W30 for the top 15 countries by current week volume.">Top 15 Countries by W30 Volume</span></div>
+<div class="section-title"><span data-tip="Bar chart comparing W30 vs W31 for the top 15 countries by current week volume.">Top 15 Countries by W31 Volume</span></div>
 <div class="chart-container">
 <canvas id="countryBarChart"></canvas>
 </div>
@@ -413,2852 +413,2819 @@ tbody tr:hover { background: #1c2128; }
 <script>
 const IOS_DATA = {
 signups: [
-{country:"RU",w29:1707,w30:1548},{country:"NG",w29:631,w30:686},{country:"OA",w29:526,w30:598},
-{country:"DZ",w29:256,w30:319},{country:"UA",w29:168,w30:196},{country:"EG",w29:186,w30:185},
-{country:"BR",w29:125,w30:167},{country:"GB",w29:128,w30:151},{country:"SA",w29:170,w30:146},
-{country:"VE",w29:135,w30:135},{country:"AU",w29:100,w30:125},{country:"TN",w29:74,w30:106},
-{country:"MA",w29:80,w30:104},{country:"IN",w29:100,w30:103},{country:"TR",w29:96,w30:97},
-{country:"AO",w29:226,w30:94},{country:"TW",w29:84,w30:88},{country:"PK",w29:61,w30:75},
-{country:"VN",w29:102,w30:66},{country:"MD",w29:28,w30:54},{country:"CO",w29:51,w30:53},
-{country:"KR",w29:52,w30:51},{country:"BY",w29:36,w30:50},{country:"GH",w29:92,w30:47},
-{country:"AE",w29:45,w30:44},{country:"MX",w29:36,w30:40},{country:"OZ",w29:24,w30:39},
-{country:"BD",w29:33,w30:37},{country:"IL",w29:31,w30:34},{country:"IQ",w29:27,w30:33},
-{country:"ID",w29:40,w30:33},{country:"LK",w29:37,w30:33},{country:"MM",w29:39,w30:31},
-{country:"DO",w29:45,w30:30},{country:"NZ",w29:29,w30:29},{country:"PE",w29:19,w30:27},
-{country:"CL",w29:32,w30:26},{country:"CH",w29:22,w30:25},{country:"KW",w29:47,w30:25},
-{country:"EC",w29:17,w30:24},{country:"AM",w29:33,w30:24},{country:"XK",w29:15,w30:23},
-{country:"JO",w29:33,w30:22},{country:"ZA",w29:17,w30:20},{country:"BO",w29:17,w30:20},
-{country:"MZ",w29:13,w30:19},{country:"OM",w29:20,w30:18},{country:"KH",w29:13,w30:18},
-{country:"TH",w29:31,w30:17},{country:"AR",w29:14,w30:17},{country:"LB",w29:17,w30:17},
-{country:"CI",w29:22,w30:16},{country:"PS",w29:18,w30:15},{country:"RS",w29:31,w30:15},
-{country:"KE",w29:13,w30:15},{country:"SN",w29:11,w30:15},{country:"LY",w29:24,w30:14}
+{country:"RU",w31:1539,w31:2667},{country:"NG",w31:700,w31:1870},{country:"OA",w31:594,w31:933},
+{country:"DZ",w31:317,w31:474},{country:"VN",w31:60,w31:404},{country:"UA",w31:203,w31:401},
+{country:"AO",w31:96,w31:317},{country:"GB",w31:149,w31:293},{country:"BR",w31:170,w31:289},
+{country:"EG",w31:184,w31:235},{country:"IN",w31:105,w31:192},{country:"TW",w31:78,w31:165},
+{country:"GH",w31:46,w31:160},{country:"VE",w31:134,w31:155},{country:"AU",w31:127,w31:149},
+{country:"KR",w31:52,w31:140},{country:"SA",w31:146,w31:135},{country:"TR",w31:97,w31:122},
+{country:"PK",w31:76,w31:108},{country:"TN",w31:107,w31:102},{country:"MA",w31:103,w31:100},
+{country:"OZ",w31:43,w31:90},{country:"IL",w31:33,w31:82},{country:"IQ",w31:32,w31:76},
+{country:"BD",w31:36,w31:68},{country:"CO",w31:53,w31:66},{country:"AE",w31:44,w31:64},
+{country:"BY",w31:49,w31:53},{country:"MD",w31:55,w31:52}
 ],
 eftds: [
-{country:"RU",w29:441,w30:398},{country:"OA",w29:179,w30:275},{country:"NG",w29:215,w30:207},
-{country:"UA",w29:97,w30:108},{country:"VN",w29:50,w30:76},{country:"EG",w29:24,w30:38},
-{country:"VE",w29:41,w30:35},{country:"AU",w29:22,w30:28},{country:"BR",w29:22,w30:27},
-{country:"MM",w29:34,w30:24},{country:"AO",w29:13,w30:21},{country:"TR",w29:16,w30:21},
-{country:"OZ",w29:18,w30:19},{country:"BY",w29:16,w30:18},{country:"PK",w29:2,w30:17},
-{country:"KR",w29:8,w30:14},{country:"AM",w29:23,w30:14},{country:"ID",w29:28,w30:14},
-{country:"CO",w29:10,w30:14},{country:"TJ",w29:9,w30:13},{country:"DZ",w29:8,w30:13},
-{country:"IN",w29:13,w30:13},{country:"MD",w29:14,w30:12},{country:"SA",w29:10,w30:11},
-{country:"KG",w29:13,w30:10},{country:"AE",w29:15,w30:10},{country:"AR",w29:1,w30:10},
-{country:"MA",w29:9,w30:9},{country:"NZ",w29:3,w30:9},{country:"CH",w29:9,w30:9},
-{country:"EC",w29:4,w30:8},{country:"MX",w29:8,w30:8},{country:"PE",w29:7,w30:8},
-{country:"BO",w29:6,w30:8},{country:"IL",w29:11,w30:8},{country:"MK",w29:1,w30:7},
-{country:"DO",w29:6,w30:7},{country:"CI",w29:5,w30:7},{country:"GH",w29:13,w30:7},
-{country:"ME",w29:0,w30:6},{country:"TN",w29:8,w30:6},{country:"KE",w29:1,w30:6},
-{country:"TW",w29:15,w30:6},{country:"BD",w29:3,w30:6},{country:"KW",w29:5,w30:6},
-{country:"AF",w29:0,w30:6},{country:"GB",w29:3,w30:6},{country:"GE",w29:3,w30:6}
+{country:"OA",w31:233,w31:382},{country:"RU",w31:403,w31:371},{country:"NG",w31:221,w31:222},
+{country:"UA",w31:105,w31:135},{country:"VN",w31:50,w31:74},{country:"BR",w31:24,w31:33},
+{country:"AO",w31:17,w31:27},{country:"BY",w31:18,w31:27},{country:"VE",w31:34,w31:24},
+{country:"AU",w31:28,w31:23},{country:"TR",w31:22,w31:23},{country:"MD",w31:13,w31:22},
+{country:"EG",w31:33,w31:20},{country:"CO",w31:14,w31:18},{country:"IN",w31:13,w31:18},
+{country:"KR",w31:12,w31:17},{country:"PK",w31:13,w31:16},{country:"OZ",w31:22,w31:16},
+{country:"MA",w31:9,w31:16},{country:"IL",w31:7,w31:16},{country:"DZ",w31:13,w31:13},
+{country:"SA",w31:11,w31:12},{country:"AE",w31:10,w31:11},{country:"TN",w31:6,w31:12},
+{country:"GH",w31:5,w31:13},{country:"BD",w31:5,w31:8},{country:"TW",w31:3,w31:6}
 ],
 eftts: [
-{country:"OA",w29:185,w30:272},{country:"RU",w29:244,w30:221},{country:"NG",w29:193,w30:188},
-{country:"UA",w29:101,w30:96},{country:"VN",w29:41,w30:72},{country:"BR",w29:32,w30:24},
-{country:"EG",w29:21,w30:21},{country:"AU",w29:14,w30:21},{country:"TR",w29:12,w30:20},
-{country:"MM",w29:21,w30:18},{country:"OZ",w29:12,w30:16},{country:"VE",w29:20,w30:16},
-{country:"PK",w29:3,w30:14},{country:"MD",w29:13,w30:12},{country:"KR",w29:8,w30:12},
-{country:"ID",w29:24,w30:12},{country:"BY",w29:12,w30:9},{country:"KG",w29:4,w30:9},
-{country:"AE",w29:14,w30:9},{country:"IN",w29:5,w30:9},{country:"TN",w29:7,w30:8},
-{country:"MA",w29:4,w30:8},{country:"DZ",w29:8,w30:8},{country:"AO",w29:9,w30:8},
-{country:"AM",w29:16,w30:7},{country:"BO",w29:6,w30:7},{country:"IL",w29:9,w30:7},
-{country:"ME",w29:1,w30:6},{country:"EC",w29:2,w30:6},{country:"MK",w29:3,w30:6},
-{country:"DE",w29:2,w30:6},{country:"AR",w29:4,w30:6},{country:"XK",w29:7,w30:6},
-{country:"GH",w29:13,w30:6},{country:"CH",w29:7,w30:6},{country:"PE",w29:4,w30:5},
-{country:"SA",w29:7,w30:5},{country:"MY",w29:3,w30:4},{country:"TH",w29:3,w30:4},
-{country:"MX",w29:5,w30:4},{country:"TM",w29:4,w30:4},{country:"KW",w29:3,w30:4},
-{country:"AF",w29:2,w30:4},{country:"CL",w29:2,w30:4},{country:"LK",w29:7,w30:4}
+{country:"OA",w31:226,w31:374},{country:"RU",w31:222,w31:207},{country:"NG",w31:197,w31:196},
+{country:"UA",w31:92,w31:109},{country:"VN",w31:43,w31:66},{country:"BR",w31:23,w31:33},
+{country:"EG",w31:20,w31:17},{country:"AU",w31:21,w31:19},{country:"AO",w31:7,w31:15},
+{country:"TR",w31:20,w31:14},{country:"BY",w31:7,w31:13},{country:"IL",w31:7,w31:13},
+{country:"KR",w31:11,w31:12},{country:"PK",w31:12,w31:12},{country:"VE",w31:16,w31:11},
+{country:"AE",w31:9,w31:11},{country:"CO",w31:3,w31:10},{country:"OZ",w31:13,w31:10},
+{country:"SA",w31:5,w31:10},{country:"GH",w31:5,w31:9},{country:"IN",w31:10,w31:8},
+{country:"TN",w31:8,w31:8},{country:"MD",w31:12,w31:20},{country:"MA",w31:8,w31:7},
+{country:"DZ",w31:9,w31:11},{country:"BD",w31:3,w31:5}
 ],
 downloads: [
   {
     country: "US",
-    w29: 25087,
-    w30: 22721,
-    search_w29: 18142,
-    search_w30: 17706,
-    browse_w29: 6464,
-    browse_w30: 4507,
-    appRef_w29: 162,
-    appRef_w30: 184,
-    webRef_w29: 319,
-    webRef_w30: 324
+    w30: 25087,
+    w31: 22721,
+    search_w30: 18142,
+    search_w31: 17706,
+    browse_w30: 6464,
+    browse_w31: 4507,
+    appRef_w30: 162,
+    appRef_w31: 184,
+    webRef_w30: 319,
+    webRef_w31: 324
   },
   {
     country: "NG",
-    w29: 14840,
-    w30: 15035,
-    search_w29: 13423,
-    search_w30: 13440,
-    browse_w29: 1383,
-    browse_w30: 1515,
-    appRef_w29: 34,
-    appRef_w30: 56,
-    webRef_w29: 0,
-    webRef_w30: 24
+    w30: 14840,
+    w31: 15035,
+    search_w30: 13423,
+    search_w31: 13440,
+    browse_w30: 1383,
+    browse_w31: 1515,
+    appRef_w30: 34,
+    appRef_w31: 56,
+    webRef_w30: 0,
+    webRef_w31: 24
   },
   {
     country: "RU",
-    w29: 10702,
-    w30: 10886,
-    search_w29: 8505,
-    search_w30: 7981,
-    browse_w29: 1869,
-    browse_w30: 2454,
-    appRef_w29: 129,
-    appRef_w30: 159,
-    webRef_w29: 199,
-    webRef_w30: 292
+    w30: 10702,
+    w31: 10886,
+    search_w30: 8505,
+    search_w31: 7981,
+    browse_w30: 1869,
+    browse_w31: 2454,
+    appRef_w30: 129,
+    appRef_w31: 159,
+    webRef_w30: 199,
+    webRef_w31: 292
   },
   {
     country: "SE",
-    w29: 1852,
-    w30: 6004,
-    search_w29: 93,
-    search_w30: 56,
-    browse_w29: 1740,
-    browse_w30: 5916,
-    appRef_w29: 19,
-    appRef_w30: 10,
-    webRef_w29: 0,
-    webRef_w30: 22
+    w30: 1852,
+    w31: 6004,
+    search_w30: 93,
+    search_w31: 56,
+    browse_w30: 1740,
+    browse_w31: 5916,
+    appRef_w30: 19,
+    appRef_w31: 10,
+    webRef_w30: 0,
+    webRef_w31: 22
   },
   {
     country: "UA",
-    w29: 4465,
-    w30: 4639,
-    search_w29: 3286,
-    search_w30: 3345,
-    browse_w29: 1083,
-    browse_w30: 1107,
-    appRef_w29: 55,
-    appRef_w30: 70,
-    webRef_w29: 41,
-    webRef_w30: 117
+    w30: 4465,
+    w31: 4639,
+    search_w30: 3286,
+    search_w31: 3345,
+    browse_w30: 1083,
+    browse_w31: 1107,
+    appRef_w30: 55,
+    appRef_w31: 70,
+    webRef_w30: 41,
+    webRef_w31: 117
   },
   {
     country: "VN",
-    w29: 4191,
-    w30: 4057,
-    search_w29: 1987,
-    search_w30: 1776,
-    browse_w29: 2165,
-    browse_w30: 2226,
-    appRef_w29: 19,
-    appRef_w30: 20,
-    webRef_w29: 20,
-    webRef_w30: 35
+    w30: 4191,
+    w31: 4057,
+    search_w30: 1987,
+    search_w31: 1776,
+    browse_w30: 2165,
+    browse_w31: 2226,
+    appRef_w30: 19,
+    appRef_w31: 20,
+    webRef_w30: 20,
+    webRef_w31: 35
   },
   {
     country: "BR",
-    w29: 3606,
-    w30: 3687,
-    search_w29: 1811,
-    search_w30: 1623,
-    browse_w29: 1604,
-    browse_w30: 1877,
-    appRef_w29: 46,
-    appRef_w30: 50,
-    webRef_w29: 145,
-    webRef_w30: 137
+    w30: 3606,
+    w31: 3687,
+    search_w30: 1811,
+    search_w31: 1623,
+    browse_w30: 1604,
+    browse_w31: 1877,
+    appRef_w30: 46,
+    appRef_w31: 50,
+    webRef_w30: 145,
+    webRef_w31: 137
   },
   {
     country: "KZ",
-    w29: 3533,
-    w30: 3667,
-    search_w29: 2258,
-    search_w30: 2299,
-    browse_w29: 1245,
-    browse_w30: 1345,
-    appRef_w29: 5,
-    appRef_w30: 11,
-    webRef_w29: 25,
-    webRef_w30: 12
+    w30: 3533,
+    w31: 3667,
+    search_w30: 2258,
+    search_w31: 2299,
+    browse_w30: 1245,
+    browse_w31: 1345,
+    appRef_w30: 5,
+    appRef_w31: 11,
+    webRef_w30: 25,
+    webRef_w31: 12
   },
   {
     country: "CA",
-    w29: 2240,
-    w30: 3626,
-    search_w29: 366,
-    search_w30: 339,
-    browse_w29: 1846,
-    browse_w30: 3235,
-    appRef_w29: 23,
-    appRef_w30: 24,
-    webRef_w29: 5,
-    webRef_w30: 28
+    w30: 2240,
+    w31: 3626,
+    search_w30: 366,
+    search_w31: 339,
+    browse_w30: 1846,
+    browse_w31: 3235,
+    appRef_w30: 23,
+    appRef_w31: 24,
+    webRef_w30: 5,
+    webRef_w31: 28
   },
   {
     country: "GB",
-    w29: 2562,
-    w30: 3210,
-    search_w29: 792,
-    search_w30: 840,
-    browse_w29: 1683,
-    browse_w30: 2034,
-    appRef_w29: 28,
-    appRef_w30: 142,
-    webRef_w29: 59,
-    webRef_w30: 194
+    w30: 2562,
+    w31: 3210,
+    search_w30: 792,
+    search_w31: 840,
+    browse_w30: 1683,
+    browse_w31: 2034,
+    appRef_w30: 28,
+    appRef_w31: 142,
+    webRef_w30: 59,
+    webRef_w31: 194
   },
   {
     country: "TR",
-    w29: 3168,
-    w30: 3159,
-    search_w29: 1400,
-    search_w30: 1351,
-    browse_w29: 1670,
-    browse_w30: 1622,
-    appRef_w29: 50,
-    appRef_w30: 113,
-    webRef_w29: 48,
-    webRef_w30: 73
+    w30: 3168,
+    w31: 3159,
+    search_w30: 1400,
+    search_w31: 1351,
+    browse_w30: 1670,
+    browse_w31: 1622,
+    appRef_w30: 50,
+    appRef_w31: 113,
+    webRef_w30: 48,
+    webRef_w31: 73
   },
   {
     country: "MX",
-    w29: 1696,
-    w30: 3155,
-    search_w29: 176,
-    search_w30: 153,
-    browse_w29: 1491,
-    browse_w30: 2822,
-    appRef_w29: 24,
-    appRef_w30: 69,
-    webRef_w29: 5,
-    webRef_w30: 111
+    w30: 1696,
+    w31: 3155,
+    search_w30: 176,
+    search_w31: 153,
+    browse_w30: 1491,
+    browse_w31: 2822,
+    appRef_w30: 24,
+    appRef_w31: 69,
+    webRef_w30: 5,
+    webRef_w31: 111
   },
   {
     country: "AU",
-    w29: 2413,
-    w30: 2955,
-    search_w29: 609,
-    search_w30: 506,
-    browse_w29: 1682,
-    browse_w30: 1987,
-    appRef_w29: 31,
-    appRef_w30: 159,
-    webRef_w29: 91,
-    webRef_w30: 303
+    w30: 2413,
+    w31: 2955,
+    search_w30: 609,
+    search_w31: 506,
+    browse_w30: 1682,
+    browse_w31: 1987,
+    appRef_w30: 31,
+    appRef_w31: 159,
+    webRef_w30: 91,
+    webRef_w31: 303
   },
   {
     country: "IN",
-    w29: 2526,
-    w30: 2835,
-    search_w29: 1283,
-    search_w30: 1191,
-    browse_w29: 1223,
-    browse_w30: 1534,
-    appRef_w29: 20,
-    appRef_w30: 54,
-    webRef_w29: 0,
-    webRef_w30: 56
+    w30: 2526,
+    w31: 2835,
+    search_w30: 1283,
+    search_w31: 1191,
+    browse_w30: 1223,
+    browse_w31: 1534,
+    appRef_w30: 20,
+    appRef_w31: 54,
+    webRef_w30: 0,
+    webRef_w31: 56
   },
   {
     country: "TW",
-    w29: 2057,
-    w30: 2633,
-    search_w29: 633,
-    search_w30: 588,
-    browse_w29: 1374,
-    browse_w30: 1801,
-    appRef_w29: 29,
-    appRef_w30: 128,
-    webRef_w29: 21,
-    webRef_w30: 116
+    w30: 2057,
+    w31: 2633,
+    search_w30: 633,
+    search_w31: 588,
+    browse_w30: 1374,
+    browse_w31: 1801,
+    appRef_w30: 29,
+    appRef_w31: 128,
+    webRef_w30: 21,
+    webRef_w31: 116
   },
   {
     country: "ES",
-    w29: 2214,
-    w30: 2592,
-    search_w29: 241,
-    search_w30: 289,
-    browse_w29: 1908,
-    browse_w30: 2011,
-    appRef_w29: 29,
-    appRef_w30: 143,
-    webRef_w29: 36,
-    webRef_w30: 149
+    w30: 2214,
+    w31: 2592,
+    search_w30: 241,
+    search_w31: 289,
+    browse_w30: 1908,
+    browse_w31: 2011,
+    appRef_w30: 29,
+    appRef_w31: 143,
+    webRef_w30: 36,
+    webRef_w31: 149
   },
   {
     country: "KR",
-    w29: 2112,
-    w30: 2492,
-    search_w29: 1206,
-    search_w30: 1120,
-    browse_w29: 831,
-    browse_w30: 1165,
-    appRef_w29: 49,
-    appRef_w30: 98,
-    webRef_w29: 26,
-    webRef_w30: 109
+    w30: 2112,
+    w31: 2492,
+    search_w30: 1206,
+    search_w31: 1120,
+    browse_w30: 831,
+    browse_w31: 1165,
+    appRef_w30: 49,
+    appRef_w31: 98,
+    webRef_w30: 26,
+    webRef_w31: 109
   },
   {
     country: "HK",
-    w29: 2621,
-    w30: 2473,
-    search_w29: 1148,
-    search_w30: 1010,
-    browse_w29: 1468,
-    browse_w30: 1463,
-    appRef_w29: 5,
-    appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    w30: 2621,
+    w31: 2473,
+    search_w30: 1148,
+    search_w31: 1010,
+    browse_w30: 1468,
+    browse_w31: 1463,
+    appRef_w30: 5,
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "IT",
-    w29: 1830,
-    w30: 2349,
-    search_w29: 298,
-    search_w30: 357,
-    browse_w29: 1495,
-    browse_w30: 1931,
-    appRef_w29: 37,
-    appRef_w30: 42,
-    webRef_w29: 0,
-    webRef_w30: 19
+    w30: 1830,
+    w31: 2349,
+    search_w30: 298,
+    search_w31: 357,
+    browse_w30: 1495,
+    browse_w31: 1931,
+    appRef_w30: 37,
+    appRef_w31: 42,
+    webRef_w30: 0,
+    webRef_w31: 19
   },
   {
     country: "PK",
-    w29: 2499,
-    w30: 2136,
-    search_w29: 726,
-    search_w30: 655,
-    browse_w29: 1773,
-    browse_w30: 1469,
-    appRef_w29: 0,
-    appRef_w30: 5,
-    webRef_w29: 0,
-    webRef_w30: 7
+    w30: 2499,
+    w31: 2136,
+    search_w30: 726,
+    search_w31: 655,
+    browse_w30: 1773,
+    browse_w31: 1469,
+    appRef_w30: 0,
+    appRef_w31: 5,
+    webRef_w30: 0,
+    webRef_w31: 7
   },
   {
     country: "PL",
-    w29: 2113,
-    w30: 2074,
-    search_w29: 601,
-    search_w30: 638,
-    browse_w29: 1447,
-    browse_w30: 1404,
-    appRef_w29: 51,
-    appRef_w30: 32,
-    webRef_w29: 14,
-    webRef_w30: 0
+    w30: 2113,
+    w31: 2074,
+    search_w30: 601,
+    search_w31: 638,
+    browse_w30: 1447,
+    browse_w31: 1404,
+    appRef_w30: 51,
+    appRef_w31: 32,
+    webRef_w30: 14,
+    webRef_w31: 0
   },
   {
     country: "EG",
-    w29: 1648,
-    w30: 2038,
-    search_w29: 831,
-    search_w30: 749,
-    browse_w29: 755,
-    browse_w30: 1166,
-    appRef_w29: 31,
-    appRef_w30: 104,
-    webRef_w29: 31,
-    webRef_w30: 19
+    w30: 1648,
+    w31: 2038,
+    search_w30: 831,
+    search_w31: 749,
+    browse_w30: 755,
+    browse_w31: 1166,
+    appRef_w30: 31,
+    appRef_w31: 104,
+    webRef_w30: 31,
+    webRef_w31: 19
   },
   {
     country: "SA",
-    w29: 2055,
-    w30: 1964,
-    search_w29: 449,
-    search_w30: 371,
-    browse_w29: 1546,
-    browse_w30: 1511,
-    appRef_w29: 33,
-    appRef_w30: 49,
-    webRef_w29: 27,
-    webRef_w30: 33
+    w30: 2055,
+    w31: 1964,
+    search_w30: 449,
+    search_w31: 371,
+    browse_w30: 1546,
+    browse_w31: 1511,
+    appRef_w30: 33,
+    appRef_w31: 49,
+    webRef_w30: 27,
+    webRef_w31: 33
   },
   {
     country: "CO",
-    w29: 2265,
-    w30: 1951,
-    search_w29: 395,
-    search_w30: 377,
-    browse_w29: 1865,
-    browse_w30: 1569,
-    appRef_w29: 0,
-    appRef_w30: 5,
-    webRef_w29: 5,
-    webRef_w30: 0
+    w30: 2265,
+    w31: 1951,
+    search_w30: 395,
+    search_w31: 377,
+    browse_w30: 1865,
+    browse_w31: 1569,
+    appRef_w30: 0,
+    appRef_w31: 5,
+    webRef_w30: 5,
+    webRef_w31: 0
   },
   {
     country: "UZ",
-    w29: 1894,
-    w30: 1930,
-    search_w29: 252,
-    search_w30: 205,
-    browse_w29: 1642,
-    browse_w30: 1716,
-    appRef_w29: 0,
-    appRef_w30: 9,
-    webRef_w29: 0,
-    webRef_w30: 0
+    w30: 1894,
+    w31: 1930,
+    search_w30: 252,
+    search_w31: 205,
+    browse_w30: 1642,
+    browse_w31: 1716,
+    appRef_w30: 0,
+    appRef_w31: 9,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "RO",
-    w29: 1520,
-    w30: 1873,
-    search_w29: 76,
-    search_w30: 50,
-    browse_w29: 1416,
-    browse_w30: 1823,
-    appRef_w29: 28,
-    appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    w30: 1520,
+    w31: 1873,
+    search_w30: 76,
+    search_w31: 50,
+    browse_w30: 1416,
+    browse_w31: 1823,
+    appRef_w30: 28,
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "SG",
-    w29: 1866,
-    w30: 1763,
-    search_w29: 311,
-    search_w30: 317,
-    browse_w29: 1555,
-    browse_w30: 1441,
-    appRef_w29: 0,
+    w30: 1866,
+    w31: 1763,
+    search_w30: 311,
+    search_w31: 317,
+    browse_w30: 1555,
+    browse_w31: 1441,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 5
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 5
   },
   {
     country: "DK",
-    w29: 1676,
-    w30: 1721,
-    search_w29: 26,
-    search_w30: 6,
-    browse_w29: 1615,
-    browse_w30: 1543,
-    appRef_w29: 24,
-    appRef_w30: 149,
-    webRef_w29: 11,
-    webRef_w30: 23
+    w30: 1676,
+    w31: 1721,
+    search_w30: 26,
+    search_w31: 6,
+    browse_w30: 1615,
+    browse_w31: 1543,
+    appRef_w30: 24,
+    appRef_w31: 149,
+    webRef_w30: 11,
+    webRef_w31: 23
   },
   {
     country: "AE",
-    w29: 1471,
-    w30: 1707,
-    search_w29: 592,
-    search_w30: 582,
-    browse_w29: 873,
-    browse_w30: 1106,
-    appRef_w29: 0,
-    appRef_w30: 12,
-    webRef_w29: 6,
-    webRef_w30: 7
+    w30: 1471,
+    w31: 1707,
+    search_w30: 592,
+    search_w31: 582,
+    browse_w30: 873,
+    browse_w31: 1106,
+    appRef_w30: 0,
+    appRef_w31: 12,
+    webRef_w30: 6,
+    webRef_w31: 7
   },
   {
     country: "PA",
-    w29: 446,
-    w30: 1671,
-    search_w29: 36,
-    search_w30: 40,
-    browse_w29: 410,
-    browse_w30: 1631,
-    appRef_w29: 0,
+    w30: 446,
+    w31: 1671,
+    search_w30: 36,
+    search_w31: 40,
+    browse_w30: 410,
+    browse_w31: 1631,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "AR",
-    w29: 1768,
-    w30: 1612,
-    search_w29: 166,
-    search_w30: 205,
-    browse_w29: 1595,
-    browse_w30: 1396,
-    appRef_w29: 7,
-    appRef_w30: 5,
-    webRef_w29: 0,
-    webRef_w30: 6
+    w30: 1768,
+    w31: 1612,
+    search_w30: 166,
+    search_w31: 205,
+    browse_w30: 1595,
+    browse_w31: 1396,
+    appRef_w30: 7,
+    appRef_w31: 5,
+    webRef_w30: 0,
+    webRef_w31: 6
   },
   {
     country: "DE",
-    w29: 1827,
-    w30: 1583,
-    search_w29: 623,
-    search_w30: 570,
-    browse_w29: 1174,
-    browse_w30: 993,
-    appRef_w29: 25,
-    appRef_w30: 20,
-    webRef_w29: 5,
-    webRef_w30: 0
+    w30: 1827,
+    w31: 1583,
+    search_w30: 623,
+    search_w31: 570,
+    browse_w30: 1174,
+    browse_w31: 993,
+    appRef_w30: 25,
+    appRef_w31: 20,
+    webRef_w30: 5,
+    webRef_w31: 0
   },
   {
     country: "CL",
-    w29: 1852,
-    w30: 1527,
-    search_w29: 47,
-    search_w30: 32,
-    browse_w29: 1805,
-    browse_w30: 1495,
-    appRef_w29: 0,
+    w30: 1852,
+    w31: 1527,
+    search_w30: 47,
+    search_w31: 32,
+    browse_w30: 1805,
+    browse_w31: 1495,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "GM",
-    w29: 491,
-    w30: 1412,
-    search_w29: 5,
-    search_w30: 0,
-    browse_w29: 486,
-    browse_w30: 1412,
-    appRef_w29: 0,
+    w30: 491,
+    w31: 1412,
+    search_w30: 5,
+    search_w31: 0,
+    browse_w30: 486,
+    browse_w31: 1412,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "BY",
-    w29: 2120,
-    w30: 1387,
-    search_w29: 607,
-    search_w30: 476,
-    browse_w29: 1513,
-    browse_w30: 911,
-    appRef_w29: 0,
+    w30: 2120,
+    w31: 1387,
+    search_w30: 607,
+    search_w31: 476,
+    browse_w30: 1513,
+    browse_w31: 911,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "NP",
-    w29: 453,
-    w30: 1380,
-    search_w29: 47,
-    search_w30: 56,
-    browse_w29: 406,
-    browse_w30: 1324,
-    appRef_w29: 0,
+    w30: 453,
+    w31: 1380,
+    search_w30: 47,
+    search_w31: 56,
+    browse_w30: 406,
+    browse_w31: 1324,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "ZA",
-    w29: 1470,
-    w30: 1369,
-    search_w29: 144,
-    search_w30: 135,
-    browse_w29: 1297,
-    browse_w30: 1181,
-    appRef_w29: 11,
-    appRef_w30: 53,
-    webRef_w29: 18,
-    webRef_w30: 0
+    w30: 1470,
+    w31: 1369,
+    search_w30: 144,
+    search_w31: 135,
+    browse_w30: 1297,
+    browse_w31: 1181,
+    appRef_w30: 11,
+    appRef_w31: 53,
+    webRef_w30: 18,
+    webRef_w31: 0
   },
   {
     country: "IE",
-    w29: 1658,
-    w30: 1331,
-    search_w29: 22,
-    search_w30: 27,
-    browse_w29: 1636,
-    browse_w30: 1304,
-    appRef_w29: 0,
+    w30: 1658,
+    w31: 1331,
+    search_w30: 22,
+    search_w31: 27,
+    browse_w30: 1636,
+    browse_w31: 1304,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "NL",
-    w29: 1656,
-    w30: 1321,
-    search_w29: 119,
-    search_w30: 117,
-    browse_w29: 1527,
-    browse_w30: 1197,
-    appRef_w29: 10,
-    appRef_w30: 7,
-    webRef_w29: 0,
-    webRef_w30: 0
+    w30: 1656,
+    w31: 1321,
+    search_w30: 119,
+    search_w31: 117,
+    browse_w30: 1527,
+    browse_w31: 1197,
+    appRef_w30: 10,
+    appRef_w31: 7,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "KG",
-    w29: 588,
-    w30: 1315,
-    search_w29: 348,
-    search_w30: 373,
-    browse_w29: 240,
-    browse_w30: 942,
-    appRef_w29: 0,
+    w30: 588,
+    w31: 1315,
+    search_w30: 348,
+    search_w31: 373,
+    browse_w30: 240,
+    browse_w31: 942,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "PE",
-    w29: 1767,
-    w30: 1284,
-    search_w29: 44,
-    search_w30: 40,
-    browse_w29: 1716,
-    browse_w30: 1244,
-    appRef_w29: 0,
+    w30: 1767,
+    w31: 1284,
+    search_w30: 44,
+    search_w31: 40,
+    browse_w30: 1716,
+    browse_w31: 1244,
     appRef_w30: 0,
-    webRef_w29: 7,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 7,
+    webRef_w31: 0
   },
   {
     country: "GH",
-    w29: 681,
-    w30: 1188,
-    search_w29: 584,
-    search_w30: 331,
-    browse_w29: 97,
-    browse_w30: 857,
-    appRef_w29: 0,
+    w30: 681,
+    w31: 1188,
+    search_w30: 584,
+    search_w31: 331,
+    browse_w30: 97,
+    browse_w31: 857,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "CI",
-    w29: 954,
-    w30: 1156,
-    search_w29: 6,
-    search_w30: 18,
-    browse_w29: 948,
-    browse_w30: 1138,
-    appRef_w29: 0,
+    w30: 954,
+    w31: 1156,
+    search_w30: 6,
+    search_w31: 18,
+    browse_w30: 948,
+    browse_w31: 1138,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "SN",
-    w29: 1139,
-    w30: 1152,
-    search_w29: 11,
-    search_w30: 12,
-    browse_w29: 1128,
-    browse_w30: 1140,
-    appRef_w29: 0,
+    w30: 1139,
+    w31: 1152,
+    search_w30: 11,
+    search_w31: 12,
+    browse_w30: 1128,
+    browse_w31: 1140,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "BF",
-    w29: 796,
-    w30: 1123,
-    search_w29: 0,
-    search_w30: 5,
-    browse_w29: 796,
-    browse_w30: 1118,
-    appRef_w29: 0,
+    w30: 796,
+    w31: 1123,
+    search_w30: 0,
+    search_w31: 5,
+    browse_w30: 796,
+    browse_w31: 1118,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "PT",
-    w29: 356,
-    w30: 1118,
-    search_w29: 218,
-    search_w30: 152,
-    browse_w29: 101,
-    browse_w30: 842,
-    appRef_w29: 27,
-    appRef_w30: 98,
-    webRef_w29: 10,
-    webRef_w30: 26
+    w30: 356,
+    w31: 1118,
+    search_w30: 218,
+    search_w31: 152,
+    browse_w30: 101,
+    browse_w31: 842,
+    appRef_w30: 27,
+    appRef_w31: 98,
+    webRef_w30: 10,
+    webRef_w31: 26
   },
   {
     country: "CH",
-    w29: 1001,
-    w30: 1066,
-    search_w29: 41,
-    search_w30: 37,
-    browse_w29: 953,
-    browse_w30: 1029,
-    appRef_w29: 7,
-    appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    w30: 1001,
+    w31: 1066,
+    search_w30: 41,
+    search_w31: 37,
+    browse_w30: 953,
+    browse_w31: 1029,
+    appRef_w30: 7,
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "MR",
-    w29: 390,
-    w30: 1051,
-    search_w29: 0,
-    search_w30: 10,
-    browse_w29: 390,
-    browse_w30: 1041,
-    appRef_w29: 0,
+    w30: 390,
+    w31: 1051,
+    search_w30: 0,
+    search_w31: 10,
+    browse_w30: 390,
+    browse_w31: 1041,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "MN",
-    w29: 393,
-    w30: 1007,
-    search_w29: 5,
-    search_w30: 14,
-    browse_w29: 388,
-    browse_w30: 993,
-    appRef_w29: 0,
+    w30: 393,
+    w31: 1007,
+    search_w30: 5,
+    search_w31: 14,
+    browse_w30: 388,
+    browse_w31: 993,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "DZ",
-    w29: 948,
-    w30: 1000,
-    search_w29: 936,
-    search_w30: 981,
-    browse_w29: 6,
+    w30: 948,
+    w31: 1000,
+    search_w30: 936,
+    search_w31: 981,
     browse_w30: 6,
-    appRef_w29: 0,
+    browse_w31: 6,
     appRef_w30: 0,
-    webRef_w29: 6,
-    webRef_w30: 13
+    appRef_w31: 0,
+    webRef_w30: 6,
+    webRef_w31: 13
   },
   {
     country: "TJ",
-    w29: 152,
-    w30: 892,
-    search_w29: 146,
-    search_w30: 179,
-    browse_w29: 6,
-    browse_w30: 713,
-    appRef_w29: 0,
+    w30: 152,
+    w31: 892,
+    search_w30: 146,
+    search_w31: 179,
+    browse_w30: 6,
+    browse_w31: 713,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "MA",
-    w29: 466,
-    w30: 890,
-    search_w29: 104,
-    search_w30: 152,
-    browse_w29: 362,
-    browse_w30: 738,
-    appRef_w29: 0,
+    w30: 466,
+    w31: 890,
+    search_w30: 104,
+    search_w31: 152,
+    browse_w30: 362,
+    browse_w31: 738,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "CM",
-    w29: 515,
-    w30: 870,
-    search_w29: 34,
-    search_w30: 32,
-    browse_w29: 481,
-    browse_w30: 838,
-    appRef_w29: 0,
+    w30: 515,
+    w31: 870,
+    search_w30: 34,
+    search_w31: 32,
+    browse_w30: 481,
+    browse_w31: 838,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "GR",
-    w29: 366,
-    w30: 862,
-    search_w29: 86,
-    search_w30: 62,
-    browse_w29: 280,
-    browse_w30: 800,
-    appRef_w29: 0,
+    w30: 366,
+    w31: 862,
+    search_w30: 86,
+    search_w31: 62,
+    browse_w30: 280,
+    browse_w31: 800,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "JO",
-    w29: 723,
-    w30: 828,
-    search_w29: 55,
-    search_w30: 47,
-    browse_w29: 663,
-    browse_w30: 781,
-    appRef_w29: 0,
+    w30: 723,
+    w31: 828,
+    search_w30: 55,
+    search_w31: 47,
+    browse_w30: 663,
+    browse_w31: 781,
     appRef_w30: 0,
-    webRef_w29: 5,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 5,
+    webRef_w31: 0
   },
   {
     country: "KH",
-    w29: 868,
-    w30: 763,
-    search_w29: 134,
-    search_w30: 130,
-    browse_w29: 734,
-    browse_w30: 633,
-    appRef_w29: 0,
+    w30: 868,
+    w31: 763,
+    search_w30: 134,
+    search_w31: 130,
+    browse_w30: 734,
+    browse_w31: 633,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "KE",
-    w29: 181,
-    w30: 489,
-    search_w29: 181,
-    search_w30: 121,
-    browse_w29: 0,
-    browse_w30: 368,
-    appRef_w29: 0,
+    w30: 181,
+    w31: 489,
+    search_w30: 181,
+    search_w31: 121,
+    browse_w30: 0,
+    browse_w31: 368,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "AO",
-    w29: 729,
-    w30: 458,
-    search_w29: 718,
-    search_w30: 446,
-    browse_w29: 0,
-    browse_w30: 12,
-    appRef_w29: 0,
+    w30: 729,
+    w31: 458,
+    search_w30: 718,
+    search_w31: 446,
+    browse_w30: 0,
+    browse_w31: 12,
     appRef_w30: 0,
-    webRef_w29: 11,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 11,
+    webRef_w31: 0
   },
   {
     country: "IL",
-    w29: 396,
-    w30: 356,
-    search_w29: 384,
-    search_w30: 331,
-    browse_w29: 0,
-    browse_w30: 5,
-    appRef_w29: 0,
-    appRef_w30: 5,
-    webRef_w29: 12,
-    webRef_w30: 15
+    w30: 396,
+    w31: 356,
+    search_w30: 384,
+    search_w31: 331,
+    browse_w30: 0,
+    browse_w31: 5,
+    appRef_w30: 0,
+    appRef_w31: 5,
+    webRef_w30: 12,
+    webRef_w31: 15
   },
   {
     country: "GE",
-    w29: 375,
-    w30: 348,
-    search_w29: 355,
-    search_w30: 342,
-    browse_w29: 0,
+    w30: 375,
+    w31: 348,
+    search_w30: 355,
+    search_w31: 342,
     browse_w30: 0,
-    appRef_w29: 0,
+    browse_w31: 0,
     appRef_w30: 0,
-    webRef_w29: 20,
-    webRef_w30: 6
+    appRef_w31: 0,
+    webRef_w30: 20,
+    webRef_w31: 6
   },
   {
     country: "MO",
-    w29: 6,
-    w30: 306,
-    search_w29: 6,
-    search_w30: 0,
-    browse_w29: 0,
-    browse_w30: 306,
-    appRef_w29: 0,
+    w30: 6,
+    w31: 306,
+    search_w30: 6,
+    search_w31: 0,
+    browse_w30: 0,
+    browse_w31: 306,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "NZ",
-    w29: 575,
-    w30: 290,
-    search_w29: 36,
-    search_w30: 20,
-    browse_w29: 532,
-    browse_w30: 216,
-    appRef_w29: 7,
-    appRef_w30: 54,
-    webRef_w29: 0,
-    webRef_w30: 0
+    w30: 575,
+    w31: 290,
+    search_w30: 36,
+    search_w31: 20,
+    browse_w30: 532,
+    browse_w31: 216,
+    appRef_w30: 7,
+    appRef_w31: 54,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "LT",
-    w29: 182,
-    w30: 264,
-    search_w29: 144,
-    search_w30: 119,
-    browse_w29: 28,
-    browse_w30: 107,
-    appRef_w29: 5,
-    appRef_w30: 38,
-    webRef_w29: 5,
-    webRef_w30: 0
+    w30: 182,
+    w31: 264,
+    search_w30: 144,
+    search_w31: 119,
+    browse_w30: 28,
+    browse_w31: 107,
+    appRef_w30: 5,
+    appRef_w31: 38,
+    webRef_w30: 5,
+    webRef_w31: 0
   },
   {
     country: "AM",
-    w29: 253,
-    w30: 259,
-    search_w29: 253,
-    search_w30: 259,
-    browse_w29: 0,
+    w30: 253,
+    w31: 259,
+    search_w30: 253,
+    search_w31: 259,
     browse_w30: 0,
-    appRef_w29: 0,
+    browse_w31: 0,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "VE",
-    w29: 146,
-    w30: 225,
-    search_w29: 146,
-    search_w30: 225,
-    browse_w29: 0,
+    w30: 146,
+    w31: 225,
+    search_w30: 146,
+    search_w31: 225,
     browse_w30: 0,
-    appRef_w29: 0,
+    browse_w31: 0,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "MD",
-    w29: 188,
-    w30: 206,
-    search_w29: 188,
-    search_w30: 206,
-    browse_w29: 0,
+    w30: 188,
+    w31: 206,
+    search_w30: 188,
+    search_w31: 206,
     browse_w30: 0,
-    appRef_w29: 0,
+    browse_w31: 0,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "AT",
-    w29: 1058,
-    w30: 58,
-    search_w29: 25,
-    search_w30: 23,
-    browse_w29: 1033,
-    browse_w30: 35,
-    appRef_w29: 0,
+    w30: 1058,
+    w31: 58,
+    search_w30: 25,
+    search_w31: 23,
+    browse_w30: 1033,
+    browse_w31: 35,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   }
 ],
 ftDownloads: [
   {
     country: "US",
-    w29: 14493,
-    w30: 11195,
-    search_w29: 9253,
-    search_w30: 9293,
-    browse_w29: 4837,
-    browse_w30: 1439,
-    appRef_w29: 139,
-    appRef_w30: 169,
-    webRef_w29: 264,
-    webRef_w30: 294
+    w30: 14493,
+    w31: 11195,
+    search_w30: 9253,
+    search_w31: 9293,
+    browse_w30: 4837,
+    browse_w31: 1439,
+    appRef_w30: 139,
+    appRef_w31: 169,
+    webRef_w30: 264,
+    webRef_w31: 294
   },
   {
     country: "NG",
-    w29: 5003,
-    w30: 5708,
-    search_w29: 4957,
-    search_w30: 5472,
-    browse_w29: 30,
-    browse_w30: 156,
-    appRef_w29: 16,
-    appRef_w30: 56,
-    webRef_w29: 0,
-    webRef_w30: 24
+    w30: 5003,
+    w31: 5708,
+    search_w30: 4957,
+    search_w31: 5472,
+    browse_w30: 30,
+    browse_w31: 156,
+    appRef_w30: 16,
+    appRef_w31: 56,
+    webRef_w30: 0,
+    webRef_w31: 24
   },
   {
     country: "RU",
-    w29: 4604,
-    w30: 4742,
-    search_w29: 4194,
-    search_w30: 4169,
-    browse_w29: 165,
-    browse_w30: 186,
-    appRef_w29: 93,
-    appRef_w30: 148,
-    webRef_w29: 152,
-    webRef_w30: 239
+    w30: 4604,
+    w31: 4742,
+    search_w30: 4194,
+    search_w31: 4169,
+    browse_w30: 165,
+    browse_w31: 186,
+    appRef_w30: 93,
+    appRef_w31: 148,
+    webRef_w30: 152,
+    webRef_w31: 239
   },
   {
     country: "SE",
-    w29: 156,
-    w30: 4434,
-    search_w29: 55,
-    search_w30: 27,
-    browse_w29: 96,
-    browse_w30: 4375,
-    appRef_w29: 5,
-    appRef_w30: 10,
-    webRef_w29: 0,
-    webRef_w30: 22
+    w30: 156,
+    w31: 4434,
+    search_w30: 55,
+    search_w31: 27,
+    browse_w30: 96,
+    browse_w31: 4375,
+    appRef_w30: 5,
+    appRef_w31: 10,
+    webRef_w30: 0,
+    webRef_w31: 22
   },
   {
     country: "UA",
-    w29: 1619,
-    w30: 1918,
-    search_w29: 1507,
-    search_w30: 1669,
-    browse_w29: 33,
-    browse_w30: 68,
-    appRef_w29: 38,
-    appRef_w30: 70,
-    webRef_w29: 41,
-    webRef_w30: 111
+    w30: 1619,
+    w31: 1918,
+    search_w30: 1507,
+    search_w31: 1669,
+    browse_w30: 33,
+    browse_w31: 68,
+    appRef_w30: 38,
+    appRef_w31: 70,
+    webRef_w30: 41,
+    webRef_w31: 111
   },
   {
     country: "CA",
-    w29: 401,
-    w30: 1703,
-    search_w29: 216,
-    search_w30: 189,
-    browse_w29: 180,
-    browse_w30: 1462,
-    appRef_w29: 0,
-    appRef_w30: 24,
-    webRef_w29: 5,
-    webRef_w30: 28
+    w30: 401,
+    w31: 1703,
+    search_w30: 216,
+    search_w31: 189,
+    browse_w30: 180,
+    browse_w31: 1462,
+    appRef_w30: 0,
+    appRef_w31: 24,
+    webRef_w30: 5,
+    webRef_w31: 28
   },
   {
     country: "KZ",
-    w29: 1262,
-    w30: 1439,
-    search_w29: 1213,
-    search_w30: 1262,
-    browse_w29: 24,
-    browse_w30: 159,
-    appRef_w29: 5,
-    appRef_w30: 11,
-    webRef_w29: 20,
-    webRef_w30: 7
+    w30: 1262,
+    w31: 1439,
+    search_w30: 1213,
+    search_w31: 1262,
+    browse_w30: 24,
+    browse_w31: 159,
+    appRef_w30: 5,
+    appRef_w31: 11,
+    webRef_w30: 20,
+    webRef_w31: 7
   },
   {
     country: "BR",
-    w29: 1173,
-    w30: 1129,
-    search_w29: 864,
-    search_w30: 837,
-    browse_w29: 132,
-    browse_w30: 112,
-    appRef_w29: 40,
-    appRef_w30: 50,
-    webRef_w29: 137,
-    webRef_w30: 130
+    w30: 1173,
+    w31: 1129,
+    search_w30: 864,
+    search_w31: 837,
+    browse_w30: 132,
+    browse_w31: 112,
+    appRef_w30: 40,
+    appRef_w31: 50,
+    webRef_w30: 137,
+    webRef_w31: 130
   },
   {
     country: "GB",
-    w29: 934,
-    w30: 1016,
-    search_w29: 569,
-    search_w30: 576,
-    browse_w29: 287,
-    browse_w30: 109,
-    appRef_w29: 19,
-    appRef_w30: 137,
-    webRef_w29: 59,
-    webRef_w30: 194
+    w30: 934,
+    w31: 1016,
+    search_w30: 569,
+    search_w31: 576,
+    browse_w30: 287,
+    browse_w31: 109,
+    appRef_w30: 19,
+    appRef_w31: 137,
+    webRef_w30: 59,
+    webRef_w31: 194
   },
   {
     country: "MX",
-    w29: 360,
-    w30: 1012,
-    search_w29: 131,
-    search_w30: 105,
-    browse_w29: 210,
-    browse_w30: 738,
-    appRef_w29: 14,
-    appRef_w30: 58,
-    webRef_w29: 5,
-    webRef_w30: 111
+    w30: 360,
+    w31: 1012,
+    search_w30: 131,
+    search_w31: 105,
+    browse_w30: 210,
+    browse_w31: 738,
+    appRef_w30: 14,
+    appRef_w31: 58,
+    webRef_w30: 5,
+    webRef_w31: 111
   },
   {
     country: "IN",
-    w29: 885,
-    w30: 1008,
-    search_w29: 782,
-    search_w30: 741,
-    browse_w29: 103,
-    browse_w30: 169,
-    appRef_w29: 0,
-    appRef_w30: 48,
-    webRef_w29: 0,
-    webRef_w30: 50
+    w30: 885,
+    w31: 1008,
+    search_w30: 782,
+    search_w31: 741,
+    browse_w30: 103,
+    browse_w31: 169,
+    appRef_w30: 0,
+    appRef_w31: 48,
+    webRef_w30: 0,
+    webRef_w31: 50
   },
   {
     country: "TR",
-    w29: 896,
-    w30: 979,
-    search_w29: 775,
-    search_w30: 705,
-    browse_w29: 47,
-    browse_w30: 94,
-    appRef_w29: 26,
-    appRef_w30: 107,
-    webRef_w29: 48,
-    webRef_w30: 73
+    w30: 896,
+    w31: 979,
+    search_w30: 775,
+    search_w31: 705,
+    browse_w30: 47,
+    browse_w31: 94,
+    appRef_w30: 26,
+    appRef_w31: 107,
+    webRef_w30: 48,
+    webRef_w31: 73
   },
   {
     country: "AU",
-    w29: 562,
-    w30: 839,
-    search_w29: 291,
-    search_w30: 271,
-    browse_w29: 157,
-    browse_w30: 126,
-    appRef_w29: 31,
-    appRef_w30: 139,
-    webRef_w29: 83,
-    webRef_w30: 303
+    w30: 562,
+    w31: 839,
+    search_w30: 291,
+    search_w31: 271,
+    browse_w30: 157,
+    browse_w31: 126,
+    appRef_w30: 31,
+    appRef_w31: 139,
+    webRef_w30: 83,
+    webRef_w31: 303
   },
   {
     country: "VN",
-    w29: 850,
-    w30: 813,
-    search_w29: 528,
-    search_w30: 602,
-    browse_w29: 322,
-    browse_w30: 176,
-    appRef_w29: 0,
-    appRef_w30: 13,
-    webRef_w29: 0,
-    webRef_w30: 22
+    w30: 850,
+    w31: 813,
+    search_w30: 528,
+    search_w31: 602,
+    browse_w30: 322,
+    browse_w31: 176,
+    appRef_w30: 0,
+    appRef_w31: 13,
+    webRef_w30: 0,
+    webRef_w31: 22
   },
   {
     country: "KR",
-    w29: 529,
-    w30: 747,
-    search_w29: 438,
-    search_w30: 402,
-    browse_w29: 39,
-    browse_w30: 143,
-    appRef_w29: 26,
-    appRef_w30: 93,
-    webRef_w29: 26,
-    webRef_w30: 109
+    w30: 529,
+    w31: 747,
+    search_w30: 438,
+    search_w31: 402,
+    browse_w30: 39,
+    browse_w31: 143,
+    appRef_w30: 26,
+    appRef_w31: 93,
+    webRef_w30: 26,
+    webRef_w31: 109
   },
   {
     country: "DZ",
-    w29: 689,
-    w30: 729,
-    search_w29: 683,
-    search_w30: 716,
-    browse_w29: 0,
+    w30: 689,
+    w31: 729,
+    search_w30: 683,
+    search_w31: 716,
     browse_w30: 0,
-    appRef_w29: 0,
+    browse_w31: 0,
     appRef_w30: 0,
-    webRef_w29: 6,
-    webRef_w30: 13
+    appRef_w31: 0,
+    webRef_w30: 6,
+    webRef_w31: 13
   },
   {
     country: "EG",
-    w29: 624,
-    w30: 707,
-    search_w29: 513,
-    search_w30: 453,
-    browse_w29: 55,
-    browse_w30: 131,
-    appRef_w29: 25,
-    appRef_w30: 104,
-    webRef_w29: 31,
-    webRef_w30: 19
+    w30: 624,
+    w31: 707,
+    search_w30: 513,
+    search_w31: 453,
+    browse_w30: 55,
+    browse_w31: 131,
+    appRef_w30: 25,
+    appRef_w31: 104,
+    webRef_w30: 31,
+    webRef_w31: 19
   },
   {
     country: "TW",
-    w29: 386,
-    w30: 672,
-    search_w29: 310,
-    search_w30: 301,
-    browse_w29: 39,
-    browse_w30: 127,
-    appRef_w29: 16,
-    appRef_w30: 128,
-    webRef_w29: 21,
-    webRef_w30: 116
+    w30: 386,
+    w31: 672,
+    search_w30: 310,
+    search_w31: 301,
+    browse_w30: 39,
+    browse_w31: 127,
+    appRef_w30: 16,
+    appRef_w31: 128,
+    webRef_w30: 21,
+    webRef_w31: 116
   },
   {
     country: "ES",
-    w29: 349,
-    w30: 653,
-    search_w29: 128,
-    search_w30: 181,
-    browse_w29: 169,
-    browse_w30: 180,
-    appRef_w29: 16,
-    appRef_w30: 143,
-    webRef_w29: 36,
-    webRef_w30: 149
+    w30: 349,
+    w31: 653,
+    search_w30: 128,
+    search_w31: 181,
+    browse_w30: 169,
+    browse_w31: 180,
+    appRef_w30: 16,
+    appRef_w31: 143,
+    webRef_w30: 36,
+    webRef_w31: 149
   },
   {
     country: "HK",
-    w29: 586,
-    w30: 597,
-    search_w29: 533,
-    search_w30: 505,
-    browse_w29: 53,
-    browse_w30: 92,
-    appRef_w29: 0,
+    w30: 586,
+    w31: 597,
+    search_w30: 533,
+    search_w31: 505,
+    browse_w30: 53,
+    browse_w31: 92,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "PK",
-    w29: 448,
-    w30: 560,
-    search_w29: 401,
-    search_w30: 410,
-    browse_w29: 47,
-    browse_w30: 143,
-    appRef_w29: 0,
+    w30: 448,
+    w31: 560,
+    search_w30: 401,
+    search_w31: 410,
+    browse_w30: 47,
+    browse_w31: 143,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 7
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 7
   },
   {
     country: "AE",
-    w29: 398,
-    w30: 517,
-    search_w29: 353,
-    search_w30: 363,
-    browse_w29: 45,
-    browse_w30: 135,
-    appRef_w29: 0,
-    appRef_w30: 12,
-    webRef_w29: 0,
-    webRef_w30: 7
+    w30: 398,
+    w31: 517,
+    search_w30: 353,
+    search_w31: 363,
+    browse_w30: 45,
+    browse_w31: 135,
+    appRef_w30: 0,
+    appRef_w31: 12,
+    webRef_w30: 0,
+    webRef_w31: 7
   },
   {
     country: "SA",
-    w29: 469,
-    w30: 494,
-    search_w29: 313,
-    search_w30: 273,
-    browse_w29: 103,
-    browse_w30: 139,
-    appRef_w29: 26,
-    appRef_w30: 49,
-    webRef_w29: 27,
-    webRef_w30: 33
+    w30: 469,
+    w31: 494,
+    search_w30: 313,
+    search_w31: 273,
+    browse_w30: 103,
+    browse_w31: 139,
+    appRef_w30: 26,
+    appRef_w31: 49,
+    webRef_w30: 27,
+    webRef_w31: 33
   },
   {
     country: "DE",
-    w29: 392,
-    w30: 453,
-    search_w29: 326,
-    search_w30: 321,
-    browse_w29: 56,
-    browse_w30: 120,
-    appRef_w29: 5,
-    appRef_w30: 12,
-    webRef_w29: 5,
-    webRef_w30: 0
+    w30: 392,
+    w31: 453,
+    search_w30: 326,
+    search_w31: 321,
+    browse_w30: 56,
+    browse_w31: 120,
+    appRef_w30: 5,
+    appRef_w31: 12,
+    webRef_w30: 5,
+    webRef_w31: 0
   },
   {
     country: "PL",
-    w29: 395,
-    w30: 417,
-    search_w29: 274,
-    search_w30: 276,
-    browse_w29: 98,
-    browse_w30: 131,
-    appRef_w29: 15,
-    appRef_w30: 10,
-    webRef_w29: 8,
-    webRef_w30: 0
+    w30: 395,
+    w31: 417,
+    search_w30: 274,
+    search_w31: 276,
+    browse_w30: 98,
+    browse_w31: 131,
+    appRef_w30: 15,
+    appRef_w31: 10,
+    webRef_w30: 8,
+    webRef_w31: 0
   },
   {
     country: "CO",
-    w29: 385,
-    w30: 397,
-    search_w29: 208,
-    search_w30: 219,
-    browse_w29: 172,
-    browse_w30: 173,
-    appRef_w29: 0,
-    appRef_w30: 5,
-    webRef_w29: 5,
-    webRef_w30: 0
+    w30: 385,
+    w31: 397,
+    search_w30: 208,
+    search_w31: 219,
+    browse_w30: 172,
+    browse_w31: 173,
+    appRef_w30: 0,
+    appRef_w31: 5,
+    webRef_w30: 5,
+    webRef_w31: 0
   },
   {
     country: "KG",
-    w29: 220,
-    w30: 380,
-    search_w29: 195,
-    search_w30: 265,
-    browse_w29: 25,
-    browse_w30: 115,
-    appRef_w29: 0,
+    w30: 220,
+    w31: 380,
+    search_w30: 195,
+    search_w31: 265,
+    browse_w30: 25,
+    browse_w31: 115,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "IT",
-    w29: 272,
-    w30: 361,
-    search_w29: 144,
-    search_w30: 183,
-    browse_w29: 122,
-    browse_w30: 133,
-    appRef_w29: 6,
-    appRef_w30: 26,
-    webRef_w29: 0,
-    webRef_w30: 19
+    w30: 272,
+    w31: 361,
+    search_w30: 144,
+    search_w31: 183,
+    browse_w30: 122,
+    browse_w31: 133,
+    appRef_w30: 6,
+    appRef_w31: 26,
+    webRef_w30: 0,
+    webRef_w31: 19
   },
   {
     country: "BY",
-    w29: 294,
-    w30: 332,
-    search_w29: 253,
-    search_w30: 236,
-    browse_w29: 41,
-    browse_w30: 96,
-    appRef_w29: 0,
+    w30: 294,
+    w31: 332,
+    search_w30: 253,
+    search_w31: 236,
+    browse_w30: 41,
+    browse_w31: 96,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "UZ",
-    w29: 316,
-    w30: 327,
-    search_w29: 156,
-    search_w30: 149,
-    browse_w29: 160,
-    browse_w30: 169,
-    appRef_w29: 0,
-    appRef_w30: 9,
-    webRef_w29: 0,
-    webRef_w30: 0
+    w30: 316,
+    w31: 327,
+    search_w30: 156,
+    search_w31: 149,
+    browse_w30: 160,
+    browse_w31: 169,
+    appRef_w30: 0,
+    appRef_w31: 9,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "AO",
-    w29: 416,
-    w30: 315,
-    search_w29: 410,
-    search_w30: 315,
-    browse_w29: 0,
+    w30: 416,
+    w31: 315,
+    search_w30: 410,
+    search_w31: 315,
     browse_w30: 0,
-    appRef_w29: 0,
+    browse_w31: 0,
     appRef_w30: 0,
-    webRef_w29: 6,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 6,
+    webRef_w31: 0
   },
   {
     country: "SG",
-    w29: 198,
-    w30: 309,
-    search_w29: 127,
-    search_w30: 141,
-    browse_w29: 71,
-    browse_w30: 163,
-    appRef_w29: 0,
+    w30: 198,
+    w31: 309,
+    search_w30: 127,
+    search_w31: 141,
+    browse_w30: 71,
+    browse_w31: 163,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 5
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 5
   },
   {
     country: "PT",
-    w29: 180,
-    w30: 305,
-    search_w29: 143,
-    search_w30: 121,
-    browse_w29: 0,
-    browse_w30: 65,
-    appRef_w29: 27,
-    appRef_w30: 93,
-    webRef_w29: 10,
-    webRef_w30: 26
+    w30: 180,
+    w31: 305,
+    search_w30: 143,
+    search_w31: 121,
+    browse_w30: 0,
+    browse_w31: 65,
+    appRef_w30: 27,
+    appRef_w31: 93,
+    webRef_w30: 10,
+    webRef_w31: 26
   },
   {
     country: "GH",
-    w29: 401,
-    w30: 299,
-    search_w29: 401,
-    search_w30: 230,
-    browse_w29: 0,
-    browse_w30: 69,
-    appRef_w29: 0,
+    w30: 401,
+    w31: 299,
+    search_w30: 401,
+    search_w31: 230,
+    browse_w30: 0,
+    browse_w31: 69,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "AR",
-    w29: 156,
-    w30: 291,
-    search_w29: 101,
-    search_w30: 138,
-    browse_w29: 55,
-    browse_w30: 142,
-    appRef_w29: 0,
-    appRef_w30: 5,
-    webRef_w29: 0,
-    webRef_w30: 6
+    w30: 156,
+    w31: 291,
+    search_w30: 101,
+    search_w31: 138,
+    browse_w30: 55,
+    browse_w31: 142,
+    appRef_w30: 0,
+    appRef_w31: 5,
+    webRef_w30: 0,
+    webRef_w31: 6
   },
   {
     country: "DK",
-    w29: 133,
-    w30: 284,
-    search_w29: 0,
-    search_w30: 6,
-    browse_w29: 103,
-    browse_w30: 112,
-    appRef_w29: 19,
-    appRef_w30: 143,
-    webRef_w29: 11,
-    webRef_w30: 23
+    w30: 133,
+    w31: 284,
+    search_w30: 0,
+    search_w31: 6,
+    browse_w30: 103,
+    browse_w31: 112,
+    appRef_w30: 19,
+    appRef_w31: 143,
+    webRef_w30: 11,
+    webRef_w31: 23
   },
   {
     country: "KH",
-    w29: 125,
-    w30: 231,
-    search_w29: 82,
-    search_w30: 77,
-    browse_w29: 43,
-    browse_w30: 154,
-    appRef_w29: 0,
+    w30: 125,
+    w31: 231,
+    search_w30: 82,
+    search_w31: 77,
+    browse_w30: 43,
+    browse_w31: 154,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "GE",
-    w29: 221,
-    w30: 218,
-    search_w29: 201,
-    search_w30: 212,
-    browse_w29: 0,
+    w30: 221,
+    w31: 218,
+    search_w30: 201,
+    search_w31: 212,
     browse_w30: 0,
-    appRef_w29: 0,
+    browse_w31: 0,
     appRef_w30: 0,
-    webRef_w29: 20,
-    webRef_w30: 6
+    appRef_w31: 0,
+    webRef_w30: 20,
+    webRef_w31: 6
   },
   {
     country: "ZA",
-    w29: 132,
-    w30: 214,
-    search_w29: 86,
-    search_w30: 98,
-    browse_w29: 34,
-    browse_w30: 63,
-    appRef_w29: 0,
-    appRef_w30: 53,
-    webRef_w29: 12,
-    webRef_w30: 0
+    w30: 132,
+    w31: 214,
+    search_w30: 86,
+    search_w31: 98,
+    browse_w30: 34,
+    browse_w31: 63,
+    appRef_w30: 0,
+    appRef_w31: 53,
+    webRef_w30: 12,
+    webRef_w31: 0
   },
   {
     country: "MA",
-    w29: 90,
-    w30: 201,
-    search_w29: 58,
-    search_w30: 99,
-    browse_w29: 32,
-    browse_w30: 102,
-    appRef_w29: 0,
+    w30: 90,
+    w31: 201,
+    search_w30: 58,
+    search_w31: 99,
+    browse_w30: 32,
+    browse_w31: 102,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "NL",
-    w29: 78,
-    w30: 196,
-    search_w29: 52,
-    search_w30: 58,
-    browse_w29: 26,
-    browse_w30: 138,
-    appRef_w29: 0,
+    w30: 78,
+    w31: 196,
+    search_w30: 52,
+    search_w31: 58,
+    browse_w30: 26,
+    browse_w31: 138,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "KE",
-    w29: 120,
-    w30: 186,
-    search_w29: 120,
-    search_w30: 85,
-    browse_w29: 0,
-    browse_w30: 101,
-    appRef_w29: 0,
+    w30: 120,
+    w31: 186,
+    search_w30: 120,
+    search_w31: 85,
+    browse_w30: 0,
+    browse_w31: 101,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "NP",
-    w29: 62,
-    w30: 181,
-    search_w29: 31,
-    search_w30: 30,
-    browse_w29: 31,
-    browse_w30: 151,
-    appRef_w29: 0,
+    w30: 62,
+    w31: 181,
+    search_w30: 31,
+    search_w31: 30,
+    browse_w30: 31,
+    browse_w31: 151,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "TJ",
-    w29: 66,
-    w30: 176,
-    search_w29: 66,
-    search_w30: 91,
-    browse_w29: 0,
-    browse_w30: 85,
-    appRef_w29: 0,
+    w30: 66,
+    w31: 176,
+    search_w30: 66,
+    search_w31: 91,
+    browse_w30: 0,
+    browse_w31: 85,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "CL",
-    w29: 219,
-    w30: 175,
-    search_w29: 35,
-    search_w30: 25,
-    browse_w29: 184,
-    browse_w30: 150,
-    appRef_w29: 0,
+    w30: 219,
+    w31: 175,
+    search_w30: 35,
+    search_w31: 25,
+    browse_w30: 184,
+    browse_w31: 150,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "PA",
-    w29: 61,
-    w30: 174,
-    search_w29: 31,
-    search_w30: 28,
-    browse_w29: 30,
-    browse_w30: 146,
-    appRef_w29: 0,
+    w30: 61,
+    w31: 174,
+    search_w30: 31,
+    search_w31: 28,
+    browse_w30: 30,
+    browse_w31: 146,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "IL",
-    w29: 205,
-    w30: 172,
-    search_w29: 198,
-    search_w30: 157,
-    browse_w29: 0,
+    w30: 205,
+    w31: 172,
+    search_w30: 198,
+    search_w31: 157,
     browse_w30: 0,
-    appRef_w29: 0,
-    appRef_w30: 5,
-    webRef_w29: 7,
-    webRef_w30: 10
+    browse_w31: 0,
+    appRef_w30: 0,
+    appRef_w31: 5,
+    webRef_w30: 7,
+    webRef_w31: 10
   },
   {
     country: "IE",
-    w29: 151,
-    w30: 163,
-    search_w29: 6,
-    search_w30: 22,
-    browse_w29: 145,
-    browse_w30: 141,
-    appRef_w29: 0,
+    w30: 151,
+    w31: 163,
+    search_w30: 6,
+    search_w31: 22,
+    browse_w30: 145,
+    browse_w31: 141,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "VE",
-    w29: 115,
-    w30: 162,
-    search_w29: 115,
-    search_w30: 162,
-    browse_w29: 0,
+    w30: 115,
+    w31: 162,
+    search_w30: 115,
+    search_w31: 162,
     browse_w30: 0,
-    appRef_w29: 0,
+    browse_w31: 0,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "MN",
-    w29: 43,
-    w30: 159,
-    search_w29: 5,
-    search_w30: 14,
-    browse_w29: 38,
-    browse_w30: 145,
-    appRef_w29: 0,
+    w30: 43,
+    w31: 159,
+    search_w30: 5,
+    search_w31: 14,
+    browse_w30: 38,
+    browse_w31: 145,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "PE",
-    w29: 105,
-    w30: 149,
-    search_w29: 28,
-    search_w30: 40,
-    browse_w29: 70,
-    browse_w30: 109,
-    appRef_w29: 0,
+    w30: 105,
+    w31: 149,
+    search_w30: 28,
+    search_w31: 40,
+    browse_w30: 70,
+    browse_w31: 109,
     appRef_w30: 0,
-    webRef_w29: 7,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 7,
+    webRef_w31: 0
   },
   {
     country: "CI",
-    w29: 36,
-    w30: 146,
-    search_w29: 6,
-    search_w30: 13,
-    browse_w29: 30,
-    browse_w30: 133,
-    appRef_w29: 0,
+    w30: 36,
+    w31: 146,
+    search_w30: 6,
+    search_w31: 13,
+    browse_w30: 30,
+    browse_w31: 133,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "AM",
-    w29: 123,
-    w30: 141,
-    search_w29: 123,
-    search_w30: 141,
-    browse_w29: 0,
+    w30: 123,
+    w31: 141,
+    search_w30: 123,
+    search_w31: 141,
     browse_w30: 0,
-    appRef_w29: 0,
+    browse_w31: 0,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "JO",
-    w29: 49,
-    w30: 141,
-    search_w29: 17,
-    search_w30: 35,
-    browse_w29: 27,
-    browse_w30: 106,
-    appRef_w29: 0,
+    w30: 49,
+    w31: 141,
+    search_w30: 17,
+    search_w31: 35,
+    browse_w30: 27,
+    browse_w31: 106,
     appRef_w30: 0,
-    webRef_w29: 5,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 5,
+    webRef_w31: 0
   },
   {
     country: "BF",
-    w29: 40,
-    w30: 140,
-    search_w29: 0,
-    search_w30: 5,
-    browse_w29: 40,
-    browse_w30: 135,
-    appRef_w29: 0,
+    w30: 40,
+    w31: 140,
+    search_w30: 0,
+    search_w31: 5,
+    browse_w30: 40,
+    browse_w31: 135,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "RO",
-    w29: 63,
-    w30: 139,
-    search_w29: 41,
-    search_w30: 34,
-    browse_w29: 17,
-    browse_w30: 105,
-    appRef_w29: 5,
-    appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    w30: 63,
+    w31: 139,
+    search_w30: 41,
+    search_w31: 34,
+    browse_w30: 17,
+    browse_w31: 105,
+    appRef_w30: 5,
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "MR",
-    w29: 26,
-    w30: 139,
-    search_w29: 0,
-    search_w30: 10,
-    browse_w29: 26,
-    browse_w30: 129,
-    appRef_w29: 0,
+    w30: 26,
+    w31: 139,
+    search_w30: 0,
+    search_w31: 10,
+    browse_w30: 26,
+    browse_w31: 129,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "CH",
-    w29: 66,
-    w30: 137,
-    search_w29: 24,
-    search_w30: 30,
-    browse_w29: 42,
-    browse_w30: 107,
-    appRef_w29: 0,
+    w30: 66,
+    w31: 137,
+    search_w30: 24,
+    search_w31: 30,
+    browse_w30: 42,
+    browse_w31: 107,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "GR",
-    w29: 78,
-    w30: 124,
-    search_w29: 48,
-    search_w30: 44,
-    browse_w29: 30,
-    browse_w30: 80,
-    appRef_w29: 0,
+    w30: 78,
+    w31: 124,
+    search_w30: 48,
+    search_w31: 44,
+    browse_w30: 30,
+    browse_w31: 80,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "GM",
-    w29: 58,
-    w30: 123,
-    search_w29: 0,
+    w30: 58,
+    w31: 123,
     search_w30: 0,
-    browse_w29: 58,
-    browse_w30: 123,
-    appRef_w29: 0,
+    search_w31: 0,
+    browse_w30: 58,
+    browse_w31: 123,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "SN",
-    w29: 47,
-    w30: 116,
-    search_w29: 11,
-    search_w30: 12,
-    browse_w29: 36,
-    browse_w30: 104,
-    appRef_w29: 0,
+    w30: 47,
+    w31: 116,
+    search_w30: 11,
+    search_w31: 12,
+    browse_w30: 36,
+    browse_w31: 104,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "CM",
-    w29: 26,
-    w30: 115,
-    search_w29: 21,
-    search_w30: 27,
-    browse_w29: 5,
-    browse_w30: 88,
-    appRef_w29: 0,
+    w30: 26,
+    w31: 115,
+    search_w30: 21,
+    search_w31: 27,
+    browse_w30: 5,
+    browse_w31: 88,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "LK",
-    w29: 99,
-    w30: 103,
-    search_w29: 99,
-    search_w30: 97,
-    browse_w29: 0,
+    w30: 99,
+    w31: 103,
+    search_w30: 99,
+    search_w31: 97,
     browse_w30: 0,
-    appRef_w29: 0,
+    browse_w31: 0,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 6
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 6
   },
   {
     country: "MD",
-    w29: 67,
-    w30: 91,
-    search_w29: 67,
-    search_w30: 91,
-    browse_w29: 0,
+    w30: 67,
+    w31: 91,
+    search_w30: 67,
+    search_w31: 91,
     browse_w30: 0,
-    appRef_w29: 0,
+    browse_w31: 0,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "LT",
-    w29: 53,
-    w30: 80,
-    search_w29: 43,
-    search_w30: 37,
-    browse_w29: 0,
-    browse_w30: 5,
-    appRef_w29: 5,
-    appRef_w30: 38,
-    webRef_w29: 5,
-    webRef_w30: 0
+    w30: 53,
+    w31: 80,
+    search_w30: 43,
+    search_w31: 37,
+    browse_w30: 0,
+    browse_w31: 5,
+    appRef_w30: 5,
+    appRef_w31: 38,
+    webRef_w30: 5,
+    webRef_w31: 0
   },
   {
     country: "TN",
-    w29: 45,
-    w30: 78,
-    search_w29: 45,
-    search_w30: 78,
-    browse_w29: 0,
+    w30: 45,
+    w31: 78,
+    search_w30: 45,
+    search_w31: 78,
     browse_w30: 0,
-    appRef_w29: 0,
+    browse_w31: 0,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "NZ",
-    w29: 30,
-    w30: 62,
-    search_w29: 30,
-    search_w30: 20,
-    browse_w29: 0,
+    w30: 30,
+    w31: 62,
+    search_w30: 30,
+    search_w31: 20,
     browse_w30: 0,
-    appRef_w29: 0,
-    appRef_w30: 42,
-    webRef_w29: 0,
-    webRef_w30: 0
+    browse_w31: 0,
+    appRef_w30: 0,
+    appRef_w31: 42,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "CZ",
-    w29: 60,
-    w30: 53,
-    search_w29: 53,
+    w30: 60,
+    w31: 53,
     search_w30: 53,
-    browse_w29: 0,
+    search_w31: 53,
     browse_w30: 0,
-    appRef_w29: 0,
+    browse_w31: 0,
     appRef_w30: 0,
-    webRef_w29: 7,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 7,
+    webRef_w31: 0
   },
   {
     country: "TM",
-    w29: 53,
-    w30: 43,
-    search_w29: 53,
-    search_w30: 43,
-    browse_w29: 0,
+    w30: 53,
+    w31: 43,
+    search_w30: 53,
+    search_w31: 43,
     browse_w30: 0,
-    appRef_w29: 0,
+    browse_w31: 0,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "BE",
-    w29: 57,
-    w30: 30,
-    search_w29: 57,
-    search_w30: 30,
-    browse_w29: 0,
+    w30: 57,
+    w31: 30,
+    search_w30: 57,
+    search_w31: 30,
     browse_w30: 0,
-    appRef_w29: 0,
+    browse_w31: 0,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "AT",
-    w29: 77,
-    w30: 12,
-    search_w29: 25,
-    search_w30: 12,
-    browse_w29: 52,
-    browse_w30: 0,
-    appRef_w29: 0,
+    w30: 77,
+    w31: 12,
+    search_w30: 25,
+    search_w31: 12,
+    browse_w30: 52,
+    browse_w31: 0,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   }
 ],
 redownloads: [
   {
     country: "US",
-    w29: 10594,
-    w30: 11526,
-    search_w29: 8889,
-    search_w30: 8413,
-    browse_w29: 1627,
-    browse_w30: 3068,
-    appRef_w29: 23,
-    appRef_w30: 15,
-    webRef_w29: 55,
-    webRef_w30: 30
+    w30: 10594,
+    w31: 11526,
+    search_w30: 8889,
+    search_w31: 8413,
+    browse_w30: 1627,
+    browse_w31: 3068,
+    appRef_w30: 23,
+    appRef_w31: 15,
+    webRef_w30: 55,
+    webRef_w31: 30
   },
   {
     country: "NG",
-    w29: 9837,
-    w30: 9327,
-    search_w29: 8466,
-    search_w30: 7968,
-    browse_w29: 1353,
-    browse_w30: 1359,
-    appRef_w29: 18,
-    appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    w30: 9837,
+    w31: 9327,
+    search_w30: 8466,
+    search_w31: 7968,
+    browse_w30: 1353,
+    browse_w31: 1359,
+    appRef_w30: 18,
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "RU",
-    w29: 6098,
-    w30: 6144,
-    search_w29: 4311,
-    search_w30: 3812,
-    browse_w29: 1704,
-    browse_w30: 2268,
-    appRef_w29: 36,
-    appRef_w30: 11,
-    webRef_w29: 47,
-    webRef_w30: 53
+    w30: 6098,
+    w31: 6144,
+    search_w30: 4311,
+    search_w31: 3812,
+    browse_w30: 1704,
+    browse_w31: 2268,
+    appRef_w30: 36,
+    appRef_w31: 11,
+    webRef_w30: 47,
+    webRef_w31: 53
   },
   {
     country: "VN",
-    w29: 3341,
-    w30: 3244,
-    search_w29: 1459,
-    search_w30: 1174,
-    browse_w29: 1843,
-    browse_w30: 2050,
-    appRef_w29: 19,
-    appRef_w30: 7,
-    webRef_w29: 20,
-    webRef_w30: 13
+    w30: 3341,
+    w31: 3244,
+    search_w30: 1459,
+    search_w31: 1174,
+    browse_w30: 1843,
+    browse_w31: 2050,
+    appRef_w30: 19,
+    appRef_w31: 7,
+    webRef_w30: 20,
+    webRef_w31: 13
   },
   {
     country: "UA",
-    w29: 2846,
-    w30: 2721,
-    search_w29: 1779,
-    search_w30: 1676,
-    browse_w29: 1050,
-    browse_w30: 1039,
-    appRef_w29: 17,
-    appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 6
+    w30: 2846,
+    w31: 2721,
+    search_w30: 1779,
+    search_w31: 1676,
+    browse_w30: 1050,
+    browse_w31: 1039,
+    appRef_w30: 17,
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 6
   },
   {
     country: "BR",
-    w29: 2433,
-    w30: 2558,
-    search_w29: 947,
-    search_w30: 786,
-    browse_w29: 1472,
-    browse_w30: 1765,
-    appRef_w29: 6,
-    appRef_w30: 0,
-    webRef_w29: 8,
-    webRef_w30: 7
+    w30: 2433,
+    w31: 2558,
+    search_w30: 947,
+    search_w31: 786,
+    browse_w30: 1472,
+    browse_w31: 1765,
+    appRef_w30: 6,
+    appRef_w31: 0,
+    webRef_w30: 8,
+    webRef_w31: 7
   },
   {
     country: "KZ",
-    w29: 2271,
-    w30: 2228,
-    search_w29: 1045,
-    search_w30: 1037,
-    browse_w29: 1221,
-    browse_w30: 1186,
-    appRef_w29: 0,
+    w30: 2271,
+    w31: 2228,
+    search_w30: 1045,
+    search_w31: 1037,
+    browse_w30: 1221,
+    browse_w31: 1186,
     appRef_w30: 0,
-    webRef_w29: 5,
-    webRef_w30: 5
+    appRef_w31: 0,
+    webRef_w30: 5,
+    webRef_w31: 5
   },
   {
     country: "GB",
-    w29: 1628,
-    w30: 2194,
-    search_w29: 223,
-    search_w30: 264,
-    browse_w29: 1396,
-    browse_w30: 1925,
-    appRef_w29: 9,
-    appRef_w30: 5,
-    webRef_w29: 0,
-    webRef_w30: 0
+    w30: 1628,
+    w31: 2194,
+    search_w30: 223,
+    search_w31: 264,
+    browse_w30: 1396,
+    browse_w31: 1925,
+    appRef_w30: 9,
+    appRef_w31: 5,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "TR",
-    w29: 2272,
-    w30: 2180,
-    search_w29: 625,
-    search_w30: 646,
-    browse_w29: 1623,
-    browse_w30: 1528,
-    appRef_w29: 24,
-    appRef_w30: 6,
-    webRef_w29: 0,
-    webRef_w30: 0
+    w30: 2272,
+    w31: 2180,
+    search_w30: 625,
+    search_w31: 646,
+    browse_w30: 1623,
+    browse_w31: 1528,
+    appRef_w30: 24,
+    appRef_w31: 6,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "MX",
-    w29: 1336,
-    w30: 2143,
-    search_w29: 45,
-    search_w30: 48,
-    browse_w29: 1281,
-    browse_w30: 2084,
-    appRef_w29: 10,
-    appRef_w30: 11,
-    webRef_w29: 0,
-    webRef_w30: 0
+    w30: 1336,
+    w31: 2143,
+    search_w30: 45,
+    search_w31: 48,
+    browse_w30: 1281,
+    browse_w31: 2084,
+    appRef_w30: 10,
+    appRef_w31: 11,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "AU",
-    w29: 1851,
-    w30: 2116,
-    search_w29: 318,
-    search_w30: 235,
-    browse_w29: 1525,
-    browse_w30: 1861,
-    appRef_w29: 0,
-    appRef_w30: 20,
-    webRef_w29: 8,
-    webRef_w30: 0
+    w30: 1851,
+    w31: 2116,
+    search_w30: 318,
+    search_w31: 235,
+    browse_w30: 1525,
+    browse_w31: 1861,
+    appRef_w30: 0,
+    appRef_w31: 20,
+    webRef_w30: 8,
+    webRef_w31: 0
   },
   {
     country: "IT",
-    w29: 1558,
-    w30: 1988,
-    search_w29: 154,
-    search_w30: 174,
-    browse_w29: 1373,
-    browse_w30: 1798,
-    appRef_w29: 31,
-    appRef_w30: 16,
-    webRef_w29: 0,
-    webRef_w30: 0
+    w30: 1558,
+    w31: 1988,
+    search_w30: 154,
+    search_w31: 174,
+    browse_w30: 1373,
+    browse_w31: 1798,
+    appRef_w30: 31,
+    appRef_w31: 16,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "TW",
-    w29: 1671,
-    w30: 1961,
-    search_w29: 323,
-    search_w30: 287,
-    browse_w29: 1335,
-    browse_w30: 1674,
-    appRef_w29: 13,
-    appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    w30: 1671,
+    w31: 1961,
+    search_w30: 323,
+    search_w31: 287,
+    browse_w30: 1335,
+    browse_w31: 1674,
+    appRef_w30: 13,
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "ES",
-    w29: 1865,
-    w30: 1939,
-    search_w29: 113,
-    search_w30: 108,
-    browse_w29: 1739,
-    browse_w30: 1831,
-    appRef_w29: 13,
-    appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    w30: 1865,
+    w31: 1939,
+    search_w30: 113,
+    search_w31: 108,
+    browse_w30: 1739,
+    browse_w31: 1831,
+    appRef_w30: 13,
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "CA",
-    w29: 1839,
-    w30: 1923,
-    search_w29: 150,
+    w30: 1839,
+    w31: 1923,
     search_w30: 150,
-    browse_w29: 1666,
-    browse_w30: 1773,
-    appRef_w29: 23,
-    appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    search_w31: 150,
+    browse_w30: 1666,
+    browse_w31: 1773,
+    appRef_w30: 23,
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "HK",
-    w29: 2035,
-    w30: 1876,
-    search_w29: 615,
-    search_w30: 505,
-    browse_w29: 1415,
-    browse_w30: 1371,
-    appRef_w29: 5,
-    appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    w30: 2035,
+    w31: 1876,
+    search_w30: 615,
+    search_w31: 505,
+    browse_w30: 1415,
+    browse_w31: 1371,
+    appRef_w30: 5,
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "IN",
-    w29: 1641,
-    w30: 1827,
-    search_w29: 501,
-    search_w30: 450,
-    browse_w29: 1120,
-    browse_w30: 1365,
-    appRef_w29: 20,
-    appRef_w30: 6,
-    webRef_w29: 0,
-    webRef_w30: 6
+    w30: 1641,
+    w31: 1827,
+    search_w30: 501,
+    search_w31: 450,
+    browse_w30: 1120,
+    browse_w31: 1365,
+    appRef_w30: 20,
+    appRef_w31: 6,
+    webRef_w30: 0,
+    webRef_w31: 6
   },
   {
     country: "KR",
-    w29: 1583,
-    w30: 1745,
-    search_w29: 768,
-    search_w30: 718,
-    browse_w29: 792,
-    browse_w30: 1022,
-    appRef_w29: 23,
-    appRef_w30: 5,
-    webRef_w29: 0,
-    webRef_w30: 0
+    w30: 1583,
+    w31: 1745,
+    search_w30: 768,
+    search_w31: 718,
+    browse_w30: 792,
+    browse_w31: 1022,
+    appRef_w30: 23,
+    appRef_w31: 5,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "RO",
-    w29: 1457,
-    w30: 1734,
-    search_w29: 35,
-    search_w30: 16,
-    browse_w29: 1399,
-    browse_w30: 1718,
-    appRef_w29: 23,
-    appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    w30: 1457,
+    w31: 1734,
+    search_w30: 35,
+    search_w31: 16,
+    browse_w30: 1399,
+    browse_w31: 1718,
+    appRef_w30: 23,
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "PL",
-    w29: 1718,
-    w30: 1657,
-    search_w29: 327,
-    search_w30: 362,
-    browse_w29: 1349,
-    browse_w30: 1273,
-    appRef_w29: 36,
-    appRef_w30: 22,
-    webRef_w29: 6,
-    webRef_w30: 0
+    w30: 1718,
+    w31: 1657,
+    search_w30: 327,
+    search_w31: 362,
+    browse_w30: 1349,
+    browse_w31: 1273,
+    appRef_w30: 36,
+    appRef_w31: 22,
+    webRef_w30: 6,
+    webRef_w31: 0
   },
   {
     country: "UZ",
-    w29: 1578,
-    w30: 1603,
-    search_w29: 96,
-    search_w30: 56,
-    browse_w29: 1482,
-    browse_w30: 1547,
-    appRef_w29: 0,
+    w30: 1578,
+    w31: 1603,
+    search_w30: 96,
+    search_w31: 56,
+    browse_w30: 1482,
+    browse_w31: 1547,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "PK",
-    w29: 2051,
-    w30: 1576,
-    search_w29: 325,
-    search_w30: 245,
-    browse_w29: 1726,
-    browse_w30: 1326,
-    appRef_w29: 0,
-    appRef_w30: 5,
-    webRef_w29: 0,
-    webRef_w30: 0
+    w30: 2051,
+    w31: 1576,
+    search_w30: 325,
+    search_w31: 245,
+    browse_w30: 1726,
+    browse_w31: 1326,
+    appRef_w30: 0,
+    appRef_w31: 5,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "SE",
-    w29: 1696,
-    w30: 1570,
-    search_w29: 38,
-    search_w30: 29,
-    browse_w29: 1644,
-    browse_w30: 1541,
-    appRef_w29: 14,
-    appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    w30: 1696,
+    w31: 1570,
+    search_w30: 38,
+    search_w31: 29,
+    browse_w30: 1644,
+    browse_w31: 1541,
+    appRef_w30: 14,
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "CO",
-    w29: 1880,
-    w30: 1554,
-    search_w29: 187,
-    search_w30: 158,
-    browse_w29: 1693,
-    browse_w30: 1396,
-    appRef_w29: 0,
+    w30: 1880,
+    w31: 1554,
+    search_w30: 187,
+    search_w31: 158,
+    browse_w30: 1693,
+    browse_w31: 1396,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "PA",
-    w29: 385,
-    w30: 1497,
-    search_w29: 5,
-    search_w30: 12,
-    browse_w29: 380,
-    browse_w30: 1485,
-    appRef_w29: 0,
+    w30: 385,
+    w31: 1497,
+    search_w30: 5,
+    search_w31: 12,
+    browse_w30: 380,
+    browse_w31: 1485,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "SA",
-    w29: 1586,
-    w30: 1470,
-    search_w29: 136,
-    search_w30: 98,
-    browse_w29: 1443,
-    browse_w30: 1372,
-    appRef_w29: 7,
-    appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    w30: 1586,
+    w31: 1470,
+    search_w30: 136,
+    search_w31: 98,
+    browse_w30: 1443,
+    browse_w31: 1372,
+    appRef_w30: 7,
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "SG",
-    w29: 1668,
-    w30: 1454,
-    search_w29: 184,
-    search_w30: 176,
-    browse_w29: 1484,
-    browse_w30: 1278,
-    appRef_w29: 0,
+    w30: 1668,
+    w31: 1454,
+    search_w30: 184,
+    search_w31: 176,
+    browse_w30: 1484,
+    browse_w31: 1278,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "DK",
-    w29: 1543,
-    w30: 1437,
-    search_w29: 26,
-    search_w30: 0,
-    browse_w29: 1512,
-    browse_w30: 1431,
-    appRef_w29: 5,
-    appRef_w30: 6,
-    webRef_w29: 0,
-    webRef_w30: 0
+    w30: 1543,
+    w31: 1437,
+    search_w30: 26,
+    search_w31: 0,
+    browse_w30: 1512,
+    browse_w31: 1431,
+    appRef_w30: 5,
+    appRef_w31: 6,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "CL",
-    w29: 1633,
-    w30: 1352,
-    search_w29: 12,
-    search_w30: 7,
-    browse_w29: 1621,
-    browse_w30: 1345,
-    appRef_w29: 0,
+    w30: 1633,
+    w31: 1352,
+    search_w30: 12,
+    search_w31: 7,
+    browse_w30: 1621,
+    browse_w31: 1345,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "EG",
-    w29: 1024,
-    w30: 1331,
-    search_w29: 318,
-    search_w30: 296,
-    browse_w29: 700,
-    browse_w30: 1035,
-    appRef_w29: 6,
-    appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    w30: 1024,
+    w31: 1331,
+    search_w30: 318,
+    search_w31: 296,
+    browse_w30: 700,
+    browse_w31: 1035,
+    appRef_w30: 6,
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "AR",
-    w29: 1612,
-    w30: 1321,
-    search_w29: 65,
-    search_w30: 67,
-    browse_w29: 1540,
-    browse_w30: 1254,
-    appRef_w29: 7,
-    appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    w30: 1612,
+    w31: 1321,
+    search_w30: 65,
+    search_w31: 67,
+    browse_w30: 1540,
+    browse_w31: 1254,
+    appRef_w30: 7,
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "GM",
-    w29: 433,
-    w30: 1289,
-    search_w29: 5,
-    search_w30: 0,
-    browse_w29: 428,
-    browse_w30: 1289,
-    appRef_w29: 0,
+    w30: 433,
+    w31: 1289,
+    search_w30: 5,
+    search_w31: 0,
+    browse_w30: 428,
+    browse_w31: 1289,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "NP",
-    w29: 391,
-    w30: 1199,
-    search_w29: 16,
-    search_w30: 26,
-    browse_w29: 375,
-    browse_w30: 1173,
-    appRef_w29: 0,
+    w30: 391,
+    w31: 1199,
+    search_w30: 16,
+    search_w31: 26,
+    browse_w30: 375,
+    browse_w31: 1173,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "AE",
-    w29: 1073,
-    w30: 1190,
-    search_w29: 239,
-    search_w30: 219,
-    browse_w29: 828,
-    browse_w30: 971,
-    appRef_w29: 0,
+    w30: 1073,
+    w31: 1190,
+    search_w30: 239,
+    search_w31: 219,
+    browse_w30: 828,
+    browse_w31: 971,
     appRef_w30: 0,
-    webRef_w29: 6,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 6,
+    webRef_w31: 0
   },
   {
     country: "IE",
-    w29: 1507,
-    w30: 1168,
-    search_w29: 16,
-    search_w30: 5,
-    browse_w29: 1491,
-    browse_w30: 1163,
-    appRef_w29: 0,
+    w30: 1507,
+    w31: 1168,
+    search_w30: 16,
+    search_w31: 5,
+    browse_w30: 1491,
+    browse_w31: 1163,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "ZA",
-    w29: 1338,
-    w30: 1155,
-    search_w29: 58,
-    search_w30: 37,
-    browse_w29: 1263,
-    browse_w30: 1118,
-    appRef_w29: 11,
-    appRef_w30: 0,
-    webRef_w29: 6,
-    webRef_w30: 0
+    w30: 1338,
+    w31: 1155,
+    search_w30: 58,
+    search_w31: 37,
+    browse_w30: 1263,
+    browse_w31: 1118,
+    appRef_w30: 11,
+    appRef_w31: 0,
+    webRef_w30: 6,
+    webRef_w31: 0
   },
   {
     country: "PE",
-    w29: 1662,
-    w30: 1135,
-    search_w29: 16,
-    search_w30: 0,
-    browse_w29: 1646,
-    browse_w30: 1135,
-    appRef_w29: 0,
+    w30: 1662,
+    w31: 1135,
+    search_w30: 16,
+    search_w31: 0,
+    browse_w30: 1646,
+    browse_w31: 1135,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "DE",
-    w29: 1435,
-    w30: 1130,
-    search_w29: 297,
-    search_w30: 249,
-    browse_w29: 1118,
-    browse_w30: 873,
-    appRef_w29: 20,
-    appRef_w30: 8,
-    webRef_w29: 0,
-    webRef_w30: 0
+    w30: 1435,
+    w31: 1130,
+    search_w30: 297,
+    search_w31: 249,
+    browse_w30: 1118,
+    browse_w31: 873,
+    appRef_w30: 20,
+    appRef_w31: 8,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "NL",
-    w29: 1578,
-    w30: 1125,
-    search_w29: 67,
-    search_w30: 59,
-    browse_w29: 1501,
-    browse_w30: 1059,
-    appRef_w29: 10,
-    appRef_w30: 7,
-    webRef_w29: 0,
-    webRef_w30: 0
+    w30: 1578,
+    w31: 1125,
+    search_w30: 67,
+    search_w31: 59,
+    browse_w30: 1501,
+    browse_w31: 1059,
+    appRef_w30: 10,
+    appRef_w31: 7,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "BY",
-    w29: 1826,
-    w30: 1055,
-    search_w29: 354,
-    search_w30: 240,
-    browse_w29: 1472,
-    browse_w30: 815,
-    appRef_w29: 0,
+    w30: 1826,
+    w31: 1055,
+    search_w30: 354,
+    search_w31: 240,
+    browse_w30: 1472,
+    browse_w31: 815,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "SN",
-    w29: 1092,
-    w30: 1036,
-    search_w29: 0,
+    w30: 1092,
+    w31: 1036,
     search_w30: 0,
-    browse_w29: 1092,
-    browse_w30: 1036,
-    appRef_w29: 0,
+    search_w31: 0,
+    browse_w30: 1092,
+    browse_w31: 1036,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "CI",
-    w29: 918,
-    w30: 1010,
-    search_w29: 0,
-    search_w30: 5,
-    browse_w29: 918,
-    browse_w30: 1005,
-    appRef_w29: 0,
+    w30: 918,
+    w31: 1010,
+    search_w30: 0,
+    search_w31: 5,
+    browse_w30: 918,
+    browse_w31: 1005,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "BF",
-    w29: 756,
-    w30: 983,
-    search_w29: 0,
+    w30: 756,
+    w31: 983,
     search_w30: 0,
-    browse_w29: 756,
-    browse_w30: 983,
-    appRef_w29: 0,
+    search_w31: 0,
+    browse_w30: 756,
+    browse_w31: 983,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "KG",
-    w29: 368,
-    w30: 935,
-    search_w29: 153,
-    search_w30: 108,
-    browse_w29: 215,
-    browse_w30: 827,
-    appRef_w29: 0,
+    w30: 368,
+    w31: 935,
+    search_w30: 153,
+    search_w31: 108,
+    browse_w30: 215,
+    browse_w31: 827,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "CH",
-    w29: 935,
-    w30: 929,
-    search_w29: 17,
-    search_w30: 7,
-    browse_w29: 911,
-    browse_w30: 922,
-    appRef_w29: 7,
-    appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    w30: 935,
+    w31: 929,
+    search_w30: 17,
+    search_w31: 7,
+    browse_w30: 911,
+    browse_w31: 922,
+    appRef_w30: 7,
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "MR",
-    w29: 364,
-    w30: 912,
-    search_w29: 0,
+    w30: 364,
+    w31: 912,
     search_w30: 0,
-    browse_w29: 364,
-    browse_w30: 912,
-    appRef_w29: 0,
+    search_w31: 0,
+    browse_w30: 364,
+    browse_w31: 912,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "GH",
-    w29: 280,
-    w30: 889,
-    search_w29: 183,
-    search_w30: 101,
-    browse_w29: 97,
-    browse_w30: 788,
-    appRef_w29: 0,
+    w30: 280,
+    w31: 889,
+    search_w30: 183,
+    search_w31: 101,
+    browse_w30: 97,
+    browse_w31: 788,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "MN",
-    w29: 350,
-    w30: 848,
-    search_w29: 0,
+    w30: 350,
+    w31: 848,
     search_w30: 0,
-    browse_w29: 350,
-    browse_w30: 848,
-    appRef_w29: 0,
+    search_w31: 0,
+    browse_w30: 350,
+    browse_w31: 848,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "PT",
-    w29: 176,
-    w30: 813,
-    search_w29: 75,
-    search_w30: 31,
-    browse_w29: 101,
-    browse_w30: 777,
-    appRef_w29: 0,
-    appRef_w30: 5,
-    webRef_w29: 0,
-    webRef_w30: 0
+    w30: 176,
+    w31: 813,
+    search_w30: 75,
+    search_w31: 31,
+    browse_w30: 101,
+    browse_w31: 777,
+    appRef_w30: 0,
+    appRef_w31: 5,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "CM",
-    w29: 489,
-    w30: 755,
-    search_w29: 13,
-    search_w30: 5,
-    browse_w29: 476,
-    browse_w30: 750,
-    appRef_w29: 0,
+    w30: 489,
+    w31: 755,
+    search_w30: 13,
+    search_w31: 5,
+    browse_w30: 476,
+    browse_w31: 750,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "GR",
-    w29: 288,
-    w30: 738,
-    search_w29: 38,
-    search_w30: 18,
-    browse_w29: 250,
-    browse_w30: 720,
-    appRef_w29: 0,
+    w30: 288,
+    w31: 738,
+    search_w30: 38,
+    search_w31: 18,
+    browse_w30: 250,
+    browse_w31: 720,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "TJ",
-    w29: 86,
-    w30: 716,
-    search_w29: 80,
-    search_w30: 88,
-    browse_w29: 6,
-    browse_w30: 628,
-    appRef_w29: 0,
+    w30: 86,
+    w31: 716,
+    search_w30: 80,
+    search_w31: 88,
+    browse_w30: 6,
+    browse_w31: 628,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "MA",
-    w29: 376,
-    w30: 689,
-    search_w29: 46,
-    search_w30: 53,
-    browse_w29: 330,
-    browse_w30: 636,
-    appRef_w29: 0,
+    w30: 376,
+    w31: 689,
+    search_w30: 46,
+    search_w31: 53,
+    browse_w30: 330,
+    browse_w31: 636,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "JO",
-    w29: 674,
-    w30: 687,
-    search_w29: 38,
-    search_w30: 12,
-    browse_w29: 636,
-    browse_w30: 675,
-    appRef_w29: 0,
+    w30: 674,
+    w31: 687,
+    search_w30: 38,
+    search_w31: 12,
+    browse_w30: 636,
+    browse_w31: 675,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "KH",
-    w29: 743,
-    w30: 532,
-    search_w29: 52,
-    search_w30: 53,
-    browse_w29: 691,
-    browse_w30: 479,
-    appRef_w29: 0,
+    w30: 743,
+    w31: 532,
+    search_w30: 52,
+    search_w31: 53,
+    browse_w30: 691,
+    browse_w31: 479,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "KE",
-    w29: 61,
-    w30: 303,
-    search_w29: 61,
-    search_w30: 36,
-    browse_w29: 0,
-    browse_w30: 267,
-    appRef_w29: 0,
+    w30: 61,
+    w31: 303,
+    search_w30: 61,
+    search_w31: 36,
+    browse_w30: 0,
+    browse_w31: 267,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "MO",
-    w29: 0,
-    w30: 288,
-    search_w29: 0,
+    w30: 0,
+    w31: 288,
     search_w30: 0,
-    browse_w29: 0,
-    browse_w30: 288,
-    appRef_w29: 0,
+    search_w31: 0,
+    browse_w30: 0,
+    browse_w31: 288,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "DZ",
-    w29: 259,
-    w30: 271,
-    search_w29: 253,
-    search_w30: 265,
-    browse_w29: 6,
+    w30: 259,
+    w31: 271,
+    search_w30: 253,
+    search_w31: 265,
     browse_w30: 6,
-    appRef_w29: 0,
+    browse_w31: 6,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "NZ",
-    w29: 545,
-    w30: 228,
-    search_w29: 6,
-    search_w30: 0,
-    browse_w29: 532,
-    browse_w30: 216,
-    appRef_w29: 7,
-    appRef_w30: 12,
-    webRef_w29: 0,
-    webRef_w30: 0
+    w30: 545,
+    w31: 228,
+    search_w30: 6,
+    search_w31: 0,
+    browse_w30: 532,
+    browse_w31: 216,
+    appRef_w30: 7,
+    appRef_w31: 12,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "IL",
-    w29: 191,
-    w30: 184,
-    search_w29: 186,
-    search_w30: 174,
-    browse_w29: 0,
-    browse_w30: 5,
-    appRef_w29: 0,
+    w30: 191,
+    w31: 184,
+    search_w30: 186,
+    search_w31: 174,
+    browse_w30: 0,
+    browse_w31: 5,
     appRef_w30: 0,
-    webRef_w29: 5,
-    webRef_w30: 5
+    appRef_w31: 0,
+    webRef_w30: 5,
+    webRef_w31: 5
   },
   {
     country: "LT",
-    w29: 129,
-    w30: 184,
-    search_w29: 101,
-    search_w30: 82,
-    browse_w29: 28,
-    browse_w30: 102,
-    appRef_w29: 0,
+    w30: 129,
+    w31: 184,
+    search_w30: 101,
+    search_w31: 82,
+    browse_w30: 28,
+    browse_w31: 102,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "AO",
-    w29: 313,
-    w30: 143,
-    search_w29: 308,
-    search_w30: 131,
-    browse_w29: 0,
-    browse_w30: 12,
-    appRef_w29: 0,
+    w30: 313,
+    w31: 143,
+    search_w30: 308,
+    search_w31: 131,
+    browse_w30: 0,
+    browse_w31: 12,
     appRef_w30: 0,
-    webRef_w29: 5,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 5,
+    webRef_w31: 0
   },
   {
     country: "GE",
-    w29: 154,
-    w30: 130,
-    search_w29: 154,
-    search_w30: 130,
-    browse_w29: 0,
+    w30: 154,
+    w31: 130,
+    search_w30: 154,
+    search_w31: 130,
     browse_w30: 0,
-    appRef_w29: 0,
+    browse_w31: 0,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "AM",
-    w29: 130,
-    w30: 118,
-    search_w29: 130,
-    search_w30: 118,
-    browse_w29: 0,
+    w30: 130,
+    w31: 118,
+    search_w30: 130,
+    search_w31: 118,
     browse_w30: 0,
-    appRef_w29: 0,
+    browse_w31: 0,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "MD",
-    w29: 121,
-    w30: 115,
-    search_w29: 121,
-    search_w30: 115,
-    browse_w29: 0,
+    w30: 121,
+    w31: 115,
+    search_w30: 121,
+    search_w31: 115,
     browse_w30: 0,
-    appRef_w29: 0,
+    browse_w31: 0,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "VE",
-    w29: 31,
-    w30: 63,
-    search_w29: 31,
-    search_w30: 63,
-    browse_w29: 0,
+    w30: 31,
+    w31: 63,
+    search_w30: 31,
+    search_w31: 63,
     browse_w30: 0,
-    appRef_w29: 0,
+    browse_w31: 0,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "BE",
-    w29: 48,
-    w30: 62,
-    search_w29: 48,
-    search_w30: 52,
-    browse_w29: 0,
+    w30: 48,
+    w31: 62,
+    search_w30: 48,
+    search_w31: 52,
     browse_w30: 0,
-    appRef_w29: 0,
-    appRef_w30: 10,
-    webRef_w29: 0,
-    webRef_w30: 0
+    browse_w31: 0,
+    appRef_w30: 0,
+    appRef_w31: 10,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "TN",
-    w29: 43,
-    w30: 57,
-    search_w29: 43,
-    search_w30: 57,
-    browse_w29: 0,
+    w30: 43,
+    w31: 57,
+    search_w30: 43,
+    search_w31: 57,
     browse_w30: 0,
-    appRef_w29: 0,
+    browse_w31: 0,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "LK",
-    w29: 89,
-    w30: 53,
-    search_w29: 89,
-    search_w30: 53,
-    browse_w29: 0,
+    w30: 89,
+    w31: 53,
+    search_w30: 89,
+    search_w31: 53,
     browse_w30: 0,
-    appRef_w29: 0,
+    browse_w31: 0,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "AT",
-    w29: 981,
-    w30: 46,
-    search_w29: 0,
-    search_w30: 11,
-    browse_w29: 981,
-    browse_w30: 35,
-    appRef_w29: 0,
+    w30: 981,
+    w31: 46,
+    search_w30: 0,
+    search_w31: 11,
+    browse_w30: 981,
+    browse_w31: 35,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "CZ",
-    w29: 58,
-    w30: 45,
-    search_w29: 58,
-    search_w30: 45,
-    browse_w29: 0,
+    w30: 58,
+    w31: 45,
+    search_w30: 58,
+    search_w31: 45,
     browse_w30: 0,
-    appRef_w29: 0,
+    browse_w31: 0,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   },
   {
     country: "ML",
-    w29: 87,
-    w30: 0,
-    search_w29: 7,
-    search_w30: 0,
-    browse_w29: 80,
-    browse_w30: 0,
-    appRef_w29: 0,
+    w30: 87,
+    w31: 0,
+    search_w30: 7,
+    search_w31: 0,
+    browse_w30: 80,
+    browse_w31: 0,
     appRef_w30: 0,
-    webRef_w29: 0,
-    webRef_w30: 0
+    appRef_w31: 0,
+    webRef_w30: 0,
+    webRef_w31: 0
   }
 ]
 };
 
 const ANDROID_DATA = {
 signups: [
-{country:"IN",w29:1377,w30:1416},{country:"DZ",w29:932,w30:1119},{country:"NG",w29:870,w30:906},
-{country:"RU",w29:1078,w30:770},{country:"BR",w29:613,w30:462},{country:"OA",w29:345,w30:432},
-{country:"EG",w29:465,w30:429},{country:"PK",w29:372,w30:375},{country:"MA",w29:244,w30:322},
-{country:"KE",w29:316,w30:318},{country:"VE",w29:285,w30:308},{country:"BD",w29:276,w30:306},
-{country:"TN",w29:211,w30:265},{country:"ZA",w29:170,w30:206},{country:"AR",w29:165,w30:198},
-{country:"AO",w29:461,w30:182},{country:"MX",w29:158,w30:140},{country:"ID",w29:138,w30:137},
-{country:"CO",w29:148,w30:130},{country:"TR",w29:166,w30:124},{country:"CL",w29:82,w30:111},
-{country:"UA",w29:104,w30:103},{country:"IQ",w29:52,w30:94},{country:"GB",w29:95,w30:90},
-{country:"BO",w29:94,w30:86},{country:"EC",w29:57,w30:70},{country:"AZ",w29:48,w30:70},
-{country:"PE",w29:86,w30:69},{country:"ET",w29:62,w30:64},{country:"SA",w29:78,w30:63},
-{country:"GH",w29:72,w30:60},{country:"VN",w29:52,w30:51},{country:"UG",w29:62,w30:49},
-{country:"LK",w29:58,w30:48},{country:"AU",w29:50,w30:48},{country:"YE",w29:46,w30:40},
-{country:"CI",w29:36,w30:39},{country:"TW",w29:46,w30:37},{country:"AE",w29:40,w30:37},
-{country:"DO",w29:25,w30:36},{country:"KR",w29:48,w30:36},{country:"JO",w29:36,w30:36},
-{country:"MZ",w29:36,w30:35},{country:"BF",w29:27,w30:34},{country:"TM",w29:46,w30:33},
-{country:"MM",w29:56,w30:29},{country:"NP",w29:34,w30:29},{country:"LB",w29:20,w30:28},
-{country:"OM",w29:19,w30:28},{country:"BY",w29:25,w30:26},{country:"KG",w29:21,w30:24},
-{country:"AF",w29:32,w30:24},{country:"TH",w29:14,w30:19}
+{country:"NG",w31:918,w31:3067},{country:"RU",w31:787,w31:1951},{country:"PK",w31:368,w31:1900},
+{country:"IN",w31:1408,w31:1866},{country:"DZ",w31:1109,w31:1779},{country:"OA",w31:425,w31:770},
+{country:"AO",w31:180,w31:759},{country:"BD",w31:305,w31:758},{country:"EG",w31:418,w31:677},
+{country:"BR",w31:455,w31:661},{country:"KE",w31:310,w31:636},{country:"VE",w31:309,w31:493},
+{country:"ET",w31:61,w31:423},{country:"TW",w31:35,w31:300},{country:"TN",w31:264,w31:289},
+{country:"MA",w31:320,w31:280},{country:"AR",w31:195,w31:260},{country:"UA",w31:102,w31:243},
+{country:"ZA",w31:206,w31:243},{country:"TR",w31:124,w31:197},{country:"CO",w31:130,w31:195},
+{country:"MX",w31:138,w31:173},{country:"ID",w31:138,w31:163},{country:"IQ",w31:93,w31:156},
+{country:"BO",w31:90,w31:153},{country:"GB",w31:88,w31:149},{country:"GH",w31:62,w31:137},
+{country:"LK",w31:50,w31:133},{country:"SA",w31:63,w31:120},{country:"UG",w31:49,w31:119},
+{country:"YE",w31:40,w31:111},{country:"PE",w31:72,w31:108},{country:"MM",w31:31,w31:97},
+{country:"AZ",w31:70,w31:97},{country:"CL",w31:109,w31:87},{country:"AU",w31:48,w31:86},
+{country:"VN",w31:52,w31:85},{country:"KR",w31:39,w31:77},{country:"NP",w31:30,w31:75},
+{country:"AE",w31:37,w31:71},{country:"EC",w31:70,w31:69}
 ],
 eftds: [
-{country:"RU",w29:247,w30:267},{country:"NG",w29:187,w30:228},{country:"OA",w29:170,w30:230},
-{country:"IN",w29:138,w30:148},{country:"BR",w29:93,w30:78},{country:"UA",w29:60,w30:56},
-{country:"ID",w29:53,w30:50},{country:"EG",w29:52,w30:46},{country:"KE",w29:50,w30:41},
-{country:"VE",w29:48,w30:38},{country:"PK",w29:47,w30:60},{country:"BD",w29:39,w30:30},
-{country:"BO",w29:33,w30:34},{country:"CO",w29:29,w30:29},{country:"AR",w29:28,w30:40},
-{country:"TR",w29:26,w30:22},{country:"DZ",w29:26,w30:54},{country:"VN",w29:25,w30:16},
-{country:"MX",w29:24,w30:19},{country:"MM",w29:19,w30:14},{country:"MA",w29:19,w30:16},
-{country:"KG",w29:19,w30:21},{country:"KR",w29:18,w30:10},{country:"OZ",w29:18,w30:15},
-{country:"AO",w29:17,w30:9},{country:"PE",w29:16,w30:7},{country:"RS",w29:15,w30:13},
-{country:"GH",w29:14,w30:18},{country:"TN",w29:14,w30:16},{country:"XK",w29:12,w30:0},
-{country:"EC",w29:12,w30:6},{country:"BY",w29:12,w30:13},{country:"TJ",w29:10,w30:8},
-{country:"ET",w29:10,w30:5},{country:"TM",w29:10,w30:13},{country:"CL",w29:9,w30:9},
-{country:"ZA",w29:9,w30:14},{country:"AF",w29:9,w30:8},{country:"IQ",w29:9,w30:6},
-{country:"AE",w29:8,w30:12},{country:"CI",w29:8,w30:5},{country:"AZ",w29:7,w30:24},
-{country:"AM",w29:7,w30:5},{country:"AU",w29:7,w30:13},{country:"JO",w29:6,w30:0},
-{country:"LK",w29:6,w30:10},{country:"NZ",w29:5,w30:5},{country:"GB",w29:5,w30:8},
-{country:"MD",w29:5,w30:7},{country:"ME",w29:0,w30:8},{country:"YE",w29:0,w30:5}
+{country:"OA",w31:209,w31:561},{country:"RU",w31:266,w31:249},{country:"NG",w31:235,w31:198},
+{country:"IN",w31:134,w31:150},{country:"PK",w31:53,w31:83},{country:"BR",w31:82,w31:81},
+{country:"KE",w31:45,w31:75},{country:"EG",w31:44,w31:58},{country:"VE",w31:39,w31:58},
+{country:"UA",w31:53,w31:53},{country:"AR",w31:42,w31:40},{country:"DZ",w31:49,w31:36},
+{country:"TR",w31:23,w31:29},{country:"AZ",w31:22,w31:28},{country:"CO",w31:30,w31:26},
+{country:"ID",w31:57,w31:25},{country:"MM",w31:12,w31:25},{country:"BD",w31:30,w31:40},
+{country:"BO",w31:35,w31:23},{country:"ZA",w31:14,w31:22},{country:"MX",w31:17,w31:21},
+{country:"AO",w31:10,w31:18},{country:"KR",w31:10,w31:19},{country:"TN",w31:13,w31:18},
+{country:"MA",w31:18,w31:17},{country:"AU",w31:12,w31:13},{country:"VN",w31:16,w31:13},
+{country:"AE",w31:12,w31:13},{country:"UG",w31:7,w31:11},{country:"PE",w31:9,w31:11},
+{country:"GH",w31:18,w31:12},{country:"NP",w31:4,w31:8},{country:"ET",w31:6,w31:8},
+{country:"LK",w31:10,w31:7},{country:"GB",w31:8,w31:2}
 ],
 eftts: [
-{country:"OA",w29:178,w30:234},{country:"NG",w29:170,w30:158},{country:"RU",w29:145,w30:138},
-{country:"BR",w29:76,w30:70},{country:"IN",w29:52,w30:61},{country:"UA",w29:50,w30:45},
-{country:"ID",w29:47,w30:44},{country:"EG",w29:39,w30:44},{country:"PK",w29:36,w30:39},
-{country:"DZ",w29:22,w30:41},{country:"BD",w29:24,w30:20},{country:"KE",w29:22,w30:10},
-{country:"BO",w29:22,w30:16},{country:"CO",w29:20,w30:12},{country:"VN",w29:20,w30:10},
-{country:"MM",w29:19,w30:10},{country:"TR",w29:16,w30:15},{country:"AO",w29:16,w30:10},
-{country:"VE",w29:15,w30:24},{country:"AZ",w29:8,w30:21},{country:"AR",w29:8,w30:19},
-{country:"TN",w29:11,w30:14},{country:"MA",w29:11,w30:13},{country:"RS",w29:11,w30:0},
-{country:"BY",w29:10,w30:12},{country:"TM",w29:9,w30:11},{country:"AF",w29:10,w30:9},
-{country:"OZ",w29:9,w30:8},{country:"AE",w29:4,w30:9},{country:"KR",w29:17,w30:9},
-{country:"MX",w29:7,w30:8},{country:"GH",w29:7,w30:8},{country:"KG",w29:6,w30:3},
-{country:"TJ",w29:6,w30:6},{country:"AU",w29:4,w30:7},{country:"ZA",w29:4,w30:7}
+{country:"OA",w31:210,w31:559},{country:"NG",w31:161,w31:136},{country:"RU",w31:132,w31:127},
+{country:"PK",w31:32,w31:67},{country:"IN",w31:46,w31:62},{country:"BR",w31:71,w31:68},
+{country:"EG",w31:37,w31:49},{country:"UA",w31:41,w31:38},{country:"DZ",w31:36,w31:36},
+{country:"BD",w31:19,w31:34},{country:"VE",w31:23,w31:33},{country:"AZ",w31:19,w31:29},
+{country:"ID",w31:46,w31:24},{country:"TR",w31:14,w31:21},{country:"KE",w31:10,w31:17},
+{country:"MM",w31:8,w31:17},{country:"AR",w31:20,w31:16},{country:"CO",w31:12,w31:16},
+{country:"AO",w31:11,w31:15},{country:"KR",w31:9,w31:15},{country:"TN",w31:12,w31:13},
+{country:"MA",w31:13,w31:11},{country:"BO",w31:17,w31:10},{country:"AU",w31:6,w31:9},
+{country:"ZA",w31:6,w31:8},{country:"VN",w31:10,w31:8},{country:"MX",w31:8,w31:5},
+{country:"NP",w31:4,w31:6},{country:"AE",w31:9,w31:6}
 ]
 };
 
@@ -3266,116 +3233,34 @@ eftts: [
 const SITE_DATA = {
 EU: {
   ios: {
-    signups: [
-      {country:"DE",w29:150,w30:180},{country:"PL",w29:143,w30:112},{country:"IT",w29:98,w30:88},
-      {country:"ES",w29:84,w30:83},{country:"LT",w29:122,w30:80},{country:"BG",w29:77,w30:76},
-      {country:"FR",w29:64,w30:64},{country:"NL",w29:45,w30:58},{country:"CZ",w29:51,w30:54},
-      {country:"SE",w29:25,w30:37},{country:"GR",w29:44,w30:35},{country:"PT",w29:59,w30:35},
-      {country:"CY",w29:34,w30:34},{country:"NO",w29:19,w30:31},{country:"BE",w29:30,w30:31},
-      {country:"LV",w29:32,w30:27},{country:"RO",w29:34,w30:26},{country:"HU",w29:31,w30:24},
-      {country:"HR",w29:21,w30:17},{country:"AT",w29:20,w30:14},{country:"FI",w29:17,w30:13},
-      {country:"RU",w29:10,w30:12},{country:"IE",w29:12,w30:12},{country:"EE",w29:22,w30:10},
-      {country:"SK",w29:12,w30:10},{country:"SI",w29:13,w30:9},{country:"DK",w29:11,w30:8}
-    ],
-    eftds: [
-      {country:"PL",w29:34,w30:21},{country:"DE",w29:22,w30:28},{country:"IT",w29:20,w30:16},
-      {country:"LT",w29:20,w30:22},{country:"FR",w29:15,w30:12},{country:"PT",w29:12,w30:11},
-      {country:"RO",w29:11,w30:8},{country:"GR",w29:11,w30:6},{country:"CZ",w29:11,w30:3},
-      {country:"BG",w29:10,w30:13},{country:"LV",w29:7,w30:3},{country:"NL",w29:7,w30:14},
-      {country:"ES",w29:6,w30:18},{country:"SI",w29:6,w30:0},{country:"SE",w29:5,w30:0},
-      {country:"FI",w29:4,w30:0},{country:"EE",w29:4,w30:6},{country:"HU",w29:4,w30:0},
-      {country:"DK",w29:4,w30:0},{country:"SK",w29:3,w30:0},{country:"HR",w29:3,w30:3},
-      {country:"BE",w29:3,w30:9}
-    ],
-    eftts: [
-      {country:"PL",w29:37,w30:18},{country:"DE",w29:15,w30:27},{country:"LT",w29:17,w30:20},
-      {country:"FR",w29:13,w30:6},{country:"IT",w29:12,w30:16},{country:"PT",w29:13,w30:5},
-      {country:"CZ",w29:12,w30:4},{country:"GR",w29:9,w30:4},{country:"BG",w29:7,w30:9},
-      {country:"SI",w29:6,w30:2},{country:"ES",w29:5,w30:12},{country:"LV",w29:5,w30:2},
-      {country:"NL",w29:4,w30:12},{country:"HU",w29:3,w30:4},{country:"BE",w29:1,w30:10},
-      {country:"EE",w29:2,w30:5},{country:"NO",w29:1,w30:1},{country:"SE",w29:1,w30:0}
-    ]
+    signups: [{country:"DE",w31:180,w31:173},{country:"PL",w31:112,w31:169},{country:"IT",w31:88,w31:122},{country:"FR",w31:64,w31:117},{country:"ES",w31:81,w31:99},{country:"NO",w31:31,w31:77},{country:"LT",w31:81,w31:77},{country:"NL",w31:58,w31:75},{country:"CZ",w31:54,w31:73},{country:"GR",w31:35,w31:56},{country:"PT",w31:35,w31:52},{country:"BG",w31:76,w31:51},{country:"CY",w31:34,w31:43},{country:"LV",w31:28,w31:42},{country:"BE",w31:31,w31:42},{country:"SE",w31:36,w31:41},{country:"HU",w31:25,w31:37},{country:"RO",w31:26,w31:29},{country:"EE",w31:10,w31:28},{country:"DK",w31:8,w31:27},{country:"IE",w31:12,w31:23},{country:"AT",w31:14,w31:21},{country:"SK",w31:11,w31:18},{country:"RU",w31:12,w31:15},{country:"FI",w31:13,w31:15}],
+    eftds: [{country:"PL",w31:21,w31:22},{country:"DE",w31:28,w31:20},{country:"IT",w31:16,w31:18},{country:"BG",w31:13,w31:17},{country:"ES",w31:17,w31:15},{country:"FR",w31:12,w31:15},{country:"NL",w31:14,w31:14},{country:"LT",w31:23,w31:12},{country:"PT",w31:10,w31:8},{country:"CZ",w31:3,w31:8},{country:"BE",w31:9,w31:7},{country:"GR",w31:7,w31:6},{country:"NO",w31:0,w31:6},{country:"SE",w31:2,w31:5},{country:"LV",w31:3,w31:5},{country:"CY",w31:1,w31:5},{country:"HU",w31:3,w31:4},{country:"AT",w31:2,w31:4},{country:"FI",w31:0,w31:4},{country:"EE",w31:6,w31:3},{country:"RO",w31:8,w31:3}],
+    eftts: [{country:"PL",w31:17,w31:20},{country:"DE",w31:27,w31:16},{country:"IT",w31:15,w31:15},{country:"BG",w31:9,w31:15},{country:"ES",w31:11,w31:14},{country:"NL",w31:12,w31:14},{country:"FR",w31:6,w31:9},{country:"PT",w31:4,w31:9},{country:"LT",w31:20,w31:8},{country:"BE",w31:9,w31:4},{country:"CZ",w31:3,w31:4},{country:"GR",w31:4,w31:4},{country:"FI",w31:1,w31:4},{country:"HU",w31:4,w31:3},{country:"AT",w31:2,w31:3},{country:"EE",w31:5,w31:3},{country:"CY",w31:0,w31:2},{country:"LV",w31:2,w31:2},{country:"RO",w31:7,w31:2}]
   },
   android: {
-    signups: [
-      {country:"PL",w29:224,w30:202},{country:"DE",w29:157,w30:170},{country:"IT",w29:196,w30:169},
-      {country:"FR",w29:151,w30:124},{country:"ES",w29:123,w30:114},{country:"PT",w29:116,w30:85},
-      {country:"RO",w29:72,w30:63},{country:"NL",w29:50,w30:57},{country:"GR",w29:54,w30:51},
-      {country:"CZ",w29:47,w30:48},{country:"BG",w29:59,w30:47},{country:"LV",w29:31,w30:41},
-      {country:"LT",w29:48,w30:38},{country:"HU",w29:39,w30:37},{country:"FI",w29:19,w30:29},
-      {country:"BE",w29:46,w30:26},{country:"SE",w29:26,w30:23},{country:"NO",w29:29,w30:23},
-      {country:"CY",w29:11,w30:14},{country:"AT",w29:15,w30:14},{country:"HR",w29:21,w30:12},
-      {country:"EE",w29:19,w30:12},{country:"SK",w29:20,w30:12},{country:"DK",w29:5,w30:11},
-      {country:"SI",w29:15,w30:11},{country:"RU",w29:7,w30:5},{country:"IE",w29:11,w30:7}
-    ],
-    eftds: [
-      {country:"PL",w29:56,w30:45},{country:"FR",w29:23,w30:16},{country:"ES",w29:21,w30:25},
-      {country:"DE",w29:18,w30:26},{country:"IT",w29:16,w30:14},{country:"GR",w29:11,w30:13},
-      {country:"RO",w29:11,w30:10},{country:"PT",w29:10,w30:15},{country:"HU",w29:8,w30:5},
-      {country:"CZ",w29:6,w30:5},{country:"LT",w29:5,w30:13},{country:"SI",w29:5,w30:0},
-      {country:"SE",w29:5,w30:3},{country:"BE",w29:5,w30:0},{country:"NO",w29:4,w30:6},
-      {country:"BG",w29:4,w30:4},{country:"EE",w29:3,w30:5},{country:"AT",w29:3,w30:3},
-      {country:"FI",w29:3,w30:5},{country:"HR",w29:3,w30:3},{country:"NL",w29:3,w30:8},
-      {country:"LV",w29:0,w30:5}
-    ],
-    eftts: [
-      {country:"PL",w29:46,w30:41},{country:"FR",w29:21,w30:17},{country:"DE",w29:19,w30:20},
-      {country:"IT",w29:17,w30:9},{country:"ES",w29:16,w30:20},{country:"GR",w29:10,w30:6},
-      {country:"NO",w29:7,w30:7},{country:"CZ",w29:6,w30:6},{country:"RO",w29:6,w30:12},
-      {country:"HU",w29:6,w30:7},{country:"BE",w29:5,w30:2},{country:"LT",w29:3,w30:13},
-      {country:"FI",w29:4,w30:4},{country:"SE",w29:3,w30:2},{country:"PT",w29:4,w30:17},
-      {country:"EE",w29:4,w30:2},{country:"LV",w29:2,w30:5},{country:"SI",w29:3,w30:4},
-      {country:"NL",w29:2,w30:8},{country:"AT",w29:4,w30:2},{country:"IE",w29:3,w30:2}
-    ]
+    signups: [{country:"DE",w31:171,w31:260},{country:"IT",w31:168,w31:235},{country:"FR",w31:124,w31:198},{country:"PL",w31:203,w31:196},{country:"ES",w31:115,w31:170},{country:"TZ",w31:0,w31:105},{country:"PT",w31:85,w31:101},{country:"NL",w31:56,w31:89},{country:"GR",w31:49,w31:81},{country:"RO",w31:63,w31:81},{country:"HU",w31:37,w31:66},{country:"CZ",w31:48,w31:66},{country:"BG",w31:47,w31:63},{country:"LT",w31:38,w31:61},{country:"LV",w31:41,w31:42},{country:"BE",w31:25,w31:37},{country:"NO",w31:23,w31:37},{country:"FI",w31:29,w31:30},{country:"CY",w31:13,w31:26},{country:"SK",w31:12,w31:26},{country:"SE",w31:23,w31:24},{country:"AT",w31:13,w31:21}],
+    eftds: [{country:"PL",w31:45,w31:32},{country:"DE",w31:27,w31:23},{country:"IT",w31:14,w31:17},{country:"FR",w31:17,w31:13},{country:"CZ",w31:5,w31:11},{country:"ES",w31:24,w31:10},{country:"HU",w31:5,w31:10},{country:"PT",w31:15,w31:9},{country:"BG",w31:4,w31:9},{country:"GR",w31:13,w31:8},{country:"NL",w31:8,w31:8},{country:"LV",w31:5,w31:5},{country:"SE",w31:4,w31:5},{country:"LT",w31:14,w31:5},{country:"FI",w31:5,w31:4},{country:"SK",w31:1,w31:4},{country:"AT",w31:3,w31:3},{country:"NO",w31:6,w31:3},{country:"BE",w31:2,w31:2}],
+    eftts: [{country:"PL",w31:45,w31:32},{country:"DE",w31:27,w31:23},{country:"IT",w31:14,w31:17},{country:"FR",w31:17,w31:13},{country:"CZ",w31:5,w31:11},{country:"ES",w31:24,w31:10},{country:"HU",w31:5,w31:10},{country:"PT",w31:15,w31:9},{country:"BG",w31:4,w31:9},{country:"GR",w31:13,w31:8},{country:"NL",w31:8,w31:8},{country:"LV",w31:5,w31:5},{country:"SE",w31:4,w31:5},{country:"LT",w31:14,w31:5},{country:"FI",w31:5,w31:4},{country:"SK",w31:1,w31:4},{country:"AT",w31:3,w31:3},{country:"NO",w31:6,w31:3},{country:"BE",w31:2,w31:2}]
   }
 },
 IDN: {
-  ios: {
-    signups: [{country:"ID",w29:362,w30:560}],
-    eftds: [{country:"ID",w29:33,w30:39}],
-    eftts: [{country:"ID",w29:27,w30:29}]
-  },
-  android: {
-    signups: [{country:"ID",w29:1022,w30:1345}],
-    eftds: [{country:"ID",w29:179,w30:153}],
-    eftts: [{country:"ID",w29:180,w30:149}]
-  }
+  ios: { signups: [{country:"ID",w31:549,w31:549}], eftds: [{country:"ID",w31:34,w31:38}], eftts: [{country:"ID",w31:27,w31:29}] },
+  android: { signups: [{country:"ID",w31:1325,w31:1080}], eftds: [{country:"ID",w31:126,w31:80}], eftts: [{country:"ID",w31:125,w31:67}] }
 },
+
 GEO: {
-  ios: {
-    signups: [{country:"GE",w29:168,w30:208}],
-    eftds: [{country:"GE",w29:10,w30:19}],
-    eftts: [{country:"GE",w29:5,w30:4}]
-  },
-  android: {
-    signups: [{country:"GE",w29:143,w30:138}],
-    eftds: [{country:"GE",w29:3,w30:4}],
-    eftts: [{country:"GE",w29:3,w30:0}]
-  }
+  ios: { signups: [{country:"GE",w31:207,w31:427}], eftds: [{country:"GE",w31:19,w31:6}], eftts: [{country:"GE",w31:4,w31:4}] },
+  android: { signups: [{country:"GE",w31:138,w31:296}], eftds: [{country:"GE",w31:5,w31:8}], eftts: [{country:"GE",w31:1,w31:0}] }
 },
+
 KAZ: {
-  ios: {
-    signups: [{country:"KZ",w29:33,w30:67},{country:"OZ",w29:52,w30:66}],
-    eftds: [{country:"KZ",w29:10,w30:13}],
-    eftts: [{country:"KZ",w29:5,w30:3}]
-  },
-  android: {
-    signups: [{country:"OZ",w29:73,w30:68},{country:"KZ",w29:65,w30:46}],
-    eftds: [{country:"KZ",w29:8,w30:4}],
-    eftts: [{country:"KZ",w29:7,w30:3},{country:"OZ",w29:1,w30:0}]
-  }
+  ios: { signups: [{country:"KZ",w31:132,w31:349}], eftds: [{country:"KZ",w31:13,w31:18}], eftts: [{country:"KZ",w31:3,w31:0}] },
+  android: { signups: [{country:"KZ",w31:115,w31:313}], eftds: [{country:"KZ",w31:4,w31:17}], eftts: [{country:"KZ",w31:3,w31:7}] }
 },
+
 TUR: {
-  ios: {
-    signups: [{country:"TR",w29:17,w30:53}],
-    eftds: [{country:"TR",w29:4,w30:6}],
-    eftts: [{country:"TR",w29:4,w30:3}]
-  },
-  android: {
-    signups: [{country:"TR",w29:153,w30:131}],
-    eftds: [{country:"TR",w29:18,w30:15}],
-    eftts: [{country:"TR",w29:19,w30:16}]
-  }
+  ios: { signups: [{country:"TR",w31:53,w31:77}], eftds: [{country:"TR",w31:4,w31:9}], eftts: [{country:"TR",w31:3,w31:6}] },
+  android: { signups: [{country:"TR",w31:131,w31:142}], eftds: [{country:"TR",w31:14,w31:29}], eftts: [{country:"TR",w31:13,w31:23}] }
 }
 };
 
@@ -3407,10 +3292,10 @@ function getSiteData(site, platform) {
   return mergePlatforms(sd.ios, sd.android);
 }
 
-const SRC_FIELDS = ['search_w29','search_w30','browse_w29','browse_w30','appRef_w29','appRef_w30','webRef_w29','webRef_w30'];
+const SRC_FIELDS = ['search_w30','search_w31','browse_w30','browse_w31','appRef_w30','appRef_w31','webRef_w30','webRef_w31'];
 
 function mergeCountryEntry(target, src) {
-  target.w29 += src.w29; target.w30 += src.w30;
+  target.w30 += src.w30; target.w31 += src.w31;
   SRC_FIELDS.forEach(f => { if (src[f]) target[f] = (target[f]||0) + src[f]; });
 }
 
@@ -3423,7 +3308,7 @@ function mergePlatforms(iosData, androidData) {
       if (map[d.country]) { mergeCountryEntry(map[d.country], d); }
       else { map[d.country] = {...d}; }
     });
-    merged[metric] = Object.values(map).sort((a,b) => b.w30 - a.w30);
+    merged[metric] = Object.values(map).sort((a,b) => b.w31 - a.w31);
   });
   return merged;
 }
@@ -3436,7 +3321,7 @@ function mergeByCountry(data) {
       if (map[d.country]) { mergeCountryEntry(map[d.country], d); }
       else { map[d.country] = {...d}; }
     });
-    merged[metric] = Object.values(map).sort((a,b) => b.w30 - a.w30);
+    merged[metric] = Object.values(map).sort((a,b) => b.w31 - a.w31);
   });
   return merged;
 }
@@ -3517,53 +3402,53 @@ const METRIC_TIPS = {
 function getOrganicDL() {
   if (currentPlatform === 'android') {
     const w28 = gpW28.reduce((s,d)=>s+d.search+d.explore,0);
-    const w29 = gpW29.reduce((s,d)=>s+d.search+d.explore,0);
-    return { w29: w28, w30: w29 };
+    const w30 = gpW30.reduce((s,d)=>s+d.search+d.explore,0);
+    return { w30: w28, w31: w30 };
   }
-  const asaW29 = ASA_DAILY.slice(0,7).reduce((s,d)=>s+d.newDL+d.reDL,0);
-  const asaW30 = ASA_DAILY.slice(7,14).reduce((s,d)=>s+d.newDL+d.reDL,0);
+  const asaW30 = ASA_DAILY.slice(0,7).reduce((s,d)=>s+d.newDL+d.reDL,0);
+  const asaW31 = ASA_DAILY.slice(7,14).reduce((s,d)=>s+d.newDL+d.reDL,0);
   const data = getActiveData();
   const dlArr = data.downloads||[];
-  const searchW29 = dlArr.reduce((s,d)=>s+(d.search_w29||0),0);
   const searchW30 = dlArr.reduce((s,d)=>s+(d.search_w30||0),0);
-  const browseW29 = dlArr.reduce((s,d)=>s+(d.browse_w29||0),0);
+  const searchW31 = dlArr.reduce((s,d)=>s+(d.search_w31||0),0);
   const browseW30 = dlArr.reduce((s,d)=>s+(d.browse_w30||0),0);
+  const browseW31 = dlArr.reduce((s,d)=>s+(d.browse_w31||0),0);
   if (currentPlatform === 'all') {
     const gpW28t = gpW28.reduce((s,d)=>s+d.search+d.explore,0);
-    const gpW29t = gpW29.reduce((s,d)=>s+d.search+d.explore,0);
-    return { w29: (searchW29 - asaW29 + browseW29) + gpW28t, w30: (searchW30 - asaW30 + browseW30) + gpW29t };
+    const gpW30t = gpW30.reduce((s,d)=>s+d.search+d.explore,0);
+    return { w30: (searchW30 - asaW30 + browseW30) + gpW28t, w31: (searchW31 - asaW31 + browseW31) + gpW30t };
   }
-  return { w29: searchW29 - asaW29 + browseW29, w30: searchW30 - asaW30 + browseW30 };
+  return { w30: searchW30 - asaW30 + browseW30, w31: searchW31 - asaW31 + browseW31 };
 }
 
 function renderKPIs() {
   const data = getActiveData();
-  const su29 = data.signups.reduce((s,d) => s+d.w29, 0);
   const su30 = data.signups.reduce((s,d) => s+d.w30, 0);
-  const ef29 = data.eftds.reduce((s,d) => s+d.w29, 0);
+  const su31 = data.signups.reduce((s,d) => s+d.w31, 0);
   const ef30 = data.eftds.reduce((s,d) => s+d.w30, 0);
+  const ef31 = data.eftds.reduce((s,d) => s+d.w31, 0);
   const orgDL = getOrganicDL();
-  const dl29 = orgDL.w29, dl30 = orgDL.w30;
-  const cvr29 = su29 > 0 ? (ef29/su29*100) : 0;
+  const dl30 = orgDL.w30, dl31 = orgDL.w31;
   const cvr30 = su30 > 0 ? (ef30/su30*100) : 0;
+  const cvr31 = su31 > 0 ? (ef31/su31*100) : 0;
 
-  function kpiCard(label, w30, w29, suffix='', wLabels) {
-    const change = w29 > 0 ? ((w30-w29)/w29*100).toFixed(1) : '∞';
-    const cls = w30 >= w29 ? 'positive' : 'negative';
-    const sign = w30 >= w29 ? '+' : '';
-    const val = suffix ? w30.toFixed(2)+suffix : w30.toLocaleString();
+  function kpiCard(label, curr, prev, suffix='', wLabels) {
+    const change = prev > 0 ? ((curr-prev)/prev*100).toFixed(1) : '∞';
+    const cls = curr >= prev ? 'positive' : 'negative';
+    const sign = curr >= prev ? '+' : '';
+    const val = suffix ? curr.toFixed(2)+suffix : curr.toLocaleString();
     const tip = METRIC_TIPS[label] || '';
-    const wPrev = wLabels ? wLabels[0] : 'W29';
-    const wCurr = wLabels ? wLabels[1] : 'W30';
-    return `<div class="kpi-card"><div class="kpi-label" ${tip?'data-tip="'+tip+'"':''}>${label}</div><div class="kpi-value">${val}</div><div class="kpi-change ${cls}">${sign}${change}% WoW</div><div class="kpi-weeks">${wPrev}: ${suffix ? w29.toFixed(2)+suffix : w29.toLocaleString()} → ${wCurr}: ${val}</div></div>`;
+    const wPrev = wLabels ? wLabels[0] : 'W30';
+    const wCurr = wLabels ? wLabels[1] : 'W31';
+    return `<div class="kpi-card"><div class="kpi-label" ${tip?'data-tip="'+tip+'"':''}>${label}</div><div class="kpi-value">${val}</div><div class="kpi-change ${cls}">${sign}${change}% WoW</div><div class="kpi-weeks">${wPrev}: ${suffix ? prev.toFixed(2)+suffix : prev.toLocaleString()} → ${wCurr}: ${val}</div></div>`;
   }
 
-  const dlWeeks = currentPlatform === 'android' ? ['W28','W29'] : null;
+  const dlWeeks = currentPlatform === 'android' ? ['W29','W30'] : null;
   document.getElementById('mainKpiRow').innerHTML =
-    kpiCard('Organic Downloads', dl30, dl29, '', dlWeeks) +
-    kpiCard('Sign-Ups', su30, su29) +
-    kpiCard('eFTDs', ef30, ef29) +
-    kpiCard('Sign-Up → eFTD CVR', cvr30, cvr29, '%');
+    kpiCard('Organic Downloads', dl31, dl30, '', dlWeeks) +
+    kpiCard('Sign-Ups', su31, su30) +
+    kpiCard('eFTDs', ef31, ef30) +
+    kpiCard('Sign-Up → eFTD CVR', cvr31, cvr30, '%');
 }
 
 function showTable(metric) {
@@ -3592,66 +3477,66 @@ function renderTable() {
   const SOURCE_LABELS = {all:'All Sources',search:'Search',browse:'Browse',appRef:'App Referrer',webRef:'Web Referrer'};
 
   let data = (data_src[currentMetric]||[]).map(d => {
-    const {w29, w30} = getSourceW29W30(d, src);
-    return {...d, w29, w30};
-  }).filter(d => (d.w30 >= minVol || d.w29 >= minVol));
+    const {w30, w31} = getSourceW30W31(d, src);
+    return {...d, w30, w31};
+  }).filter(d => (d.w31 >= minVol || d.w30 >= minVol));
   if (search) data = data.filter(d => d.country.includes(search) || (COUNTRY_NAMES[d.country]||'').toUpperCase().includes(search));
 
-  data = data.map(d => ({...d, wow_abs: d.w30 - d.w29, wow_pct: d.w29 > 0 ? ((d.w30 - d.w29) / d.w29 * 100) : (d.w30 > 0 ? 999 : 0)}));
+  data = data.map(d => ({...d, wow_abs: d.w31 - d.w30, wow_pct: d.w30 > 0 ? ((d.w31 - d.w30) / d.w30 * 100) : (d.w31 > 0 ? 999 : 0)}));
 
-  if (sortBy === 'w30') data.sort((a,b) => b.w30 - a.w30);
+  if (sortBy === 'w31') data.sort((a,b) => b.w31 - a.w31);
   else if (sortBy === 'wow_abs') data.sort((a,b) => b.wow_abs - a.wow_abs);
   else data.sort((a,b) => b.wow_pct - a.wow_pct);
 
-  const maxW30 = Math.max(...data.map(d => d.w30), 1);
-  const hasSrcBreakdown = data.length > 0 && (data[0].search_w29 !== undefined || data[0].browse_w29 !== undefined);
+  const maxW31 = Math.max(...data.map(d => d.w31), 1);
+  const hasSrcBreakdown = data.length > 0 && (data[0].search_w30 !== undefined || data[0].browse_w30 !== undefined);
 
   let html;
   if (isDL && src === 'all' && hasSrcBreakdown) {
-    html = `<table><thead><tr><th>#</th><th>Country</th><th>Total W29</th><th>Total W30</th><th>WoW</th><th>Search W30</th><th>Search WoW</th><th>Browse W30</th><th>Browse WoW</th></tr></thead><tbody>`;
+    html = `<table><thead><tr><th>#</th><th>Country</th><th>Total W30</th><th>Total W31</th><th>WoW</th><th>Search W31</th><th>Search WoW</th><th>Browse W31</th><th>Browse WoW</th></tr></thead><tbody>`;
     data.forEach((d, i) => {
-      const change = d.w30 - d.w29;
-      const pct = d.w29 > 0 ? (change / d.w29 * 100).toFixed(1) : (d.w30 > 0 ? '∞' : '0.0');
+      const change = d.w31 - d.w30;
+      const pct = d.w30 > 0 ? (change / d.w30 * 100).toFixed(1) : (d.w31 > 0 ? '∞' : '0.0');
       const cls = change > 0 ? 'wow-positive' : change < 0 ? 'wow-negative' : 'wow-neutral';
       const sign = change > 0 ? '+' : '';
-      const sChg = (d.search_w30||0) - (d.search_w29||0);
+      const sChg = (d.search_w31||0) - (d.search_w30||0);
       const sCls = sChg > 0 ? 'wow-positive' : sChg < 0 ? 'wow-negative' : 'wow-neutral';
-      const sPct = d.search_w29 > 0 ? (sChg / d.search_w29 * 100).toFixed(0) : '—';
-      const bChg = (d.browse_w30||0) - (d.browse_w29||0);
+      const sPct = d.search_w30 > 0 ? (sChg / d.search_w30 * 100).toFixed(0) : '—';
+      const bChg = (d.browse_w31||0) - (d.browse_w30||0);
       const bCls = bChg > 0 ? 'wow-positive' : bChg < 0 ? 'wow-negative' : 'wow-neutral';
-      const bPct = d.browse_w29 > 0 ? (bChg / d.browse_w29 * 100).toFixed(0) : '—';
+      const bPct = d.browse_w30 > 0 ? (bChg / d.browse_w30 * 100).toFixed(0) : '—';
       const name = COUNTRY_NAMES[d.country] || d.country;
       html += `<tr>
         <td style="color:#6e7681">${i+1}</td>
         <td><strong>${d.country}</strong> <span style="color:#8b949e;font-size:11px">${name}</span></td>
-        <td>${d.w29.toLocaleString()}</td>
-        <td style="font-weight:600">${d.w30.toLocaleString()}</td>
+        <td>${d.w30.toLocaleString()}</td>
+        <td style="font-weight:600">${d.w31.toLocaleString()}</td>
         <td class="${cls}">${sign}${pct}%</td>
-        <td>${(d.search_w30||0).toLocaleString()}</td>
+        <td>${(d.search_w31||0).toLocaleString()}</td>
         <td class="${sCls}">${sChg>0?'+':''}${sPct}%</td>
-        <td>${(d.browse_w30||0).toLocaleString()}</td>
+        <td>${(d.browse_w31||0).toLocaleString()}</td>
         <td class="${bCls}">${bChg>0?'+':''}${bPct}%</td>
       </tr>`;
     });
   } else {
     const srcLabel = isDL && src !== 'all' ? ` (${SOURCE_LABELS[src]})` : '';
-    html = `<table><thead><tr><th>#</th><th>Country</th><th>W29${srcLabel}</th><th>W30${srcLabel}</th><th>WoW Change</th><th>WoW %</th><th style="width:200px">W30 Volume</th></tr></thead><tbody>`;
+    html = `<table><thead><tr><th>#</th><th>Country</th><th>W30${srcLabel}</th><th>W31${srcLabel}</th><th>WoW Change</th><th>WoW %</th><th style="width:200px">W31 Volume</th></tr></thead><tbody>`;
     data.forEach((d, i) => {
-      const change = d.w30 - d.w29;
-      const pct = d.w29 > 0 ? (change / d.w29 * 100).toFixed(1) : (d.w30 > 0 ? '∞' : '0.0');
+      const change = d.w31 - d.w30;
+      const pct = d.w30 > 0 ? (change / d.w30 * 100).toFixed(1) : (d.w31 > 0 ? '∞' : '0.0');
       const cls = change > 0 ? 'wow-positive' : change < 0 ? 'wow-negative' : 'wow-neutral';
       const sign = change > 0 ? '+' : '';
-      const barWidth = (d.w30 / maxW30 * 100).toFixed(1);
+      const barWidth = (d.w31 / maxW31 * 100).toFixed(1);
       const barColor = change >= 0 ? '#238636' : '#da3633';
       const name = COUNTRY_NAMES[d.country] || d.country;
       html += `<tr>
         <td style="color:#6e7681">${i+1}</td>
         <td><strong>${d.country}</strong> <span style="color:#8b949e;font-size:11px">${name}</span></td>
-        <td>${d.w29.toLocaleString()}</td>
-        <td style="font-weight:600">${d.w30.toLocaleString()}</td>
+        <td>${d.w30.toLocaleString()}</td>
+        <td style="font-weight:600">${d.w31.toLocaleString()}</td>
         <td class="${cls}">${sign}${change.toLocaleString()}</td>
         <td class="${cls}">${sign}${pct}%</td>
-        <td class="bar-cell"><div class="bar-bg" style="width:${barWidth}%;background:${barColor}"></div>${d.w30.toLocaleString()}</td>
+        <td class="bar-cell"><div class="bar-bg" style="width:${barWidth}%;background:${barColor}"></div>${d.w31.toLocaleString()}</td>
       </tr>`;
     });
   }
@@ -3666,13 +3551,13 @@ function updateCountryBar() {
   const isDL = DL_METRICS.includes(currentMetric);
   const src = isDL ? currentTableSource : 'all';
   const raw = (data_src[currentMetric]||[]).map(d => {
-    const {w29, w30} = getSourceW29W30(d, src);
-    return {...d, w29, w30};
+    const {w30, w31} = getSourceW30W31(d, src);
+    return {...d, w30, w31};
   });
-  const data = raw.sort((a,b) => b.w30 - a.w30).slice(0, 15);
+  const data = raw.sort((a,b) => b.w31 - a.w31).slice(0, 15);
   const labels = data.map(d => d.country);
-  const w29 = data.map(d => d.w29);
   const w30 = data.map(d => d.w30);
+  const w31 = data.map(d => d.w31);
 
   if (window.countryBarInstance) window.countryBarInstance.destroy();
   const ctx = document.getElementById('countryBarChart').getContext('2d');
@@ -3681,8 +3566,8 @@ function updateCountryBar() {
     data: {
       labels,
       datasets: [
-        { label: 'W29', data: w29, backgroundColor: 'rgba(88,166,255,0.6)', borderColor: '#58a6ff', borderWidth: 1 },
-        { label: 'W30', data: w30, backgroundColor: 'rgba(63,185,80,0.6)', borderColor: '#3fb950', borderWidth: 1 }
+        { label: 'W30', data: w30, backgroundColor: 'rgba(88,166,255,0.6)', borderColor: '#58a6ff', borderWidth: 1 },
+        { label: 'W31', data: w31, backgroundColor: 'rgba(63,185,80,0.6)', borderColor: '#3fb950', borderWidth: 1 }
       ]
     },
     options: {
@@ -3729,9 +3614,9 @@ function switchTableSource(src) {
   updateCountryBar();
 }
 
-function getSourceW29W30(d, src) {
-  if (src === 'all') return { w29: d.w29, w30: d.w30 };
-  return { w29: d[src + '_w29'] || 0, w30: d[src + '_w30'] || 0 };
+function getSourceW30W31(d, src) {
+  if (src === 'all') return { w30: d.w30, w31: d.w31 };
+  return { w30: d[src + '_w30'] || 0, w31: d[src + '_w31'] || 0 };
 }
 
 function renderTopMovers() {
@@ -3744,9 +3629,9 @@ function renderTopMovers() {
 
   let movers = [];
   arr.forEach(d => {
-    const {w29, w30} = getSourceW29W30(d, src);
-    const abs = w30 - w29;
-    if (Math.abs(abs) >= minAbs) movers.push({country:d.country, name: COUNTRY_NAMES[d.country]||d.country, abs, pct: w29>0?((abs/w29)*100):999});
+    const {w30, w31} = getSourceW30W31(d, src);
+    const abs = w31 - w30;
+    if (Math.abs(abs) >= minAbs) movers.push({country:d.country, name: COUNTRY_NAMES[d.country]||d.country, abs, pct: w30>0?((abs/w30)*100):999});
   });
   movers.sort((a,b) => b.abs - a.abs);
   const top5 = movers.slice(0, 5);
@@ -3762,9 +3647,9 @@ function renderTopMovers() {
 function renderFunnelCharts() {
   const data = getActiveData();
   const orgDL = getOrganicDL();
-  const dl29 = orgDL.w29, dl30 = orgDL.w30;
-  const su29 = data.signups.reduce((s,d)=>s+d.w29,0), su30 = data.signups.reduce((s,d)=>s+d.w30,0);
-  const ef29 = data.eftds.reduce((s,d)=>s+d.w29,0), ef30 = data.eftds.reduce((s,d)=>s+d.w30,0);
+  const dl30 = orgDL.w30, dl31 = orgDL.w31;
+  const su30 = data.signups.reduce((s,d)=>s+d.w30,0), su31 = data.signups.reduce((s,d)=>s+d.w31,0);
+  const ef30 = data.eftds.reduce((s,d)=>s+d.w30,0), ef31 = data.eftds.reduce((s,d)=>s+d.w31,0);
 
   if (window.funnelInstance) window.funnelInstance.destroy();
   const funnelCtx = document.getElementById('funnelChart').getContext('2d');
@@ -3773,13 +3658,13 @@ function renderFunnelCharts() {
     data: {
       labels: ['Downloads', 'Sign-Ups', 'eFTDs'],
       datasets: [
-        { label: 'W29', data: [dl29, su29, ef29], backgroundColor: 'rgba(88,166,255,0.7)', borderColor: '#58a6ff', borderWidth: 1 },
-        { label: 'W30', data: [dl30, su30, ef30], backgroundColor: 'rgba(63,185,80,0.7)', borderColor: '#3fb950', borderWidth: 1 }
+        { label: 'W30', data: [dl30, su30, ef30], backgroundColor: 'rgba(88,166,255,0.7)', borderColor: '#58a6ff', borderWidth: 1 },
+        { label: 'W31', data: [dl31, su31, ef31], backgroundColor: 'rgba(63,185,80,0.7)', borderColor: '#3fb950', borderWidth: 1 }
       ]
     },
     options: {
       responsive: true,
-      plugins: { title: { display: true, text: 'Funnel Volume (W29 vs W30)', color: '#e1e4e8' }, legend: { labels: { color: '#8b949e' } } },
+      plugins: { title: { display: true, text: 'Funnel Volume (W30 vs W31)', color: '#e1e4e8' }, legend: { labels: { color: '#8b949e' } } },
       scales: {
         x: { ticks: { color: '#8b949e' }, grid: { color: '#21262d' } },
         y: { type: 'logarithmic', ticks: { color: '#8b949e' }, grid: { color: '#21262d' } }
@@ -3789,15 +3674,15 @@ function renderFunnelCharts() {
 
   if (window.convInstance) window.convInstance.destroy();
   const convCtx = document.getElementById('conversionChart').getContext('2d');
-  const dlSu29 = dl29>0?(su29/dl29*100).toFixed(2):0, dlSu30 = dl30>0?(su30/dl30*100).toFixed(2):0;
-  const suEf29 = su29>0?(ef29/su29*100).toFixed(2):0, suEf30 = su30>0?(ef30/su30*100).toFixed(2):0;
+  const dlSu30 = dl30>0?(su30/dl30*100).toFixed(2):0, dlSu31 = dl31>0?(su31/dl31*100).toFixed(2):0;
+  const suEf30 = su30>0?(ef30/su30*100).toFixed(2):0, suEf31 = su31>0?(ef31/su31*100).toFixed(2):0;
   window.convInstance = new Chart(convCtx, {
     type: 'line',
     data: {
       labels: ['DL → Sign-Up', 'Sign-Up → eFTD'],
       datasets: [
-        { label: 'W29', data: [dlSu29, suEf29], borderColor: '#58a6ff', backgroundColor: 'rgba(88,166,255,0.1)', fill: true, tension: 0.3 },
-        { label: 'W30', data: [dlSu30, suEf30], borderColor: '#3fb950', backgroundColor: 'rgba(63,185,80,0.1)', fill: true, tension: 0.3 }
+        { label: 'W30', data: [dlSu30, suEf30], borderColor: '#58a6ff', backgroundColor: 'rgba(88,166,255,0.1)', fill: true, tension: 0.3 },
+        { label: 'W31', data: [dlSu31, suEf31], borderColor: '#3fb950', backgroundColor: 'rgba(63,185,80,0.1)', fill: true, tension: 0.3 }
       ]
     },
     options: {
@@ -4160,33 +4045,33 @@ const ASC_DAILY = ASC_RAW.map((day, i) => ({
   rd: { ...day.rd, search: day.rd.search - ASA_DAILY[i].reDL }
 }));
 
-const w29Days = ASC_DAILY.slice(0, 7);
-const w30Days = ASC_DAILY.slice(7, 14);
+const w30Days = ASC_DAILY.slice(0, 7);
+const w31Days = ASC_DAILY.slice(7, 14);
 
 function sumSource(days, type, source) { return days.reduce((s, d) => s + d[type][source], 0); }
 function sumAllFTD(days) { return days.reduce((s, d) => s + Object.values(d.ftd).reduce((a,b)=>a+b,0), 0); }
 function sumAllRD(days) { return days.reduce((s, d) => s + Object.values(d.rd).reduce((a,b)=>a+b,0), 0); }
 
 function renderIOSDownloads() {
-  const ftdW29 = sumAllFTD(w29Days), ftdW30 = sumAllFTD(w30Days);
-  const rdW29 = sumAllRD(w29Days), rdW30 = sumAllRD(w30Days);
-  const rrW29 = (rdW29/(ftdW29+rdW29)*100), rrW30 = (rdW30/(ftdW30+rdW30)*100);
+  const ftdW30 = sumAllFTD(w30Days), ftdW31 = sumAllFTD(w31Days);
+  const rdW30 = sumAllRD(w30Days), rdW31 = sumAllRD(w31Days);
+  const rrW30 = (rdW30/(ftdW30+rdW30)*100), rrW31 = (rdW31/(ftdW31+rdW31)*100);
 
-  document.getElementById('ftd-total').textContent = ftdW30.toLocaleString();
-  document.getElementById('ftd-change').textContent = `+${((ftdW30-ftdW29)/ftdW29*100).toFixed(1)}% WoW`;
+  document.getElementById('ftd-total').textContent = ftdW31.toLocaleString();
+  document.getElementById('ftd-change').textContent = `+${((ftdW31-ftdW30)/ftdW30*100).toFixed(1)}% WoW`;
   document.getElementById('ftd-change').className = 'kpi-change positive';
-  document.getElementById('ftd-weeks').textContent = `W29: ${ftdW29.toLocaleString()} → W30: ${ftdW30.toLocaleString()}`;
+  document.getElementById('ftd-weeks').textContent = `W30: ${ftdW30.toLocaleString()} → W31: ${ftdW31.toLocaleString()}`;
 
-  document.getElementById('rd-total').textContent = rdW30.toLocaleString();
-  document.getElementById('rd-change').textContent = `+${((rdW30-rdW29)/rdW29*100).toFixed(1)}% WoW`;
+  document.getElementById('rd-total').textContent = rdW31.toLocaleString();
+  document.getElementById('rd-change').textContent = `+${((rdW31-rdW30)/rdW30*100).toFixed(1)}% WoW`;
   document.getElementById('rd-change').className = 'kpi-change positive';
-  document.getElementById('rd-weeks').textContent = `W29: ${rdW29.toLocaleString()} → W30: ${rdW30.toLocaleString()}`;
+  document.getElementById('rd-weeks').textContent = `W30: ${rdW30.toLocaleString()} → W31: ${rdW31.toLocaleString()}`;
 
-  document.getElementById('rr-total').textContent = rrW30.toFixed(1) + '%';
-  const rrDelta = rrW30 - rrW29;
+  document.getElementById('rr-total').textContent = rrW31.toFixed(1) + '%';
+  const rrDelta = rrW31 - rrW30;
   document.getElementById('rr-change').textContent = (rrDelta>=0?'+':'') + rrDelta.toFixed(1) + 'pp WoW';
   document.getElementById('rr-change').className = 'kpi-change ' + (rrDelta<=0?'positive':'negative');
-  document.getElementById('rr-weeks').textContent = `W29: ${rrW29.toFixed(1)}% → W30: ${rrW30.toFixed(1)}%`;
+  document.getElementById('rr-weeks').textContent = `W30: ${rrW30.toFixed(1)}% → W31: ${rrW31.toFixed(1)}%`;
 
   const sources = ['browse','search','appRef','webRef','unavail'];
   const sourceLabels = ['App Store Browse','Organic Search (excl. ASA)','App Referrer','Web Referrer','Unavailable'];
@@ -4196,10 +4081,10 @@ function renderIOSDownloads() {
   window.srcBreakdownInst = new Chart(document.getElementById('sourceBreakdownChart').getContext('2d'), {
     type: 'bar',
     data: {
-      labels: ['W29 First-Time','W30 First-Time','W29 Redownloads','W30 Redownloads'],
+      labels: ['W30 First-Time','W31 First-Time','W30 Redownloads','W31 Redownloads'],
       datasets: sources.map((src,i) => ({
         label: sourceLabels[i],
-        data: [sumSource(w29Days,'ftd',src),sumSource(w30Days,'ftd',src),sumSource(w29Days,'rd',src),sumSource(w30Days,'rd',src)],
+        data: [sumSource(w30Days,'ftd',src),sumSource(w31Days,'ftd',src),sumSource(w30Days,'rd',src),sumSource(w31Days,'rd',src)],
         backgroundColor: sourceColors[i]
       }))
     },
@@ -4228,15 +4113,15 @@ function renderIOSDownloads() {
   if (window.ftrdInst) window.ftrdInst.destroy();
   window.ftrdInst = new Chart(document.getElementById('firstVsRedownloadChart').getContext('2d'), {
     type:'doughnut',
-    data:{labels:['First-Time (W30)','Redownloads (W30)'],datasets:[{data:[ftdW30,rdW30],backgroundColor:['#58a6ff','#f97316'],borderColor:'#161b22',borderWidth:3}]},
-    options:{responsive:true,plugins:{title:{display:true,text:'W30 First-Time vs Redownloads',color:'#e1e4e8'},legend:{labels:{color:'#8b949e'}}}}
+    data:{labels:['First-Time (W31)','Redownloads (W31)'],datasets:[{data:[ftdW31,rdW31],backgroundColor:['#58a6ff','#f97316'],borderColor:'#161b22',borderWidth:3}]},
+    options:{responsive:true,plugins:{title:{display:true,text:'W31 First-Time vs Redownloads',color:'#e1e4e8'},legend:{labels:{color:'#8b949e'}}}}
   });
 
   if (window.srcWowInst) window.srcWowInst.destroy();
   const srcWowData = sources.map((src,i) => {
-    const t29 = sumSource(w29Days,'ftd',src)+sumSource(w29Days,'rd',src);
     const t30 = sumSource(w30Days,'ftd',src)+sumSource(w30Days,'rd',src);
-    return {label:sourceLabels[i], pct: t29>0?((t30-t29)/t29*100):0};
+    const t31 = sumSource(w31Days,'ftd',src)+sumSource(w31Days,'rd',src);
+    return {label:sourceLabels[i], pct: t30>0?((t31-t30)/t30*100):0};
   });
   window.srcWowInst = new Chart(document.getElementById('sourceWowChart').getContext('2d'), {
     type:'bar',
@@ -4264,7 +4149,7 @@ const GP_DAILY = [
 ];
 
 const gpW28 = GP_DAILY.slice(0,7);
-const gpW29 = GP_DAILY.slice(7,14);
+const gpW30 = GP_DAILY.slice(7,14);
 
 function renderAndroidDownloads() {
   const fields = ['all','search','explore','ads'];
@@ -4274,24 +4159,24 @@ function renderAndroidDownloads() {
 
   fields.forEach((f,i) => {
     const w28 = gpW28.reduce((s,d)=>s+d[f],0);
-    const w29 = gpW29.reduce((s,d)=>s+d[f],0);
-    const pct = ((w29-w28)/w28*100).toFixed(1);
-    const cls = w29>=w28 ? 'positive' : 'negative';
-    const sign = w29>=w28 ? '+' : '';
-    document.getElementById(ids[i]+'-total').textContent = w29.toLocaleString();
+    const w30 = gpW30.reduce((s,d)=>s+d[f],0);
+    const pct = ((w30-w28)/w28*100).toFixed(1);
+    const cls = w30>=w28 ? 'positive' : 'negative';
+    const sign = w30>=w28 ? '+' : '';
+    document.getElementById(ids[i]+'-total').textContent = w30.toLocaleString();
     document.getElementById(ids[i]+'-change').textContent = `${sign}${pct}% WoW`;
     document.getElementById(ids[i]+'-change').className = 'kpi-change ' + cls;
-    document.getElementById(ids[i]+'-weeks').textContent = `W28: ${w28.toLocaleString()} → W29: ${w29.toLocaleString()}`;
+    document.getElementById(ids[i]+'-weeks').textContent = `W28: ${w28.toLocaleString()} → W30: ${w30.toLocaleString()}`;
   });
 
   if (window.gpSrcInst) window.gpSrcInst.destroy();
   window.gpSrcInst = new Chart(document.getElementById('gpSourceBreakdownChart').getContext('2d'), {
     type:'bar',
     data:{
-      labels:['W28','W29'],
+      labels:['W28','W30'],
       datasets: fields.slice(1).map((f,i) => ({
         label: labels[i+1],
-        data: [gpW28.reduce((s,d)=>s+d[f],0), gpW29.reduce((s,d)=>s+d[f],0)],
+        data: [gpW28.reduce((s,d)=>s+d[f],0), gpW30.reduce((s,d)=>s+d[f],0)],
         backgroundColor: colors[i+1]
       }))
     },
@@ -4313,21 +4198,21 @@ function renderAndroidDownloads() {
   if (window.gpWowInst) window.gpWowInst.destroy();
   const wowData = fields.slice(1).map((f,i) => {
     const w28t = gpW28.reduce((s,d)=>s+d[f],0);
-    const w29t = gpW29.reduce((s,d)=>s+d[f],0);
-    return {label:labels[i+1], pct:((w29t-w28t)/w28t*100)};
+    const w30t = gpW30.reduce((s,d)=>s+d[f],0);
+    return {label:labels[i+1], pct:((w30t-w28t)/w28t*100)};
   });
   window.gpWowInst = new Chart(document.getElementById('gpSourceWowChart').getContext('2d'), {
     type:'bar',
     data:{labels:wowData.map(d=>d.label),datasets:[{label:'WoW %',data:wowData.map(d=>d.pct.toFixed(1)),backgroundColor:wowData.map(d=>d.pct>=0?'#3fb950':'#f85149'),borderRadius:4}]},
-    options:{indexAxis:'y',responsive:true,plugins:{title:{display:true,text:'WoW % Change by Source (W28→W29)',color:'#e1e4e8'},legend:{display:false}},scales:{x:{ticks:{color:'#8b949e',callback:v=>v+'%'},grid:{color:'#21262d'}},y:{ticks:{color:'#8b949e'},grid:{color:'#21262d'}}}}
+    options:{indexAxis:'y',responsive:true,plugins:{title:{display:true,text:'WoW % Change by Source (W28→W30)',color:'#e1e4e8'},legend:{display:false}},scales:{x:{ticks:{color:'#8b949e',callback:v=>v+'%'},grid:{color:'#21262d'}},y:{ticks:{color:'#8b949e'},grid:{color:'#21262d'}}}}
   });
 
   if (window.gpPieInst) window.gpPieInst.destroy();
-  const w29Totals = fields.slice(1).map(f => gpW29.reduce((s,d)=>s+d[f],0));
+  const w30Totals = fields.slice(1).map(f => gpW30.reduce((s,d)=>s+d[f],0));
   window.gpPieInst = new Chart(document.getElementById('gpSourcePieChart').getContext('2d'), {
     type:'doughnut',
-    data:{labels:labels.slice(1),datasets:[{data:w29Totals,backgroundColor:colors.slice(1),borderColor:'#161b22',borderWidth:3}]},
-    options:{responsive:true,plugins:{title:{display:true,text:'W29 Source Mix',color:'#e1e4e8'},legend:{labels:{color:'#8b949e'}}}}
+    data:{labels:labels.slice(1),datasets:[{data:w30Totals,backgroundColor:colors.slice(1),borderColor:'#161b22',borderWidth:3}]},
+    options:{responsive:true,plugins:{title:{display:true,text:'W30 Source Mix',color:'#e1e4e8'},legend:{labels:{color:'#8b949e'}}}}
   });
 }
 
@@ -4337,16 +4222,16 @@ const OKR_SITES = {
     h2: { ios: {signups:149701,eftds:40037,eftts:33607}, android: {signups:356060,eftds:58140,eftts:44648} },
     h1: { ios: {signups:115547,eftds:33522,eftts:23824}, android: {signups:210299,eftds:40727,eftts:25431} },
     monthly: {
-      ios: [{month:'Apr',signups:28723,eftds:8176,eftts:5463},{month:'May',signups:28164,eftds:8133,eftts:5882},{month:'Jun',signups:29033,eftds:8414,eftts:6149},{month:'Jul',signups:29627,eftds:7772,eftts:5594},{month:'Aug*',signups:10529,eftds:1027,eftts:736}],
-      android: [{month:'Apr',signups:54792,eftds:10210,eftts:6176},{month:'May',signups:52994,eftds:9903,eftts:6287},{month:'Jun',signups:50754,eftds:10311,eftts:6252},{month:'Jul',signups:51759,eftds:9033,eftts:5851},{month:'Aug*',signups:19029,eftds:1270,eftts:865}]
+      ios: [{month:'Apr',signups:28723,eftds:8176,eftts:5463},{month:'May',signups:28164,eftds:8133,eftts:5882},{month:'Jun',signups:29033,eftds:8414,eftts:6149},{month:'Jul',signups:29627,eftds:7772,eftts:5594},{month:'Aug*',signups:13443,eftds:2295,eftts:1745}],
+      android: [{month:'Apr',signups:54792,eftds:10210,eftts:6176},{month:'May',signups:52994,eftds:9903,eftts:6287},{month:'Jun',signups:50754,eftds:10311,eftts:6252},{month:'Jul',signups:51759,eftds:9033,eftts:5851},{month:'Aug*',signups:25257,eftds:2824,eftts:2029}]
     }
   },
   EU: {
     h2: { ios: {signups:23139,eftds:4199,eftts:3209}, android: {signups:25727,eftds:2695,eftts:1951} },
     h1: { ios: {signups:18434,eftds:3213,eftts:2472}, android: {signups:20800,eftds:3036,eftts:2334} },
     monthly: {
-      ios: [{month:'Apr',signups:3699,eftds:472,eftts:396},{month:'May',signups:3984,eftds:471,eftts:388},{month:'Jun',signups:5052,eftds:1005,eftts:643},{month:'Jul',signups:5699,eftds:1116,eftts:932},{month:'Aug*',signups:1314,eftds:149,eftts:113}],
-      android: [{month:'Apr',signups:3588,eftds:447,eftts:349},{month:'May',signups:5389,eftds:502,eftts:388},{month:'Jun',signups:5222,eftds:812,eftts:531},{month:'Jul',signups:6601,eftds:1127,eftts:959},{month:'Aug*',signups:2052,eftds:148,eftts:107}]
+      ios: [{month:'Apr',signups:3699,eftds:472,eftts:396},{month:'May',signups:3984,eftds:471,eftts:388},{month:'Jun',signups:5052,eftds:1005,eftts:643},{month:'Jul',signups:5699,eftds:1116,eftts:932},{month:'Aug*',signups:1856,eftds:255,eftts:198}],
+      android: [{month:'Apr',signups:3588,eftds:447,eftts:349},{month:'May',signups:5389,eftds:502,eftts:388},{month:'Jun',signups:5222,eftds:812,eftts:531},{month:'Jul',signups:6601,eftds:1127,eftts:959},{month:'Aug*',signups:2660,eftds:251,eftts:199}]
     }
   },
   IDN: {
