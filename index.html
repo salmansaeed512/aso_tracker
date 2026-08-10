@@ -4058,12 +4058,12 @@ const w30Days = ASC_DAILY.slice(0, 7);
 const w31Days = ASC_DAILY.slice(7, 14);
 
 function sumSource(days, type, source) { return days.reduce((s, d) => s + d[type][source], 0); }
-function sumAllFTD(days) { return days.reduce((s, d) => s + Object.values(d.ftd).reduce((a,b)=>a+b,0), 0); }
-function sumAllRD(days) { return days.reduce((s, d) => s + Object.values(d.rd).reduce((a,b)=>a+b,0), 0); }
+function sumOrganicFTD(days) { return days.reduce((s, d) => s + d.ftd.browse + d.ftd.search, 0); }
+function sumOrganicRD(days) { return days.reduce((s, d) => s + d.rd.browse + d.rd.search, 0); }
 
 function renderIOSDownloads() {
-  const ftdW30 = sumAllFTD(w30Days), ftdW31 = sumAllFTD(w31Days);
-  const rdW30 = sumAllRD(w30Days), rdW31 = sumAllRD(w31Days);
+  const ftdW30 = sumOrganicFTD(w30Days), ftdW31 = sumOrganicFTD(w31Days);
+  const rdW30 = sumOrganicRD(w30Days), rdW31 = sumOrganicRD(w31Days);
   const rrW30 = (rdW30/(ftdW30+rdW30)*100), rrW31 = (rdW31/(ftdW31+rdW31)*100);
 
   document.getElementById('ftd-total').textContent = ftdW31.toLocaleString();
@@ -4106,8 +4106,8 @@ function renderIOSDownloads() {
 
   if (window.dailyDLInst) window.dailyDLInst.destroy();
   const dailyLabels = ASC_DAILY.map(d => d.date);
-  const dailyFTD = ASC_DAILY.map(d => Object.values(d.ftd).reduce((a,b)=>a+b,0));
-  const dailyRD = ASC_DAILY.map(d => Object.values(d.rd).reduce((a,b)=>a+b,0));
+  const dailyFTD = ASC_DAILY.map(d => d.ftd.browse + d.ftd.search);
+  const dailyRD = ASC_DAILY.map(d => d.rd.browse + d.rd.search);
   const dailyTotal = dailyFTD.map((v,i) => v + dailyRD[i]);
   window.dailyDLInst = new Chart(document.getElementById('dailyDownloadsChart').getContext('2d'), {
     type:'line',
