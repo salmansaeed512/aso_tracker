@@ -301,7 +301,7 @@ tbody tr:hover { background: #1c2128; }
 
 <!-- Downloads Breakdown (Android) -->
 <div class="section" id="androidDownloadsSection" style="display:none;">
-<div class="section-title"><span data-tip="Google Play Console store listing acquisitions — users who viewed the listing and then installed. Latest 7 available days vs prior 7 days.">Store Listing Acquisitions</span> <span class="badge">Google Play Console · W29 vs W30</span></div>
+<div class="section-title"><span data-tip="Google Play Console store listing acquisitions — users who viewed the listing and then installed. Latest 7 available days vs prior 7 days.">Store Listing Acquisitions</span> <span class="badge">Google Play Console · W31 vs W32</span></div>
 <div class="kpi-row" style="grid-template-columns: repeat(4, 1fr);">
 <div class="kpi-card">
 <div class="kpi-label" data-tip="Total store listing acquisitions across all Google Play traffic sources.">All Traffic Sources</div>
@@ -344,7 +344,7 @@ tbody tr:hover { background: #1c2128; }
 <canvas id="gpSourcePieChart"></canvas>
 </div>
 </div>
-<p class="footnote">* GP Console data through Aug 2. Jul 28 reported as 0; filled with Jul 27 value for 7-day comparison. W29 (Jul 20–26) vs W30 (Jul 27–Aug 2).</p>
+<p class="footnote">* GP Console first-time downloads through Aug 14. W31 (Aug 3–9) vs W32 (Aug 10–14, 5 days).</p>
 </div>
 
 <!-- Top Movers -->
@@ -1027,15 +1027,15 @@ const METRIC_TIPS = {
 
 function getOrganicDL() {
   if (currentPlatform === 'android') {
-    const prev = gpW29.reduce((s,d)=>s+d.search+d.explore,0);
-    const curr = gpW30.reduce((s,d)=>s+d.search+d.explore,0);
+    const prev = gpW31.reduce((s,d)=>s+d.search+d.explore,0);
+    const curr = gpW32.reduce((s,d)=>s+d.search+d.explore,0);
     return { w30: prev, w31: curr };
   }
   const iosW30 = sumOrganicFTD(w30Days) + sumOrganicRD(w30Days);
   const iosW31 = sumOrganicFTD(w31Days) + sumOrganicRD(w31Days);
   if (currentPlatform === 'all') {
-    const gpPrev = gpW29.reduce((s,d)=>s+d.search+d.explore,0);
-    const gpCurr = gpW30.reduce((s,d)=>s+d.search+d.explore,0);
+    const gpPrev = gpW31.reduce((s,d)=>s+d.search+d.explore,0);
+    const gpCurr = gpW32.reduce((s,d)=>s+d.search+d.explore,0);
     return { w30: iosW30 + gpPrev, w31: iosW31 + gpCurr };
   }
   return { w30: iosW30, w31: iosW31 };
@@ -1063,7 +1063,7 @@ function renderKPIs() {
     return `<div class="kpi-card"><div class="kpi-label" ${tip?'data-tip="'+tip+'"':''}>${label}</div><div class="kpi-value">${val}</div><div class="kpi-change ${cls}">${sign}${change}% WoW</div><div class="kpi-weeks">${wPrev}: ${suffix ? prev.toFixed(2)+suffix : prev.toLocaleString()} → ${wCurr}: ${val}</div></div>`;
   }
 
-  const dlWeeks = currentPlatform === 'android' ? ['W29','W30'] :
+  const dlWeeks = currentPlatform === 'android' ? ['W31','W32'] :
     (w31Days.length < 7 ? [`W31 (${w30Days.length}d)`, `W32 (${w31Days.length}d)`] : null);
   document.getElementById('mainKpiRow').innerHTML =
     kpiCard('Organic Downloads', dl31, dl30, '', dlWeeks) +
@@ -1452,31 +1452,38 @@ function renderIOSDownloads() {
 
 // === Android Downloads (GP Console) ===
 const GP_DAILY = [
-  {date:'7/13',all:12989,search:9714,explore:1682,ads:1593},
-  {date:'7/14',all:12881,search:9819,explore:1556,ads:1506},
-  {date:'7/15',all:12466,search:9430,explore:1570,ads:1466},
-  {date:'7/16',all:12420,search:9398,explore:1559,ads:1463},
-  {date:'7/17',all:12517,search:9308,explore:1601,ads:1608},
-  {date:'7/18',all:12082,search:8756,explore:1740,ads:1586},
-  {date:'7/19',all:11123,search:8196,explore:1529,ads:1398},
-  {date:'7/20',all:11803,search:8860,explore:1625,ads:1318},
-  {date:'7/21',all:12862,search:9892,explore:1704,ads:1266},
-  {date:'7/22',all:12213,search:9306,explore:1719,ads:1188},
-  {date:'7/23',all:12591,search:9360,explore:1710,ads:1521},
-  {date:'7/24',all:12667,search:9523,explore:1683,ads:1461},
-  {date:'7/25',all:12008,search:9131,explore:1592,ads:1285},
-  {date:'7/26',all:12051,search:9108,explore:1649,ads:1294},
-  {date:'7/27',all:13013,search:9998,explore:1679,ads:1336},
-  {date:'7/28',all:13013,search:9998,explore:1679,ads:1336},
-  {date:'7/29',all:12759,search:9719,explore:1592,ads:1448},
-  {date:'7/30',all:13262,search:10034,explore:1624,ads:1604},
-  {date:'7/31',all:12956,search:9843,explore:1625,ads:1488},
-  {date:'8/1',all:12334,search:9387,explore:1514,ads:1433},
-  {date:'8/2',all:12525,search:9606,explore:1510,ads:1409}
+  {date:'7/18',all:13428,search:9743,explore:1886,ads:1799},
+  {date:'7/19',all:12468,search:9023,explore:1784,ads:1661},
+  {date:'7/20',all:12915,search:9595,explore:1850,ads:1470},
+  {date:'7/21',all:13980,search:10618,explore:1890,ads:1472},
+  {date:'7/22',all:13326,search:10019,explore:1918,ads:1389},
+  {date:'7/23',all:13901,search:10191,explore:1892,ads:1818},
+  {date:'7/24',all:14183,search:10521,explore:1946,ads:1716},
+  {date:'7/25',all:13604,search:10107,explore:1952,ads:1545},
+  {date:'7/26',all:13486,search:9987,explore:1983,ads:1516},
+  {date:'7/27',all:14402,search:10775,explore:2057,ads:1570},
+  {date:'7/28',all:14215,search:10702,explore:2014,ads:1499},
+  {date:'7/29',all:14147,search:10516,explore:1903,ads:1728},
+  {date:'7/30',all:14629,search:10836,explore:1996,ads:1797},
+  {date:'7/31',all:14471,search:10595,explore:2106,ads:1770},
+  {date:'8/1',all:13864,search:10250,explore:1907,ads:1707},
+  {date:'8/2',all:14013,search:10365,explore:1954,ads:1694},
+  {date:'8/3',all:14548,search:10791,explore:2057,ads:1700},
+  {date:'8/4',all:14865,search:10991,explore:2057,ads:1817},
+  {date:'8/5',all:14803,search:11088,explore:2032,ads:1683},
+  {date:'8/6',all:14404,search:10675,explore:2108,ads:1621},
+  {date:'8/7',all:14091,search:10225,explore:2078,ads:1788},
+  {date:'8/8',all:14524,search:10751,explore:2154,ads:1619},
+  {date:'8/9',all:13461,search:9919,explore:2007,ads:1535},
+  {date:'8/10',all:14412,search:10739,explore:2056,ads:1617},
+  {date:'8/11',all:14371,search:10769,explore:1948,ads:1654},
+  {date:'8/12',all:14079,search:10516,explore:1965,ads:1598},
+  {date:'8/13',all:15022,search:11161,explore:2012,ads:1849},
+  {date:'8/14',all:15128,search:11335,explore:2156,ads:1637}
 ];
 
-const gpW29 = GP_DAILY.slice(7, 14);
-const gpW30 = GP_DAILY.slice(14, 21);
+const gpW31 = GP_DAILY.slice(16, 23);
+const gpW32 = GP_DAILY.slice(23);
 
 function renderAndroidDownloads() {
   const fields = ['all','search','explore','ads'];
@@ -1485,25 +1492,25 @@ function renderAndroidDownloads() {
   const colors = ['#58a6ff','#f97316','#a855f7','#10b981'];
 
   fields.forEach((f,i) => {
-    const prevSum = gpW29.reduce((s,d)=>s+d[f],0);
-    const currSum = gpW30.reduce((s,d)=>s+d[f],0);
+    const prevSum = gpW31.reduce((s,d)=>s+d[f],0);
+    const currSum = gpW32.reduce((s,d)=>s+d[f],0);
     const pct = ((currSum-prevSum)/prevSum*100).toFixed(1);
     const cls = currSum>=prevSum ? 'positive' : 'negative';
     const sign = currSum>=prevSum ? '+' : '';
     document.getElementById(ids[i]+'-total').textContent = currSum.toLocaleString();
     document.getElementById(ids[i]+'-change').textContent = `${sign}${pct}% WoW`;
     document.getElementById(ids[i]+'-change').className = 'kpi-change ' + cls;
-    document.getElementById(ids[i]+'-weeks').textContent = `W29: ${prevSum.toLocaleString()} → W30: ${currSum.toLocaleString()}`;
+    document.getElementById(ids[i]+'-weeks').textContent = `W31: ${prevSum.toLocaleString()} → W32: ${currSum.toLocaleString()}`;
   });
 
   if (window.gpSrcInst) window.gpSrcInst.destroy();
   window.gpSrcInst = new Chart(document.getElementById('gpSourceBreakdownChart').getContext('2d'), {
     type:'bar',
     data:{
-      labels:['W29 (Jul 20–26)','W30 (Jul 27–Aug 2)'],
+      labels:['W31 (Aug 3–9)','W32 (Aug 10–14)'],
       datasets: fields.slice(1).map((f,i) => ({
         label: labels[i+1],
-        data: [gpW29.reduce((s,d)=>s+d[f],0), gpW30.reduce((s,d)=>s+d[f],0)],
+        data: [gpW31.reduce((s,d)=>s+d[f],0), gpW32.reduce((s,d)=>s+d[f],0)],
         backgroundColor: colors[i+1]
       }))
     },
@@ -1519,27 +1526,27 @@ function renderAndroidDownloads() {
       {label:'GP Explore',data:GP_DAILY.map(d=>d.explore),borderColor:'#a855f7',tension:0.3,borderWidth:1.5},
       {label:'Ads & Referrals',data:GP_DAILY.map(d=>d.ads),borderColor:'#10b981',tension:0.3,borderWidth:1.5}
     ]},
-    options:{responsive:true,plugins:{title:{display:true,text:'Daily Acquisitions (Jul 13 – Aug 2)',color:'#e1e4e8'},legend:{labels:{color:'#8b949e'}}},scales:{x:{ticks:{color:'#8b949e'},grid:{color:'#21262d'}},y:{ticks:{color:'#8b949e'},grid:{color:'#21262d'}}}}
+    options:{responsive:true,plugins:{title:{display:true,text:'Daily Acquisitions (Jul 18 – Aug 14)',color:'#e1e4e8'},legend:{labels:{color:'#8b949e'}}},scales:{x:{ticks:{color:'#8b949e'},grid:{color:'#21262d'}},y:{ticks:{color:'#8b949e'},grid:{color:'#21262d'}}}}
   });
 
   if (window.gpWowInst) window.gpWowInst.destroy();
   const wowData = fields.slice(1).map((f,i) => {
-    const prev = gpW29.reduce((s,d)=>s+d[f],0);
-    const curr = gpW30.reduce((s,d)=>s+d[f],0);
+    const prev = gpW31.reduce((s,d)=>s+d[f],0);
+    const curr = gpW32.reduce((s,d)=>s+d[f],0);
     return {label:labels[i+1], pct:((curr-prev)/prev*100)};
   });
   window.gpWowInst = new Chart(document.getElementById('gpSourceWowChart').getContext('2d'), {
     type:'bar',
     data:{labels:wowData.map(d=>d.label),datasets:[{label:'WoW %',data:wowData.map(d=>d.pct.toFixed(1)),backgroundColor:wowData.map(d=>d.pct>=0?'#3fb950':'#f85149'),borderRadius:4}]},
-    options:{indexAxis:'y',responsive:true,plugins:{title:{display:true,text:'WoW % Change by Source (W29→W30)',color:'#e1e4e8'},legend:{display:false}},scales:{x:{ticks:{color:'#8b949e',callback:v=>v+'%'},grid:{color:'#21262d'}},y:{ticks:{color:'#8b949e'},grid:{color:'#21262d'}}}}
+    options:{indexAxis:'y',responsive:true,plugins:{title:{display:true,text:'WoW % Change by Source (W31→W32)',color:'#e1e4e8'},legend:{display:false}},scales:{x:{ticks:{color:'#8b949e',callback:v=>v+'%'},grid:{color:'#21262d'}},y:{ticks:{color:'#8b949e'},grid:{color:'#21262d'}}}}
   });
 
   if (window.gpPieInst) window.gpPieInst.destroy();
-  const w30Totals = fields.slice(1).map(f => gpW30.reduce((s,d)=>s+d[f],0));
+  const w30Totals = fields.slice(1).map(f => gpW32.reduce((s,d)=>s+d[f],0));
   window.gpPieInst = new Chart(document.getElementById('gpSourcePieChart').getContext('2d'), {
     type:'doughnut',
     data:{labels:labels.slice(1),datasets:[{data:w30Totals,backgroundColor:colors.slice(1),borderColor:'#161b22',borderWidth:3}]},
-    options:{responsive:true,plugins:{title:{display:true,text:'W30 Source Mix (Jul 27–Aug 2)',color:'#e1e4e8'},legend:{labels:{color:'#8b949e'}}}}
+    options:{responsive:true,plugins:{title:{display:true,text:'W32 Source Mix (Aug 10–14)',color:'#e1e4e8'},legend:{labels:{color:'#8b949e'}}}}
   });
 }
 
