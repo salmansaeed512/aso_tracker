@@ -344,7 +344,7 @@ tbody tr:hover { background: #1c2128; }
 <canvas id="gpSourcePieChart"></canvas>
 </div>
 </div>
-<p class="footnote">* GP Console first-time downloads through Aug 14. W31 (Aug 3–9) vs W32 (Aug 10–14, 5 days).</p>
+<p class="footnote">* GP Console first-time downloads + redownloads through Aug 14. W31 (Aug 3–9) vs W32 (Aug 10–14, 5 days). KPIs show FTD only.</p>
 </div>
 
 <!-- Top Movers -->
@@ -1452,34 +1452,34 @@ function renderIOSDownloads() {
 
 // === Android Downloads (GP Console) ===
 const GP_DAILY = [
-  {date:'7/18',all:13428,search:9743,explore:1886,ads:1799},
-  {date:'7/19',all:12468,search:9023,explore:1784,ads:1661},
-  {date:'7/20',all:12915,search:9595,explore:1850,ads:1470},
-  {date:'7/21',all:13980,search:10618,explore:1890,ads:1472},
-  {date:'7/22',all:13326,search:10019,explore:1918,ads:1389},
-  {date:'7/23',all:13901,search:10191,explore:1892,ads:1818},
-  {date:'7/24',all:14183,search:10521,explore:1946,ads:1716},
-  {date:'7/25',all:13604,search:10107,explore:1952,ads:1545},
-  {date:'7/26',all:13486,search:9987,explore:1983,ads:1516},
-  {date:'7/27',all:14402,search:10775,explore:2057,ads:1570},
-  {date:'7/28',all:14215,search:10702,explore:2014,ads:1499},
-  {date:'7/29',all:14147,search:10516,explore:1903,ads:1728},
-  {date:'7/30',all:14629,search:10836,explore:1996,ads:1797},
-  {date:'7/31',all:14471,search:10595,explore:2106,ads:1770},
-  {date:'8/1',all:13864,search:10250,explore:1907,ads:1707},
-  {date:'8/2',all:14013,search:10365,explore:1954,ads:1694},
-  {date:'8/3',all:14548,search:10791,explore:2057,ads:1700},
-  {date:'8/4',all:14865,search:10991,explore:2057,ads:1817},
-  {date:'8/5',all:14803,search:11088,explore:2032,ads:1683},
-  {date:'8/6',all:14404,search:10675,explore:2108,ads:1621},
-  {date:'8/7',all:14091,search:10225,explore:2078,ads:1788},
-  {date:'8/8',all:14524,search:10751,explore:2154,ads:1619},
-  {date:'8/9',all:13461,search:9919,explore:2007,ads:1535},
-  {date:'8/10',all:14412,search:10739,explore:2056,ads:1617},
-  {date:'8/11',all:14371,search:10769,explore:1948,ads:1654},
-  {date:'8/12',all:14079,search:10516,explore:1965,ads:1598},
-  {date:'8/13',all:15022,search:11161,explore:2012,ads:1849},
-  {date:'8/14',all:15128,search:11335,explore:2156,ads:1637}
+  {date:'7/18',all:13428,search:9743,explore:1886,ads:1799,rdAll:4732,rdSearch:3542,rdExplore:840,rdAds:350},
+  {date:'7/19',all:12468,search:9023,explore:1784,ads:1661,rdAll:4540,rdSearch:3414,rdExplore:774,rdAds:352},
+  {date:'7/20',all:12915,search:9595,explore:1850,ads:1470,rdAll:4761,rdSearch:3581,rdExplore:840,rdAds:340},
+  {date:'7/21',all:13980,search:10618,explore:1890,ads:1472,rdAll:4988,rdSearch:3808,rdExplore:830,rdAds:350},
+  {date:'7/22',all:13326,search:10019,explore:1918,ads:1389,rdAll:4785,rdSearch:3691,rdExplore:795,rdAds:299},
+  {date:'7/23',all:13901,search:10191,explore:1892,ads:1818,rdAll:4883,rdSearch:3694,rdExplore:827,rdAds:362},
+  {date:'7/24',all:14183,search:10521,explore:1946,ads:1716,rdAll:4917,rdSearch:3739,rdExplore:817,rdAds:361},
+  {date:'7/25',all:13604,search:10107,explore:1952,ads:1545,rdAll:4687,rdSearch:3565,rdExplore:828,rdAds:294},
+  {date:'7/26',all:13486,search:9987,explore:1983,ads:1516,rdAll:4679,rdSearch:3554,rdExplore:798,rdAds:327},
+  {date:'7/27',all:14402,search:10775,explore:2057,ads:1570,rdAll:5044,rdSearch:3833,rdExplore:884,rdAds:327},
+  {date:'7/28',all:14215,search:10702,explore:2014,ads:1499,rdAll:5180,rdSearch:3960,rdExplore:868,rdAds:352},
+  {date:'7/29',all:14147,search:10516,explore:1903,ads:1728,rdAll:4940,rdSearch:3723,rdExplore:877,rdAds:340},
+  {date:'7/30',all:14629,search:10836,explore:1996,ads:1797,rdAll:5201,rdSearch:3895,rdExplore:871,rdAds:435},
+  {date:'7/31',all:14471,search:10595,explore:2106,ads:1770,rdAll:4918,rdSearch:3743,rdExplore:783,rdAds:392},
+  {date:'8/1',all:13864,search:10250,explore:1907,ads:1707,rdAll:4809,rdSearch:3620,rdExplore:817,rdAds:372},
+  {date:'8/2',all:14013,search:10365,explore:1954,ads:1694,rdAll:4897,rdSearch:3650,rdExplore:852,rdAds:395},
+  {date:'8/3',all:14548,search:10791,explore:2057,ads:1700,rdAll:5267,rdSearch:3988,rdExplore:896,rdAds:383},
+  {date:'8/4',all:14865,search:10991,explore:2057,ads:1817,rdAll:5149,rdSearch:3930,rdExplore:855,rdAds:364},
+  {date:'8/5',all:14803,search:11088,explore:2032,ads:1683,rdAll:5090,rdSearch:3832,rdExplore:890,rdAds:368},
+  {date:'8/6',all:14404,search:10675,explore:2108,ads:1621,rdAll:4921,rdSearch:3700,rdExplore:862,rdAds:359},
+  {date:'8/7',all:14091,search:10225,explore:2078,ads:1788,rdAll:5056,rdSearch:3826,rdExplore:864,rdAds:366},
+  {date:'8/8',all:14524,search:10751,explore:2154,ads:1619,rdAll:5638,rdSearch:4266,rdExplore:949,rdAds:423},
+  {date:'8/9',all:13461,search:9919,explore:2007,ads:1535,rdAll:4784,rdSearch:3543,rdExplore:887,rdAds:354},
+  {date:'8/10',all:14412,search:10739,explore:2056,ads:1617,rdAll:5315,rdSearch:4041,rdExplore:908,rdAds:366},
+  {date:'8/11',all:14371,search:10769,explore:1948,ads:1654,rdAll:5196,rdSearch:3989,rdExplore:881,rdAds:326},
+  {date:'8/12',all:14079,search:10516,explore:1965,ads:1598,rdAll:5125,rdSearch:3858,rdExplore:887,rdAds:380},
+  {date:'8/13',all:15022,search:11161,explore:2012,ads:1849,rdAll:5296,rdSearch:4060,rdExplore:852,rdAds:384},
+  {date:'8/14',all:15128,search:11335,explore:2156,ads:1637,rdAll:5233,rdSearch:4003,rdExplore:852,rdAds:378}
 ];
 
 const gpW31 = GP_DAILY.slice(16, 23);
@@ -1504,29 +1504,42 @@ function renderAndroidDownloads() {
   });
 
   if (window.gpSrcInst) window.gpSrcInst.destroy();
+  const rdFields = ['rdSearch','rdExplore','rdAds'];
+  const rdLabels = ['ReDL Search','ReDL Explore','ReDL Ads'];
+  const rdColors = ['rgba(249,115,22,0.4)','rgba(168,85,247,0.4)','rgba(16,185,129,0.4)'];
   window.gpSrcInst = new Chart(document.getElementById('gpSourceBreakdownChart').getContext('2d'), {
     type:'bar',
     data:{
       labels:['W31 (Aug 3–9)','W32 (Aug 10–14)'],
-      datasets: fields.slice(1).map((f,i) => ({
-        label: labels[i+1],
-        data: [gpW31.reduce((s,d)=>s+d[f],0), gpW32.reduce((s,d)=>s+d[f],0)],
-        backgroundColor: colors[i+1]
-      }))
+      datasets: [
+        ...fields.slice(1).map((f,i) => ({
+          label: labels[i+1] + ' (FTD)',
+          data: [gpW31.reduce((s,d)=>s+d[f],0), gpW32.reduce((s,d)=>s+d[f],0)],
+          backgroundColor: colors[i+1], stack: 'ftd'
+        })),
+        ...rdFields.map((f,i) => ({
+          label: rdLabels[i],
+          data: [gpW31.reduce((s,d)=>s+d[f],0), gpW32.reduce((s,d)=>s+d[f],0)],
+          backgroundColor: rdColors[i], stack: 'rd'
+        }))
+      ]
     },
-    options:{responsive:true,plugins:{title:{display:true,text:'Store Listing Acquisitions by Source',color:'#e1e4e8'},legend:{labels:{color:'#8b949e'}}},scales:{x:{stacked:true,ticks:{color:'#8b949e'},grid:{color:'#21262d'}},y:{stacked:true,ticks:{color:'#8b949e'},grid:{color:'#21262d'}}}}
+    options:{responsive:true,plugins:{title:{display:true,text:'Store Listing Acquisitions by Source (FTD vs Redownloads)',color:'#e1e4e8'},legend:{labels:{color:'#8b949e'}}},scales:{x:{stacked:true,ticks:{color:'#8b949e'},grid:{color:'#21262d'}},y:{stacked:true,ticks:{color:'#8b949e'},grid:{color:'#21262d'}}}}
   });
 
   if (window.gpDailyInst) window.gpDailyInst.destroy();
   window.gpDailyInst = new Chart(document.getElementById('gpDailyChart').getContext('2d'), {
     type:'line',
     data:{labels:GP_DAILY.map(d=>d.date),datasets:[
-      {label:'All Sources',data:GP_DAILY.map(d=>d.all),borderColor:'#fff',tension:0.3,borderWidth:2},
-      {label:'GP Search',data:GP_DAILY.map(d=>d.search),borderColor:'#f97316',tension:0.3,borderWidth:1.5},
-      {label:'GP Explore',data:GP_DAILY.map(d=>d.explore),borderColor:'#a855f7',tension:0.3,borderWidth:1.5},
-      {label:'Ads & Referrals',data:GP_DAILY.map(d=>d.ads),borderColor:'#10b981',tension:0.3,borderWidth:1.5}
+      {label:'FTD All',data:GP_DAILY.map(d=>d.all),borderColor:'#fff',tension:0.3,borderWidth:2},
+      {label:'FTD Search',data:GP_DAILY.map(d=>d.search),borderColor:'#f97316',tension:0.3,borderWidth:1.5},
+      {label:'FTD Explore',data:GP_DAILY.map(d=>d.explore),borderColor:'#a855f7',tension:0.3,borderWidth:1.5},
+      {label:'FTD Ads',data:GP_DAILY.map(d=>d.ads),borderColor:'#10b981',tension:0.3,borderWidth:1.5},
+      {label:'ReDL All',data:GP_DAILY.map(d=>d.rdAll),borderColor:'#8b949e',borderDash:[5,3],tension:0.3,borderWidth:1.5},
+      {label:'ReDL Search',data:GP_DAILY.map(d=>d.rdSearch),borderColor:'#f97316',borderDash:[5,3],tension:0.3,borderWidth:1},
+      {label:'ReDL Explore',data:GP_DAILY.map(d=>d.rdExplore),borderColor:'#a855f7',borderDash:[5,3],tension:0.3,borderWidth:1}
     ]},
-    options:{responsive:true,plugins:{title:{display:true,text:'Daily Acquisitions (Jul 18 – Aug 14)',color:'#e1e4e8'},legend:{labels:{color:'#8b949e'}}},scales:{x:{ticks:{color:'#8b949e'},grid:{color:'#21262d'}},y:{ticks:{color:'#8b949e'},grid:{color:'#21262d'}}}}
+    options:{responsive:true,plugins:{title:{display:true,text:'Daily Downloads (Jul 18 – Aug 14) — Solid: FTD, Dashed: Redownloads',color:'#e1e4e8'},legend:{labels:{color:'#8b949e'}}},scales:{x:{ticks:{color:'#8b949e'},grid:{color:'#21262d'}},y:{ticks:{color:'#8b949e'},grid:{color:'#21262d'}}}}
   });
 
   if (window.gpWowInst) window.gpWowInst.destroy();
